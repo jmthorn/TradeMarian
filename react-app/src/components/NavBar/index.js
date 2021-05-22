@@ -10,7 +10,7 @@ const NavBar = () => {
   let sessionLinks;
   if (user) {
     sessionLinks = (
-      <span id="nav-options">
+      <span class="nav-options">
         <li id="nav-home">
           <NavLink to="/" exact={true} activeClassName="active">
             Home
@@ -28,7 +28,7 @@ const NavBar = () => {
     );
   } else {
     sessionLinks = (
-      <>
+      <span class="nav-options">
         <li id="nav-login">
           <NavLink to="/login" exact={true} activeClassName="active">
             Login
@@ -39,7 +39,7 @@ const NavBar = () => {
             Sign Up
           </NavLink>
         </li>      
-      </>
+      </span>
     );
   }
 
@@ -48,9 +48,7 @@ const NavBar = () => {
       <ul id="nav-list">
         <li id="nav-home">
           <NavLink to="/" exact={true} activeClassName="active">
-            TradeMarian
-            {/* TODO: ADD LOGO: */}
-            {/* <img className="logo" src={} alt="logo"/> */}
+            <img className="logo" src={'/images/logo.png'} alt="logo"/>
           </NavLink>
         </li>
         <li id="nav-search">

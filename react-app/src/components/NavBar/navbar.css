@@ -2,29 +2,36 @@
   margin: 2em 3em;
   padding: 10px 10px;
   font-family: Arial, Helvetica, sans-serif;
+  text-decoration: none;
+  color: black;
+  display: flex;
 }
 
 #nav-list li {
   display: inline;
 }
 
+.logo {
+  height: 2.5em;
+}
+
 #nav-search {
-  margin: 0em 6em 0em 6em;
+  margin: 0.5em 6em 0em 6em;
 }
 
 #nav-search input {
-  width: 30%;
+  width: 190%;
   padding: 0.6em 2em;
   border: 1px solid rgb(180, 180, 180);
   border-radius: 5px;
   color: rgb(148, 147, 147);
 }
 
-#nav-options {
+.nav-options {
   position: absolute;
   margin-left: auto;
   right: 5em;
-  margin-top: 0.5em;
+  margin-top: 0.7em;
 }
 
 #nav-logout button {
@@ -34,14 +41,18 @@
 }
 
 #nav-home,
-#nav-portfolio {
+#nav-portfolio,
+#nav-signup,
+#nav-login {
   margin: 0em 2em;
   color: black;
   text-decoration: none;
 }
 
 #nav-home .active,
-#nav-portfolio .active {
+#nav-portfolio .active,
+#nav-signup .active,
+#nav-login .active {
   color: black;
   text-decoration: none;
 }
