@@ -1,0 +1,32 @@
+#nav-list {
+  margin: 2em 3em;
+  padding: 10px 10px;
+}
+
+#nav-list li {
+  display: inline;
+}
+
+#nav-search {
+  margin: 0em 8em 0em 10em;
+}
+
+#nav-search input {
+  width: 30em;
+  padding: 0.6em 2em;
+  border: 1px solid rgb(180, 180, 180);
+  border-radius: 5px;
+  color: rgb(148, 147, 147);
+}
+
+#nav-logout {
+  position: absolute;
+  right: 5em;
+  top: 3.2em;
+}
+
+#nav-logout button {
+  background-color: #ffffff;
+  border: 0px solid #ffffff;
+  font-size: 1em;
+}
