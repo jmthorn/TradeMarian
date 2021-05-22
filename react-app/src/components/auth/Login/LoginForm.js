@@ -50,7 +50,6 @@ const LoginForm = () => {
               <input
                 name="email"
                 type="text"
-                placeholder="Email"
                 value={email}
                 onChange={updateEmail}
               />
@@ -60,17 +59,18 @@ const LoginForm = () => {
               <input
                 name="password"
                 type="password"
-                placeholder="Password"
                 value={password}
                 onChange={updatePassword}
               />
             </div>
-            <p>
-              Don't have an account?
+            <div id='redirect-signup'>
+              <p>
+                Don't have an account?
               <a href='/signup'> Sign up here</a>
-            </p>
-            <button type="submit">Sign In</button>
+              </p>
+            </div>
           </div>
+        <button type="submit" id='signin-btn'>Sign In</button>
         </form>
       </div>
     </div>
