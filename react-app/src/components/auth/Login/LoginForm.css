@@ -4,7 +4,6 @@
   height: 100vh;
 }
 
-
 .login-img {
   display: flex;
   flex-direction: row;
@@ -27,23 +26,39 @@
   max-width: 460px;
   display: flex;
   align-items: center;
+  margin-top: 20vh;
 }
 
-.login-form p{
-  margin: 12px 0;
+.login-form h3 {
+  font-size: 21px;
 }
 
-.form-inputs {
+.form-details {
   margin-bottom: 60px;
 }
 
-.form-inputs div {
+.form-details div {
   display: flex;
   flex-direction: column;
-}
-
-.email {
   width: 100%;
   min-width: 39px;
   max-width: 640px;
+}
+
+.form-inputs label {
+  padding: 9px 0;
+  margin: 0 0 8px;
+  font-size: 15px;
+}
+
+.form-inputs input {
+  padding: 10px 12px;
+  height: 100%;
+  min-width: 100%;
+  border: 1px solid #e4e9ed;
+  border-radius: 5px;
+}
+
+.form-inputs input:hover {
+  transition: border-color 200ms ease 0s;
 }
