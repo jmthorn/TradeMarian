@@ -1,0 +1,49 @@
+.login-page {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+}
+
+
+.login-img {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  width: 50vw;
+  /* flex-grow: 1; */
+}
+
+.login-img img {
+  flex: 1 1 50%;
+  height: 100%;
+  object-fit: cover;
+  overflow: hidden;
+}
+
+.form-container {
+  flex: 1 1 50%;
+  height: 400px;
+  margin: 0 52px;
+  max-width: 460px;
+  display: flex;
+  align-items: center;
+}
+
+.login-form p{
+  margin: 12px 0;
+}
+
+.form-inputs {
+  margin-bottom: 60px;
+}
+
+.form-inputs div {
+  display: flex;
+  flex-direction: column;
+}
+
+.email {
+  width: 100%;
+  min-width: 39px;
+  max-width: 640px;
+}
