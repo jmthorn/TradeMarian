@@ -10,7 +10,7 @@ const NavBar = () => {
   let sessionLinks;
   if (user) {
     sessionLinks = (
-      <>
+      <span id="nav-options">
         <li id="nav-home">
           <NavLink to="/" exact={true} activeClassName="active">
             Home
@@ -24,7 +24,7 @@ const NavBar = () => {
       <li id="nav-logout">
             <LogoutButton />
       </li>
-    </>
+    </span>
     );
   } else {
     sessionLinks = (
