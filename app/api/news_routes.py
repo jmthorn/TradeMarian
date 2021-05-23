@@ -17,3 +17,23 @@ def specific_news(ticker):
             id += 1
 
     return list_
+
+@news_routes.route('/news')
+def all_news():
+    reqs = requests.get(
+        "https://newsapi.org/v2/everything?q=stocks&apiKey=b5d1f835466045a19d46216f6729c833")
+
+    res = reqs.json()
+
+    for article in res:
+        news_list = res[article]
+
+    news_ = {}
+
+    id = 1
+    while id < len(news_list):
+        for d in news_list:
+            news_[id] = d
+            id += 1
+
+    return news_
