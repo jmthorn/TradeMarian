@@ -7,7 +7,7 @@ class User(db.Model, UserMixin):
 
   id = db.Column(db.Integer, primary_key = True)
   first_name = db.Column(db.String, nullable = False)
-  first_name = db.Column(db.String, nullable = False)
+  last_name = db.Column(db.String, nullable = False)
   username = db.Column(db.String(40), nullable = False, unique = True)
   email = db.Column(db.String(255), nullable = False, unique = True)
   buying_power = db.Column(db.Integer)

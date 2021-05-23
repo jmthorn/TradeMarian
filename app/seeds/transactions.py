@@ -60,8 +60,9 @@ def seed_transactions():
     db.session.add(t5)
     db.session.add(t6)
     db.session.add(t7)
+    db.session.commit()
 
 
 def undo_transactions():
-    db.session.execute('TRUNCATE transactions')
+    db.session.execute('TRUNCATE transactions RESTART IDENTITY')
     db.session.commit()
