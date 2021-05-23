@@ -41,15 +41,35 @@ nav {
 }
 
 #nav-logout button {
-  background-color: #ffffff;
-  border: 0px solid #ffffff;
+  background-color: transparent;
+  border: 0px solid transparent;
   font-size: 18px;
-  font-weight: normal;
+  font-weight: 300;
+  margin: 0 0 0 36px;
+  font-family: objektiv-mk1, sans-serif;
+}
+
+#nav-signup {
+  background-color: #645b8c;
+  height: 48px;
+  padding: 12px 40px;
+  white-space: nowrap;
+  border-radius: 35px;
+  border: 1px solid transparent;
+}
+
+#nav-signup:hover {
+  background-color: #5c5381;
+  transition: 0.3s;
+}
+
+#nav-signup a {
+  color: white;
+  text-decoration: none;
 }
 
 #nav-home a,
 #nav-portfolio a,
-#nav-signup a,
 #nav-login a {
   margin: 0em 2em;
   color: black;
@@ -58,7 +78,6 @@ nav {
 }
 
 #nav-home a:hover, 
-#nav-signup a:hover, 
 #nav-portfolio a:hover,
 #nav-login a:hover,
 #nav-logout button:hover {
