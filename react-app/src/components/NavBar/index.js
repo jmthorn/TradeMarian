@@ -28,7 +28,7 @@ const NavBar = () => {
     );
   } else {
     sessionLinks = (
-      <span class="nav-options">
+      <span className="nav-options">
         <li id="nav-login">
           <NavLink to="/login" exact={true} activeClassName="active">
             Login

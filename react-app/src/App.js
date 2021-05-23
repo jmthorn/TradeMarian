@@ -5,8 +5,9 @@ import LoginForm from "./components/auth/Login/LoginForm";
 import SignUpForm from "./components/auth/SignUp/SignUpForm";
 import NavBar from "./components/NavBar/index";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
-import UsersList from "./components/UsersList";
 import User from "./components/User";
+import Splash from "./components/Splash/index"
+import Portfolio from "./components/Portfolio/index"
 import { authenticate } from "./store/session";
 
 function App() {
@@ -26,8 +27,20 @@ function App() {
     return null;
   }
 
+  let sessionLinks;
+  if(user) { 
+    sessionLinks = (
+      <Portfolio />
+    ) 
+  } else { 
+    sessionLinks = (
+      <Splash />
+    ) 
+  }
+
   return (
     <BrowserRouter>
+      <NavBar />
       <Switch>
         <Route path="/login" exact={true}>
           <LoginForm/>
@@ -35,16 +48,9 @@ function App() {
         <Route path="/sign-up" exact={true}>
           <SignUpForm />
         </Route>
-        {/* <ProtectedRoute path="/users" exact={true} >
-          <UsersList/>
-        </ProtectedRoute> */}
-        {/* <ProtectedRoute path="/users/:userId" exact={true} >
-          <User />
-        </ProtectedRoute> */}
-        <NavBar />
-        <ProtectedRoute path="/" exact={true} >
-          <h1>My Home Page</h1>
-        </ProtectedRoute>
+        <Route path="/" exact={true} >
+          {sessionLinks}
+        </Route>
       </Switch>
     </BrowserRouter>
   );
