@@ -3,35 +3,36 @@
   padding: 10px 10px;
   font-family: Arial, Helvetica, sans-serif;
   text-decoration: none;
-  color: black;
   display: flex;
 }
 
 #nav-list li {
   display: inline;
+  margin-top: 0em;
 }
 
 .logo {
-  height: 2.5em;
+  height: 2.3em;
 }
 
 #nav-search {
-  margin: 0.5em 6em 0em 6em;
+  margin: 0.8em 6em 0em 6em;
 }
 
 #nav-search input {
-  width: 190%;
+  width: 170%;
   padding: 0.6em 2em;
   border: 1px solid rgb(180, 180, 180);
   border-radius: 5px;
   color: rgb(148, 147, 147);
+  margin-top: 0.8em;
 }
 
 .nav-options {
   position: absolute;
   margin-left: auto;
   right: 5em;
-  margin-top: 0.7em;
+  margin-top: 1em;
 }
 
 #nav-logout button {
@@ -40,13 +41,14 @@
   font-size: 1em;
 }
 
-#nav-home,
-#nav-portfolio,
-#nav-signup,
-#nav-login {
+#nav-home a,
+#nav-portfolio a,
+#nav-signup a,
+#nav-login a {
   margin: 0em 2em;
   color: black;
   text-decoration: none;
+  font-size: 18px;
 }
 
 #nav-home .active,
@@ -55,4 +57,10 @@
 #nav-login .active {
   color: black;
   text-decoration: none;
+}
+
+@media (max-width: 1000px) {
+  #nav-search input {
+    visibility: hidden;
+  }
 }
