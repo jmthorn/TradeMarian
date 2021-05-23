@@ -68,8 +68,8 @@
 #signup-btn {
   background-color: #645b8c;
   color: white;
-  width: 125px;
-  padding: 12px 0;
+  width: 138px;
+  padding: 14px 0;
   margin-top: 25px;
   white-space: nowrap;
   border-radius: 4px;
@@ -77,12 +77,16 @@
   vertical-align: middle;
 }
 
+#signup-btn:hover {
+  background-color: #5c5381;
+}
+
 #redirect-login {
   display: flex;
 }
 
 #redirect-login p, #redirect-login a {
-  margin: 28px 0 0 20px;
+  margin: 29px 0 0 20px;
   font-size: 15px;
 }
 
