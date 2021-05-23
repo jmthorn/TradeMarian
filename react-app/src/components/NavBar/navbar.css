@@ -16,7 +16,7 @@
 }
 
 #nav-search {
-  margin: 0.8em 6em 0em 6em;
+  margin: 0.4em 6em 0em 6em;
 }
 
 #nav-search input {
@@ -59,7 +59,7 @@
   text-decoration: none;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 75em) {
   #nav-search input {
     visibility: hidden;
   }
