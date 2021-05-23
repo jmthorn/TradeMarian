@@ -1,3 +1,41 @@
-h1 {
-  /* font-size: 100px; */
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap");
+
+#splash-blue {
+  background-color: #002158;
+  height: 45em;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  font-family: "Open Sans", sans-serif;
+}
+
+#splash-description {
+  margin: 4em 6em 4em 6em;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+#splash-description h1 {
+  margin: 0em 0px;
+  font-size: 3em;
+}
+
+#splash-description p {
+  margin: 0.2em;
+  font-size: 1.35m;
+}
+
+#splash-description button {
+  margin: 4em 6em 4em 0em;
+  border-radius: 25px;
+  border: 0px solid white;
+  padding: 1em 2em;
+  font-size: 1em;
+}
+
+#h1-spacer {
+  height: 2.5em;
 }
