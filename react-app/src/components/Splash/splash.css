@@ -2,7 +2,7 @@
 
 #splash-blue {
   background-color: #002158;
-  height: 45em;
+  height: 40em;
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -58,7 +58,7 @@
 #video {
   height: 30em;
   position: absolute;
-  right: 2em;
-  left: 13em;
+  right: 2.2em;
+  left: 12em;
   margin: 20% 0px;
 }
