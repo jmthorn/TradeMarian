@@ -1,14 +1,34 @@
 import React from "react";
 import { useSelector } from 'react-redux'
+import { useHistory } from 'react-router-dom';
 import './splash.css';
 
 const Splash = () => {
-
+  const history = useHistory()
   const user = useSelector(state => state.session.user)
+
+  const handleSubmit = () => {
+    history.push('/sign-up')
+  }
 
   return (
       <>
-        <h1>Splash</h1>
+        <div id="splash-blue">
+            <div id="splash-description">
+                <h1>Investing for</h1>
+                <h1>Everyone</h1>
+                <div id="h1-spacer"></div>
+                <p>Commission-free investing, plus the tools</p>
+                <p>you need to put your money in motio. Sign</p>
+                <p>up and get your first stock for free. Certain</p>
+                <p>limitations apply.</p>
+                <button onClick={handleSubmit}>Sign Up</button>
+            </div>
+            <div>
+                <img height="600em" src="images/Splash_Image.png" alt="splash_img"></img>
+                {/* <video src="images/Iphone_Animation.mp4"></video> */}
+            </div>
+        </div>
       </>
   )
 };
