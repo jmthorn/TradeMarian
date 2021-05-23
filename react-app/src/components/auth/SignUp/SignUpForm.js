@@ -54,7 +54,7 @@ const SignUpForm = () => {
             <h3>Make Your Money Move</h3>
             <p>TradeMarian lets you invest in companies you love, commission-free.</p>
           </div>
-          <div>
+          <div id='signup-form-container'>
             <form onSubmit={onSignUp} id='signup-form'>
               <div className='signup-input'>
                 <input
