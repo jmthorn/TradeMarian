@@ -43,52 +43,56 @@ const SignUpForm = () => {
     <div className='signup-page'>
       <div id='signup-container'>
         <div id='signup'>
+          <img src={'/images/logo.png'} alt="TradeMarian logo" />
           <div id='signup-header'>
-            <img src={'/images/logo.png'} alt="TradeMarian logo" height='42'/>
             <h3>Make Your Money Move</h3>
             <p>Robinhood lets you invest in companies you love, commission-free.</p>
-            <p>Please enter your full legal name. Your legal name should match any form of government ID.</p>
           </div>
-          <form onSubmit={onSignUp} id='signup-form'>
-            <div className='signup-input'>
-              <input
-                type="text"
-                name="username"
-                placeholder='Username'
-                onChange={updateUsername}
-                value={username}
-              ></input>
-            </div>
-            <div className='signup-input'>
-              <input
-                type="text"
-                name="email"
-                placeholder='Email'
-                onChange={updateEmail}
-                value={email}
-              ></input>
-            </div>
-            <div className='signup-input'>
-              <input
-                type="password"
-                name="password"
-                placeholder='Password'
-                onChange={updatePassword}
-                value={password}
-              ></input>
-            </div>
-            <div className='signup-input'>
-              <input
-                type="password"
-                name="repeat_password"
-                placeholder='Confirm Password'
-                onChange={updateRepeatPassword}
-                value={repeatPassword}
-                required={true}
-              ></input>
-            </div>
-            <button type="submit" id='signup-btn'>Sign Up</button>
-          </form>
+          <div>
+            <form onSubmit={onSignUp} id='signup-form'>
+              <div id='gov-notice'>
+                <p>Please enter your full legal name. Your legal name should match any form of government ID.</p>
+              </div>
+              <div className='signup-input'>
+                <input
+                  type="text"
+                  name="username"
+                  placeholder='Username'
+                  onChange={updateUsername}
+                  value={username}
+                ></input>
+              </div>
+              <div className='signup-input'>
+                <input
+                  type="text"
+                  name="email"
+                  placeholder='Email'
+                  onChange={updateEmail}
+                  value={email}
+                ></input>
+              </div>
+              <div className='signup-input'>
+                <input
+                  type="password"
+                  name="password"
+                  placeholder='Password'
+                  onChange={updatePassword}
+                  value={password}
+                ></input>
+              </div>
+              <div className='signup-input'>
+                <input
+                  type="password"
+                  name="repeat_password"
+                  placeholder='Confirm Password'
+                  onChange={updateRepeatPassword}
+                  value={repeatPassword}
+                  required={true}
+                ></input>
+              </div>
+              <button type="submit" id='signup-btn'>Sign Up</button>
+            </form>
+          </div>
           <div id='fine-print'>
             <p>
               All investments involve risk, including the possible loss of
@@ -125,19 +129,19 @@ const SignUpForm = () => {
       <div id='signup-misc'>
         <h4>Commission-free trading</h4>
         <p>
-          Break free from commission-fees and make unlimited commission-free 
-          trades in stocks, funds, and options with TradeMarian Financial. Other 
+          Break free from commission-fees and make unlimited commission-free
+          trades in stocks, funds, and options with TradeMarian Financial. Other
           fees may apply. View our fee schedule to learn more.
         </p>
         <h4>Account Protection</h4>
         <p>
-         TradeMarian Financial is a member of SIPC. Securities in your account 
+          TradeMarian Financial is a member of SIPC. Securities in your account
           protected up to $500,000. For details, please see www.sipc.org.
         </p>
         <h4>Stay on top of your portfolio</h4>
         <p>
-          Set up customized news and notifications to stay on top of your 
-          assets as casually or as relentlessly as you like. Controlling the 
+          Set up customized news and notifications to stay on top of your
+          assets as casually or as relentlessly as you like. Controlling the
           flow of info is up to you.
         </p>
       </div>

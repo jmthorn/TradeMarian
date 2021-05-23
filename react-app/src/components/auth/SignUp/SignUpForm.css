@@ -7,33 +7,51 @@
 #signup-container {
   display: flex;
   justify-content: flex-end;
-  width: 60%;
+  width: 79%;
 }
 
 #signup {
   display: flex;
   flex-direction: column;
   height: 100%;
-  margin: 0px 40px;
+  padding: 45px 16% 0px;
+  width: 68%;
+}
+
+#signup img {
+  max-width: 29%;
+}
+
+#signup-header {
+  margin: 50px 0 20px;
+}
+
+#signup-header p {
+  font-size: 15px;
+}
+
+#gov-notice p {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 10px;
 }
 
 #signup-form {
   display: flex;
   flex-direction: column;
   height: 100%;
-  margin: 0px 15%;
   padding-bottom: 2rem;
   width: 850px;
 }
 
 .signup-input {
-  margin-top: 24px;
+  margin-top: 8px;
   height: 100%;
 }
 
 .signup-input input {
   padding: 9px 12px;
-  width: 37vw;
+  width: 39vw;
   background-color: rgb(220, 195, 218, 0.2);
   border: 1px solid transparent;
   border-radius: 5px;
@@ -73,7 +91,18 @@
 #signup-misc {
   display: flex;
   flex-direction: column;
-  padding: 174px 4% 0px;
-  width: 40%;
+  padding: 140px 4% 0px;
+  width: 42%;
   background-color: rgb(220, 195, 218, 0.2);
+}
+
+#signup-misc h4 {
+  margin: 40px 0 11px;
+}
+
+#signup-misc p {
+  max-width: 266px;
+  line-height: 25px;
+  margin: 0;
+  /* margin-top: 10px; */
 }
