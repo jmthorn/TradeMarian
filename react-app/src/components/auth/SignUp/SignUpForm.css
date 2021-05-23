@@ -1,0 +1,132 @@
+.signup-page {
+  display: flex;
+  /* flex: 1 1 0%; */
+}
+
+#signup-container {
+  display: flex;
+  justify-content: flex-end;
+  width: 79%;
+}
+
+#signup {
+  display: flex;
+  flex-direction: column;
+  padding: 45px 17% 0px;
+  width: 68%;
+}
+
+#signup img {
+  max-width: 29%;
+}
+
+#signup-header {
+  margin: 50px 0 20px;
+}
+
+#signup-header p {
+  font-size: 15px;
+}
+
+#gov-notice p {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+#signup-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.signup-input {
+  margin-top: 8px;
+  height: 100%;
+}
+
+.signup-input input {
+  padding: 9px 12px;
+  width: 40vw;
+  background-color: rgb(220, 195, 218, 0.2);
+  border: 1px solid transparent;
+  border-radius: 5px;
+  margin-bottom: 17px;
+}
+
+.signup-input input:hover {
+  border-color: #dcc3da;
+  transition: border-color 200ms ease 0s;
+  background-color: white;
+}
+
+.signup-input input:focus {
+  outline: none !important;
+  border: 1px solid #dcc3da;
+  background-color: white;
+}
+
+#signup-btn {
+  background-color: #645b8c;
+  color: white;
+  width: 138px;
+  padding: 14px 0;
+  margin-top: 25px;
+  white-space: nowrap;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  vertical-align: middle;
+}
+
+#signup-btn:hover {
+  background-color: #5c5381;
+}
+
+#redirect-login {
+  display: flex;
+}
+
+#redirect-login p, #redirect-login a {
+  margin: 29px 0 0 20px;
+  font-size: 15px;
+}
+
+#redirect-login a {
+  text-decoration: none;
+  color: #645b8c;
+  font-weight: bold;
+}
+
+#fine-print {
+  margin-top: auto;
+  padding-top: 64px;
+  font-size: 15px;
+  color: #b0b0b9;
+}
+
+#fine-print div {
+  color: #645b8c;
+  font-weight: bold;
+}
+
+#signup-misc {
+  display: flex;
+  flex-direction: column;
+  padding: 140px 4% 0;
+  width: 42%;
+  background-color: rgb(220, 195, 218, 0.2);
+}
+
+#signup-misc h4 {
+  margin: 40px 0 11px;
+}
+
+#signup-misc p {
+  max-width: 266px;
+  line-height: 25px;
+  margin: 0;
+  font-size: 17px;
+}
+
+::placeholder {
+  color: #b0b0b9;
+}
