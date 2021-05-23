@@ -24,9 +24,11 @@ const Splash = () => {
                 <p>limitations apply.</p>
                 <button onClick={handleSubmit}>Sign Up</button>
             </div>
-            <div>
+            <div id="image-container">
                 <img height="600em" src="images/Splash_Image.png" alt="splash_img"></img>
-                {/* <video src="images/Iphone_Animation.mp4"></video> */}
+                <video id="video" loop="true" autoplay="autoplay" muted>
+                    <source src="/images/Iphone_Animation.mp4" type="video/mp4"></source>
+                </video>
             </div>
         </div>
       </>

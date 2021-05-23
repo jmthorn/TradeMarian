@@ -3,6 +3,7 @@
 #splash-blue {
   background-color: #002158;
   height: 45em;
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -38,4 +39,26 @@
 
 #h1-spacer {
   height: 2.5em;
+}
+
+#image-container {
+  position: relative;
+  width: 30em;
+  height: 45em;
+}
+
+#image-container img {
+  position: absolute;
+  height: 30em;
+  z-index: 1;
+  left: 0;
+  margin: 20% 0px;
+}
+
+#video {
+  height: 30em;
+  position: absolute;
+  right: 2em;
+  left: 13em;
+  margin: 20% 0px;
 }
