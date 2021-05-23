@@ -43,16 +43,16 @@ const LoginForm = () => {
       <div className='login-img'>
         <img src={'/images/Log_in_img.jpg'} alt=""/>
       </div>
-      <div className='form-container'>
+      <div className='login-form-container'>
         <form onSubmit={onLogin} className='login-form'>
           <h3>Welcome to TradeMarian</h3>
-          <div className='form-details'>
+          <div className='login-form-details'>
             <div>
               {errors.map((error) => (
                 <div>{error}</div>
               ))}
             </div>
-            <div className='form-inputs'>
+            <div className='login-form-inputs'>
               <label htmlFor="email">Email</label>
               <input
                 name="email"
@@ -61,7 +61,7 @@ const LoginForm = () => {
                 onChange={updateEmail}
               />
             </div>
-            <div className='form-inputs'>
+            <div className='login-form-inputs'>
               <label htmlFor="password">Password</label>
               <input
                 name="password"
