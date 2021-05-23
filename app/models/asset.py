@@ -15,7 +15,7 @@ class Asset(db.Model):
     price_earning_ratio = db.Column(db.Integer, nullable=False)
     dividend_yield = db.Column(db.Integer, nullable=False)
     average_volume = db.Column(db.Integer, nullable=False)
-
+    transactions = db.relationship("Transaction", back_populates="asset")
 
     def to_dict(self):
         return {
