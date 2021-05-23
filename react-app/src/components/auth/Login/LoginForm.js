@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect, useHistory } from "react-router-dom";
 import { login } from "../../../store/session";
+import DemoButton from "../DemoButton";
 import './LoginForm.css';
 
 const LoginForm = () => {
@@ -52,7 +53,7 @@ const LoginForm = () => {
               ))}
             </div>
             <div className='form-inputs'>
-              <label htmlFor="email">Email or username</label>
+              <label htmlFor="email">Email</label>
               <input
                 name="email"
                 type="text"
@@ -78,6 +79,7 @@ const LoginForm = () => {
           </div>
         <button type="submit" id='signin-btn'>Sign In</button>
         </form>
+        <DemoButton />
       </div>
     </div>
   );
