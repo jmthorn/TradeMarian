@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useDispatch, useSelector} from 'react-redux'
 import LoginForm from "./components/auth/Login/LoginForm";
-import SignUpForm from "./components/auth/SignUpForm";
+import SignUpForm from "./components/auth/SignUp/SignUpForm";
 import NavBar from "./components/NavBar/index";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import User from "./components/User";
