@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from 'react-redux'
-import { Redirect } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import { signUp } from '../../../store/session';
 import './SignUpForm.css';
 
@@ -9,8 +9,9 @@ const SignUpForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
-  const user = useSelector(state => state.session.user)
-  const dispatch = useDispatch()
+  const user = useSelector(state => state.session.user);
+  const dispatch = useDispatch();
+  const history = useHistory();
 
   const onSignUp = async (e) => {
     e.preventDefault();
@@ -34,6 +35,11 @@ const SignUpForm = () => {
   const updateRepeatPassword = (e) => {
     setRepeatPassword(e.target.value);
   };
+
+  const navLogin = (e) => {
+    e.preventDefault();
+    history.push('/login');
+  }
 
   if (user) {
     return <Redirect to="/" />;
@@ -90,7 +96,16 @@ const SignUpForm = () => {
                   required={true}
                 ></input>
               </div>
-              <button type="submit" id='signup-btn'>Sign Up</button>
+              <div id='redirect-login'>
+                <button type="submit" id='signup-btn'>Sign Up</button>
+                <div>
+                  <p>
+                    Already have an account?
+                  </p>
+                  <a href="/login" onClick={navLogin}> Log in here</a>
+                </div>
+                
+              </div>
             </form>
           </div>
           <div id='fine-print'>
@@ -113,13 +128,15 @@ const SignUpForm = () => {
               Brokerage clearing services offered through TradeMarian Securities,
               LLC. Both are subsidiaries of TradeMarian Markets, Inc.
             </p>
-            <p>
-              Check the background of TradeMarian Financial LLC and TradeMarian
-              Securities, LLC on FINRA’s BrokerCheck.
+            <div>
+              <p>
+                Check the background of TradeMarian Financial LLC and TradeMarian
+                Securities, LLC on FINRA’s BrokerCheck.
+              </p>
+              <p>
+                TradeMarian Terms & Conditions  Disclosure Library  Contact Us  FAQ
             </p>
-            <p>
-              TradeMarian Terms & Conditions  Disclosure Library  Contact Us  FAQ
-            </p>
+            </div>
             <p>
               © 2021 TradeMarian. All rights reserved.
             </p>

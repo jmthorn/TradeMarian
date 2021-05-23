@@ -68,20 +68,39 @@
 #signup-btn {
   background-color: #645b8c;
   color: white;
-  width: 120px;
+  width: 125px;
   padding: 12px 0;
   margin-top: 25px;
   white-space: nowrap;
   border-radius: 4px;
   border: 1px solid transparent;
-  /* justify-content: center; */
   vertical-align: middle;
+}
+
+#redirect-login {
+  display: flex;
+}
+
+#redirect-login p, #redirect-login a {
+  margin: 28px 0 0 20px;
+  font-size: 15px;
+}
+
+#redirect-login a {
+  text-decoration: none;
+  color: #645b8c;
+  font-weight: bold;
 }
 
 #fine-print {
   margin-top: auto;
   padding-top: 64px;
   font-size: 15px;
+  color: #b0b0b9;
+}
+
+#fine-print div {
+  color: #645b8c;
 }
 
 #signup-misc {
@@ -101,9 +120,8 @@
   line-height: 25px;
   margin: 0;
   font-size: 17px;
-  /* margin-top: 10px; */
 }
 
 ::placeholder {
-  color: #cbcbcd;
+  color: #b0b0b9;
 }
