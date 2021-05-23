@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect, useHistory } from 'react-router-dom';
 import { signUp } from '../../../store/session';
+import DemoButton from "../DemoButton";
 import './SignUpForm.css';
 
 const SignUpForm = () => {
@@ -49,16 +50,12 @@ const SignUpForm = () => {
     <div className='signup-page'>
       <div id='signup-container'>
         <div id='signup'>
-          <img src={'/images/logo.png'} alt="TradeMarian logo" />
           <div id='signup-header'>
             <h3>Make Your Money Move</h3>
-            <p>Robinhood lets you invest in companies you love, commission-free.</p>
+            <p>TradeMarian lets you invest in companies you love, commission-free.</p>
           </div>
-          <div>
+          <div id='signup-form-container'>
             <form onSubmit={onSignUp} id='signup-form'>
-              <div id='gov-notice'>
-                <p>Please enter your full legal name. Your legal name should match any form of government ID.</p>
-              </div>
               <div className='signup-input'>
                 <input
                   type="text"
@@ -104,9 +101,9 @@ const SignUpForm = () => {
                   </p>
                   <a href="/login" onClick={navLogin}> Log in here</a>
                 </div>
-                
               </div>
             </form>
+            <DemoButton />
           </div>
           <div id='fine-print'>
             <p>
