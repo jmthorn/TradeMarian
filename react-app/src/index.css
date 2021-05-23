@@ -6,3 +6,9 @@ body {
   margin: 0;
   font-family: 'Open Sans', sans-serif;
 }
+
+button {
+  cursor: pointer;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: bolder;
+}

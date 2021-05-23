@@ -1,7 +1,12 @@
+nav {
+  height: 64px;
+  box-shadow: 0px 1px 4px 0px rgb(0 0 0 / 20%);
+  top: 0;
+}
+
 #nav-list {
-  margin: 2em 3em;
-  padding: 10px 10px;
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 10px 0;
   text-decoration: none;
   display: flex;
 }
@@ -16,7 +21,7 @@
 }
 
 #nav-search {
-  margin: 0.4em 6em 0em 6em;
+  margin: 0.4em 6em 0em 4em;
 }
 
 #nav-search input {
@@ -25,20 +30,21 @@
   border: 1px solid rgb(180, 180, 180);
   border-radius: 5px;
   color: rgb(148, 147, 147);
-  margin-top: 0.8em;
+  margin-top: 0.45em;
 }
 
 .nav-options {
   position: absolute;
   margin-left: auto;
-  right: 5em;
-  margin-top: 1em;
+  right: 2.5em;
+  margin-top: 0.47em;
 }
 
 #nav-logout button {
   background-color: #ffffff;
   border: 0px solid #ffffff;
   font-size: 18px;
+  font-weight: normal;
 }
 
 #nav-home a,
@@ -51,6 +57,14 @@
   font-size: 18px;
 }
 
+#nav-home a:hover, 
+#nav-signup a:hover, 
+#nav-portfolio a:hover,
+#nav-login a:hover,
+#nav-logout button:hover {
+  color: #645b8c;
+}
+
 #nav-home .active,
 #nav-portfolio .active,
 #nav-signup .active,
@@ -58,6 +72,7 @@
   color: black;
   text-decoration: none;
 }
+
 
 @media (max-width: 75em) {
   #nav-search input {
