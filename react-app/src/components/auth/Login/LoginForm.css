@@ -106,12 +106,12 @@
   height: 48px;
   width: 138px;
   padding: 14px 0;
-  margin-top: 10px;
+  margin-top: 167px;
   white-space: nowrap;
   border-radius: 4px;
   border: 1px solid transparent;
   position: absolute;
-  right: 100px;
+  right: 370px;
 }
 
 .login-form-container #demo-btn:hover {
