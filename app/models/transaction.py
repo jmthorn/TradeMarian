@@ -26,4 +26,5 @@ class Transaction(db.Model):
             "share_quantity": self.share_quantity,
             "price_per_share": self.price_per_share,
             "buy_sell": self.buy_sell,
+            "created_at": self.created_at
         }
