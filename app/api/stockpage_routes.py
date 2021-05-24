@@ -12,6 +12,12 @@ def stock_data(ticker_symbol):
     reqs = requests.get(
         f"https://cloud.iexapis.com/stable/stock/{ticker_symbol}/chart/1m/?token={stock_token}")
 
-    print(reqs.content)
+    stock_data_list_ = {}
 
-    # return
+    id = 1
+    while id < len(reqs.json()):
+        for dict_ in reqs.json():
+            stock_data_list_[id] = dict_
+            id += 1
+
+    return stock_data_list_
