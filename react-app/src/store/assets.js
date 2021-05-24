@@ -9,24 +9,23 @@ const getAsset = (historicalPricesDict) => ({
 export const stockPrices = (ticker_symbol) => async (dispatch) => {
     const res = await fetch(`/api/stocks/${ticker_symbol}`);
 
-    console.log('res---', res);
-
     if (res.ok) {
         let data = await res.json();
-
-        // console.log(Object.values(data))
         dispatch(getAsset(Object.values(data)))
     }
 }
 
 let initialState = {
-    historicalPrices: null
+    historicalPrices: {}
 };
 
 export default function reducer(state=initialState, action) {
     switch (action.type) {
         case GET_ASSET_HP:
-            return {historicalPrices: action.historicalPricesDict};
+            // console.log('==============',action.historicalPricesDict)
+            return {
+                historicalPrices: action.historicalPricesDict
+            };
         default:
             return state;
     }

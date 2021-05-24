@@ -7,20 +7,16 @@ stock_routes = Blueprint("stocks", __name__)
 stock_token = os.getenv('STOCK_API')
 
 @stock_routes.route('/<ticker_symbol>')
-def stock_data(ticker_symbol):
+def stock_graph_data(ticker_symbol):
     reqs = requests.get(
-        f"https://cloud.iexapis.com/stable/stock/{ticker_symbol}/chart/1m/?token={stock_token}")
+        f"https://cloud.iexapis.com/stable/stock/{ticker_symbol}/chart/1y/?token={stock_token}&chartCloseOnly=true")
 
-    stock_data_list_ = {}
-    # print('tickerrrrr',ticker_symbol)
-    # print('test======',reqs.content)
-
-    id = 1
+    stock_data = {}
+    
+    id = 0
     while id < len(reqs.json()):
         for dict_ in reqs.json():
-            stock_data_list_[id] = dict_
+            stock_data[id] = dict_
             id += 1
-
-    # print('test ---------', stock_data_list_)
-
-    return stock_data_list_
+    # print('stock data', stock_data)
+    return stock_data
