@@ -83,3 +83,15 @@
 #turn1 {
   font-weight: 400;
 }
+
+@media screen and (max-width: 872px) {
+  #splash-blue {
+    display: flex;
+    flex-direction: column;
+    max-width: 80%;
+  }
+
+  #splash-description {
+    font-size: 10px;
+  }
+}
