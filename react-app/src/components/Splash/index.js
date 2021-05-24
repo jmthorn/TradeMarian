@@ -31,6 +31,13 @@ const Splash = () => {
                 </video>
             </div>
         </div>
+        <div id="splash-white">
+          <img height="600em" src="images/user.png" alt="user_img"></img>
+          <div id="turn">
+            <p id="turn1"> It's your turn</p>
+            <p>No minimum account balance or special status requirements.</p>
+          </div>
+        </div>
       </>
   )
 };

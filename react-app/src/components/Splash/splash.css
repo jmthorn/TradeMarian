@@ -62,3 +62,24 @@
   left: 10em;
   margin: 20% 0px;
 }
+
+#splash-white {
+  display: flex;
+  flex-direction: row;
+  height: 10em;
+  align-items: center;
+  justify-content: center;
+}
+
+#splash-white img {
+  height: 4em;
+  margin: 0px 1em 0em 4em;
+}
+
+#splash-white p {
+  margin: 2px 4em;
+}
+
+#turn1 {
+  font-weight: 400;
+}
