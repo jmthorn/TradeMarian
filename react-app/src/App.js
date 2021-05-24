@@ -7,8 +7,9 @@ import NavBar from "./components/NavBar/index";
 import Footer from "./components/Footer/index";
 // import ProtectedRoute from "./components/auth/ProtectedRoute";
 // import User from "./components/User";
-import Splash from "./components/Splash/index"
-import Portfolio from "./components/Portfolio/index"
+import Splash from "./components/Splash/index";
+import Portfolio from "./components/Portfolio/index";
+import StockPage from "./components/StockPage/index";
 import { authenticate } from "./store/session";
 
 function App() {
@@ -51,6 +52,9 @@ function App() {
         </Route>
         <Route path="/" exact={true} >
           {sessionLinks}
+        </Route>
+        <Route exact path={`/stocks/:ticker_symbol`}>
+          <StockPage />
         </Route>
       </Switch>
       <Footer />
