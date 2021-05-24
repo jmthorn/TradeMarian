@@ -9,7 +9,7 @@ import Footer from "./components/Footer/index";
 // import User from "./components/User";
 import Splash from "./components/Splash/index";
 import Portfolio from "./components/Portfolio/index";
-import StockPage from "./components/StockPage/index";
+import Stock from "./components/Stock/index";
 import { authenticate } from "./store/session";
 
 function App() {
@@ -54,7 +54,7 @@ function App() {
           {sessionLinks}
         </Route>
         <Route exact path={`/stocks/:ticker_symbol`}>
-          <StockPage />
+          <Stock />
         </Route>
       </Switch>
       <Footer />
