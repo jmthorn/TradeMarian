@@ -101,6 +101,7 @@ nav {
 @media screen and (max-width: 872px) {
   nav {
     height: 50px;
+    overflow: hidden;
   }
 
   .logo {
@@ -112,7 +113,8 @@ nav {
   .nav-options {
     display: flex;
     flex-direction: row;
-    margin-right: -250px;
+    justify-content: flex-end;
+    margin-right: -25px;
     align-items: center;
     margin-top: -0.5px;
     /* margin-bottom: 200px !important; */

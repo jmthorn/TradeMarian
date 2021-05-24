@@ -40,3 +40,34 @@
 #copyright {
   color: #b39bb1;
 }
+
+@media screen and (max-width: 872px) {
+  #footer-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    /* margin-top: 40px; */
+    z-index: 999;
+  }
+
+  #names-container {
+    display: flex;
+    flex-direction: column;
+    height: 50%;
+  }
+
+  .name-container {
+    font-size: 14px;
+    z-index: 99999;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+
+  #copyright {
+    display: none;
+  }
+}
