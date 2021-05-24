@@ -4,8 +4,7 @@ import os
 
 stock_routes = Blueprint("stocks", __name__)
 
-stock_token = os.environ.get('STOCK_API')
-
+stock_token = os.getenv('STOCK_API')
 
 @stock_routes.route('/<ticker_symbol>')
 def stock_data(ticker_symbol):
@@ -13,7 +12,8 @@ def stock_data(ticker_symbol):
         f"https://cloud.iexapis.com/stable/stock/{ticker_symbol}/chart/1m/?token={stock_token}")
 
     stock_data_list_ = {}
-    print('test====',reqs.content)
+    # print('tickerrrrr',ticker_symbol)
+    # print('test======',reqs.content)
 
     id = 1
     while id < len(reqs.json()):
@@ -21,6 +21,6 @@ def stock_data(ticker_symbol):
             stock_data_list_[id] = dict_
             id += 1
 
-    print('test ---------', stock_data_list_)
+    # print('test ---------', stock_data_list_)
 
     return stock_data_list_
