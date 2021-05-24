@@ -5,8 +5,8 @@ import LoginForm from "./components/auth/Login/LoginForm";
 import SignUpForm from "./components/auth/SignUp/SignUpForm";
 import NavBar from "./components/NavBar/index";
 import Footer from "./components/Footer/index";
-import ProtectedRoute from "./components/auth/ProtectedRoute";
-import User from "./components/User";
+// import ProtectedRoute from "./components/auth/ProtectedRoute";
+// import User from "./components/User";
 import Splash from "./components/Splash/index"
 import Portfolio from "./components/Portfolio/index"
 import { authenticate } from "./store/session";
