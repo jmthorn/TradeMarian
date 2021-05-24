@@ -19,7 +19,7 @@ const Splash = () => {
                 <h1>Everyone</h1>
                 <div id="h1-spacer"></div>
                 <p>Commission-free investing, plus the tools</p>
-                <p>you need to put your money in motio. Sign</p>
+                <p>you need to put your money in motion. Sign</p>
                 <p>up and get your first stock for free. Certain</p>
                 <p>limitations apply.</p>
                 <button onClick={handleSubmit}>Sign Up</button>
