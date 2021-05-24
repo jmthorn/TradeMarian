@@ -15,7 +15,6 @@ export const stockPrices = (ticker_symbol) => async (dispatch) => {
         let data = await res.json();
 
         // console.log(Object.values(data))
-
         dispatch(getAsset(Object.values(data)))
     }
 }
