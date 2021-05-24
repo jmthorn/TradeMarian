@@ -10,7 +10,7 @@ stock_token = os.environ.get('STOCK_API')
 @stock_routes.route('/stocks/<ticker_symbol>')
 def stock_data(ticker_symbol):
     reqs = requests.get(
-        f"https://cloud.iexapis.com/stable/stock/aapl/chart/1m/?token={stock_token}")
+        f"https://cloud.iexapis.com/stable/stock/{ticker_symbol}/chart/1m/?token={stock_token}")
 
     print(reqs.content)
 
