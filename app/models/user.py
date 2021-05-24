@@ -34,5 +34,7 @@ class User(db.Model, UserMixin):
       "id": self.id,
       "username": self.username,
       "email": self.email,
-
+      "buying_power": self.buying_power,
+      "first_name": self.first_name,
+      "last_name": self.last_name
     }

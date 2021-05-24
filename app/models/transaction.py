@@ -14,6 +14,7 @@ class Transaction(db.Model):
     price_per_share = db.Column(db.Integer, nullable=False)
     # buy = true, sell = false
     buy_sell = db.Column(db.Boolean, nullable=False)
+
     asset = db.relationship("Asset", back_populates="transactions")
     user = db.relationship("User", back_populates="transactions")
 
@@ -24,6 +25,4 @@ class Transaction(db.Model):
             "share_quantity": self.share_quantity,
             "price_per_share": self.price_per_share,
             "buy_sell": self.buy_sell,
-            "asset": self.asset,
-            "user": self.user
         }

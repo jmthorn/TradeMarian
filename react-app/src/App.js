@@ -5,7 +5,6 @@ import LoginForm from "./components/auth/Login/LoginForm";
 import SignUpForm from "./components/auth/SignUp/SignUpForm";
 import NavBar from "./components/NavBar/index";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
-import User from "./components/User";
 import Splash from "./components/Splash/index"
 import Portfolio from "./components/Portfolio/index"
 import { authenticate } from "./store/session";
@@ -28,14 +27,14 @@ function App() {
   }
 
   let sessionLinks;
-  if(user) { 
+  if(user) {
     sessionLinks = (
       <Portfolio />
-    ) 
-  } else { 
+    )
+  } else {
     sessionLinks = (
       <Splash />
-    ) 
+    )
   }
 
   return (
