@@ -1,5 +1,5 @@
 from .db import db
-
+import datetime
 
 # asset can have many transactions
 # user can have many transactions
@@ -12,6 +12,7 @@ class Transaction(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     share_quantity = db.Column(db.Integer, nullable=False)
     price_per_share = db.Column(db.Integer, nullable=False)
+    created_at = db.Column(db.DateTime, default = datetime.datetime.now())
     # buy = true, sell = false
     buy_sell = db.Column(db.Boolean, nullable=False)
 
