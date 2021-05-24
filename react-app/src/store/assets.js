@@ -26,7 +26,7 @@ let initialState = {
 export default function reducer(state=initialState, action) {
     switch (action.type) {
         case GET_ASSET_HP:
-            return {...state, historicalPrices: action.historicalPricesDict};
+            return {historicalPrices: action.historicalPricesDict};
         default:
             return state;
     }
