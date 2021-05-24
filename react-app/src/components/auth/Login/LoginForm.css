@@ -117,3 +117,16 @@
 .login-form-container #demo-btn:hover {
   background-color: #5c5381;
 }
+
+@media screen and (max-width: 872px) {
+  .login-page {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .login-img img {
+    /* width: 10000px; */
+    flex: 100%;
+    object-fit: cover;
+  }
+}
