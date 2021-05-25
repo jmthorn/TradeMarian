@@ -16,13 +16,15 @@ const StockPage = () => {
 
     for (let i = 0; i <= prices.length - 1; i++) {
         for (let obj in prices) {
-            for (let key in obj) {
-                if (key === 'close') {
-                    closePrice.push(obj[key])
-                }
-            }
-        }
+            closePrice.push(prices[obj]['close'])
+            // for (let key in obj) {
+            //     if (key === 'close') {
+            //         closePrice.push(obj[key])
+            //     }
+            // }
     }
+
+    console.log('test----',closePrice)
     useEffect(() => {
         dispatch(stockPrices(ticker_symbol.toUpperCase()))
     }, [dispatch, ticker_symbol])

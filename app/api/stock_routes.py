@@ -12,7 +12,7 @@ def stock_graph_data(ticker_symbol):
         f"https://cloud.iexapis.com/stable/stock/{ticker_symbol}/chart/1y/?token={stock_token}&chartCloseOnly=true")
 
     stock_data = {}
-    
+
     id = 0
     while id < len(reqs.json()):
         for dict_ in reqs.json():
