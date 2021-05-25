@@ -78,8 +78,8 @@ const LoginForm = () => {
             </div>
           </div>
         <button type="submit" id='signin-btn'>Sign In</button>
-        </form>
         <DemoButton />
+        </form>
       </div>
     </div>
   );

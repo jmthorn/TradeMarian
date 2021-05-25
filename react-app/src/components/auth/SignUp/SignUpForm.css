@@ -55,18 +55,18 @@
   background-color: white;
 }
 
-#signup-btn {
+#signup-btn, #signup-form-container #demo-btn {
   background-color: #645b8c;
   color: white;
   width: 138px;
   padding: 14px 0;
-  margin-top: 25px;
+  margin: 25px 10px 0 0;
   white-space: nowrap;
   border-radius: 4px;
   border: 1px solid transparent;
 }
 
-#signup-btn:hover {
+#signup-btn:hover, #signup-form-container #demo-btn:hover {
   background-color: #5c5381;
 }
 
@@ -76,7 +76,7 @@
 
 #redirect-login p,
 #redirect-login a {
-  margin: 29px 0 0 20px;
+  margin: 26px 0 0 15px;
   font-size: 15px;
 }
 
@@ -119,21 +119,6 @@
 
 ::placeholder {
   color: #b0b0b9;
-}
-
-#signup-form-container #demo-btn {
-  background-color: #645b8c;
-  color: white;
-  width: 138px;
-  padding: 14px 0;
-  margin-top: 10px;
-  white-space: nowrap;
-  border-radius: 4px;
-  border: 1px solid transparent;
-}
-
-#signup-form-container #demo-btn:hover {
-  background-color: #5c5381;
 }
 
 /* @media screen and (max-width: 872px) {

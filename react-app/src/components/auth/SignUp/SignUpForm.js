@@ -95,6 +95,7 @@ const SignUpForm = () => {
               </div>
               <div id='redirect-login'>
                 <button type="submit" id='signup-btn'>Sign Up</button>
+                <DemoButton />
                 <div>
                   <p>
                     Already have an account?
@@ -103,7 +104,6 @@ const SignUpForm = () => {
                 </div>
               </div>
             </form>
-            <DemoButton />
           </div>
           <div id='fine-print'>
             <p>
