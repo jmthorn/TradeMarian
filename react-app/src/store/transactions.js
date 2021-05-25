@@ -16,13 +16,12 @@ export const stockPrice = (ticker_symbol) => async (dispatch) => {
 
   if (res.ok) {
     let data = await res.json();
-    console.log('data-------', data)
     dispatch(getPrice(Object.values(data)));
   }
 };
 
 export const stockTransaction = (data, ticker_symbol) => async (dispatch) => {
-  const res = await fetch(`/api/transactions${ticker_symbol}`, {
+  const res = await fetch(`/api/transactions/${ticker_symbol}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -31,7 +30,7 @@ export const stockTransaction = (data, ticker_symbol) => async (dispatch) => {
   });
 
   if (res.ok) {
-    const transactionInfo = res.json();
+    const transactionInfo = await res.json();
     dispatch(buyStock(transactionInfo));
   }
 };
@@ -50,7 +49,7 @@ export default function reducer(state = initialState, action) {
     case BUY_STOCK:
       return {
         ...state,
-        ...state.transactionPrice,
+        // ...state.transactionPrice,
         ...action.transactionData
       }
     default:

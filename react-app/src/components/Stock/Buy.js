@@ -26,12 +26,13 @@ const Buy = ({ ticker_symbol }) => {
 
   const buyAsset = (e) => {
     e.preventDefault();
+
     const newTransaction = {
       asset_id: '',
       user_id: user.id,
       share_quantity: shares,
       price_per_share: price,
-      buy_sell: 'True'
+      buy_sell: true
     }
     console.log('newtransactions',newTransaction)
     dispatch(stockTransaction(newTransaction, ticker_symbol));
@@ -40,7 +41,7 @@ const Buy = ({ ticker_symbol }) => {
 
   return (
     <div>
-      <form action={`/stocks/${ticker_symbol}`} method="post">
+      <form onSubmit={buyAsset} method="post">
         Buy {ticker_symbol}
         <div className='transaction-labels'>Shares</div>
         <select name="shares" id="shares" onChange={transactionTotal} value={shares}>
@@ -65,7 +66,7 @@ const Buy = ({ ticker_symbol }) => {
           ${transactionPrice}
         </div>
         <div>Buying Power: ${user.buying_power}</div>
-        <button onSubmit={buyAsset}>Buy</button>
+        <button>Buy</button>
       </form>
     </div>
   )

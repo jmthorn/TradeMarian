@@ -19,7 +19,7 @@ def stock_graph_data(ticker_symbol):
     return closePrice
 
 
-@transaction_routes.route('/<ticker_symbol>', methods=["POST"])
+@transaction_routes.route('/<ticker_symbol>', methods=["POST", "GET"])
 def buy_stock(ticker_symbol):
     asset_id = Asset.query.filter_by(ticker_symbol=ticker_symbol)
     print('==========', asset_id)
