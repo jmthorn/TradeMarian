@@ -65,7 +65,8 @@
   background-color: white;
 }
 
-#signup-btn, #signup-form-container #demo-btn {
+#signup-btn,
+#signup-form-container #demo-btn {
   background-color: #645b8c;
   color: white;
   width: 138px;
@@ -76,7 +77,8 @@
   border: 1px solid transparent;
 }
 
-#signup-btn:hover, #signup-form-container #demo-btn:hover {
+#signup-btn:hover,
+#signup-form-container #demo-btn:hover {
   background-color: #5c5381;
 }
 
@@ -131,9 +133,51 @@
   color: #b0b0b9;
 }
 
-/* @media screen and (max-width: 872px) {
-  #signup {
+@media screen and (max-width: 872px) {
+  .signup-page {
     display: flex;
     flex-direction: column;
   }
-} */
+
+  #signup {
+    width: 100%;
+    overflow-y: hidden;
+  }
+
+  #signup-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .signup-input input {
+    width: 90%;
+  }
+
+  #redirect-login {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  #fine-print {
+    width: 100%;
+    text-align: left;
+  }
+
+  #signup-misc {
+    width: 100%;
+    text-align: left;
+    padding-bottom: 60px;
+    margin-bottom: -100px;
+  }
+
+  #signup-misc p {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  #signup-misc h4 {
+    width: 100%;
+    margin-left: 90px;
+  }
+}
