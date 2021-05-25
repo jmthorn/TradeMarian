@@ -4,4 +4,14 @@ html {
 }
 body {
   margin: 0;
+  font-family: objektiv-mk1, sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+button {
+  cursor: pointer;
+  font-family: objektiv-mk2, sans-serif;
+  font-weight: 500;
+  font-style: normal;
 }

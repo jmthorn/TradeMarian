@@ -1,7 +1,12 @@
+nav {
+  height: 64px;
+  box-shadow: 0px 1px 4px 0px rgb(0 0 0 / 20%);
+  top: 0;
+}
+
 #nav-list {
-  margin: 2em 3em;
-  padding: 10px 10px;
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 10px 0;
   text-decoration: none;
   display: flex;
 }
@@ -16,7 +21,7 @@
 }
 
 #nav-search {
-  margin: 0.4em 6em 0em 6em;
+  margin: 0.4em 6em 0em 4em;
 }
 
 #nav-search input {
@@ -25,30 +30,58 @@
   border: 1px solid rgb(180, 180, 180);
   border-radius: 5px;
   color: rgb(148, 147, 147);
-  margin-top: 0.8em;
+  margin-top: 0.45em;
 }
 
 .nav-options {
   position: absolute;
   margin-left: auto;
-  right: 5em;
-  margin-top: 1em;
+  right: 2.5em;
+  margin-top: 0.47em;
 }
 
 #nav-logout button {
-  background-color: #ffffff;
-  border: 0px solid #ffffff;
+  background-color: transparent;
+  border: 0px solid transparent;
   font-size: 18px;
+  font-weight: 300;
+  margin: 0 0 0 36px;
+  font-family: objektiv-mk1, sans-serif;
+}
+
+#nav-signup {
+  background-color: #645b8c;
+  height: 48px;
+  padding: 12px 40px;
+  white-space: nowrap;
+  border-radius: 35px;
+  border: 1px solid transparent;
+}
+
+#nav-signup:hover {
+  background-color: #5c5381;
+  transition: 0.3s;
+}
+
+#nav-signup a {
+  color: white;
+  text-decoration: none;
 }
 
 #nav-home a,
 #nav-portfolio a,
-#nav-signup a,
 #nav-login a {
   margin: 0em 2em;
   color: black;
   text-decoration: none;
   font-size: 18px;
+}
+
+#nav-home a:hover,
+#nav-portfolio a:hover,
+#nav-login a:hover,
+#nav-logout button:hover {
+  color: #645b8c;
 }
 
 #nav-home .active,
@@ -62,5 +95,48 @@
 @media (max-width: 75em) {
   #nav-search input {
     visibility: hidden;
+  }
+}
+
+@media screen and (max-width: 872px) {
+  nav {
+    height: 50px;
+    overflow: hidden;
+  }
+
+  .logo {
+    width: 70%;
+    height: 70%;
+    margin-left: -20px;
+  }
+
+  .nav-options {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-right: -25px;
+    align-items: center;
+    margin-top: -0.5px;
+    /* margin-bottom: 200px !important; */
+    /* padding-top: -20px; */
+  }
+
+  #nav-signup {
+    height: 50%;
+    font-size: 10px;
+    padding: 8px 20px;
+  }
+
+  #nav-login {
+    font-size: 10px;
+    margin-right: -20px;
+    /* margin-bottom: 20px; */
+  }
+
+  .nav-options {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-left: 10px;
   }
 }

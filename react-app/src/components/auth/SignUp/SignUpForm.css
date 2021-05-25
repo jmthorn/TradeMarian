@@ -74,7 +74,8 @@
   display: flex;
 }
 
-#redirect-login p, #redirect-login a {
+#redirect-login p,
+#redirect-login a {
   margin: 29px 0 0 20px;
   font-size: 15px;
 }
@@ -134,3 +135,10 @@
 #signup-form-container #demo-btn:hover {
   background-color: #5c5381;
 }
+
+/* @media screen and (max-width: 872px) {
+  #signup {
+    display: flex;
+    flex-direction: column;
+  }
+} */

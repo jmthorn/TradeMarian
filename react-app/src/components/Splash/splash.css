@@ -2,7 +2,8 @@
 
 #splash-blue {
   background-color: #002158;
-  height: 45em;
+  height: 40em;
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -25,7 +26,7 @@
 
 #splash-description p {
   margin: 0.2em;
-  font-size: 1.35m;
+  font-size: 1.2em;
 }
 
 #splash-description button {
@@ -38,4 +39,89 @@
 
 #h1-spacer {
   height: 2.5em;
+}
+
+#image-container {
+  position: relative;
+  width: 30em;
+  height: 45em;
+}
+
+#image-container img {
+  position: absolute;
+  height: 30em;
+  z-index: 1;
+  left: 0;
+  margin: 20% 0px;
+}
+
+#video {
+  height: 30em;
+  position: absolute;
+  right: 2.2em;
+  left: 10em;
+  margin: 20% 0px;
+}
+
+#splash-white {
+  display: flex;
+  flex-direction: row;
+  height: 10em;
+  align-items: center;
+  justify-content: center;
+}
+
+#splash-white img {
+  height: 4em;
+  margin: 0px 1em 0em 4em;
+}
+
+#splash-white p {
+  margin: 2px 4em;
+}
+
+#turn1 {
+  font-weight: 400;
+}
+
+@media screen and (max-width: 872px) {
+  #splash-blue {
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    margin-bottom: 120px;
+    z-index: -1000;
+  }
+
+  #splash-description {
+    font-size: 12px;
+    max-width: 100%;
+    /* margin: 20px 20px; */
+  }
+
+  #image-container {
+    width: 100%;
+  }
+
+  #image-container img {
+    margin-top: -87px;
+    width: 100%;
+    height: 450px;
+    margin-bottom: -20px;
+  }
+
+  #video {
+    width: 68%;
+    height: 1000px;
+    right: 5em;
+    left: 8em;
+    top: -28em;
+    position: absolute;
+  }
+
+  #splash-white {
+    max-width: 100%;
+    padding-top: 40px;
+    z-index: 999;
+  }
 }
