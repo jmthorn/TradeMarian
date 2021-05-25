@@ -21,7 +21,7 @@ const Portfolio = () => {
 
 
   useEffect(async()=> {
-    const portfolio_array = await dateRange;
+    const portfolio_array = await dateRange ? dateRange : portfolio_data;
     console.log(portfolio_array)
     if(portfolio_array){
       if (portfolio_array[0].value > portfolio_array[(portfolio_array.length)-1].value) {
@@ -32,6 +32,7 @@ const Portfolio = () => {
     }
 
   }, [portfolio_data, lineColor, dateRange])
+
 
 
   if(!portfolio_data) return null
@@ -52,7 +53,7 @@ const Portfolio = () => {
         <h1>$Portfolio</h1>
           <div className="portfolio-container">
               <div>
-                  <LineChart width={730} height={250} data={dateRange}
+                  <LineChart width={730} height={250} data={dateRange ? dateRange : portfolio_data}
                       margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
                       <Line type="monotone"  dataKey="value" stroke={lineColor} strokeWidth={2} dot={false}/>
                       {/* <CartesianGrid stroke="#ccc" strokeDasharray="3 3" hide={true}/> */}
@@ -70,7 +71,7 @@ const Portfolio = () => {
             <button type='button' value='6m' onClick={(e)=> dateFunc(e.target.value)}>6m</button>
           </div>
           <div>
-            <button type='button' value='1Y' onClick={(e)=> dateFunc(e.target.value)}>1Y</button>
+            <button type='button' value='1Y' onClick={(e)=> dateFunc(e.target.value)} onLoad={dateFunc(portfolio_data)}>1Y</button>
           </div>
         <Sidebar/>
 
