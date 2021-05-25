@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import './portfolio.css';
 import { userPortfolio } from "../../store/portfolio"
+import Sidebar from './Sidebar'
 
 const Portfolio = () => {
 
@@ -10,7 +11,7 @@ const Portfolio = () => {
 
   const onLoad = async () => {
     const portfolio = await dispatch(userPortfolio())
-    console.log(portfolio)
+    // console.log(portfolio)
   }
 
   onLoad()
@@ -18,7 +19,7 @@ const Portfolio = () => {
   return (
       <>
         <h1>$Portfolio</h1>
-        {/* {onLoad()} */}
+        <Sidebar/>
       </>
   )
 };

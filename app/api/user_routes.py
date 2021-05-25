@@ -40,21 +40,27 @@ def user():
 
     print(holdings)  #{'AAPL': 5, 'MSFT': 7, 'TSLA': 10, 'SPOT': 4, 'GE': 0, 'AMZN': 3, 'DIS': 11}
 
-    filteredHoldings = {key:holdings[key] for key in holdings if holdings[key] > 0}
+    shares = {key:holdings[key] for key in holdings if holdings[key] > 0}
 
-    print(filteredHoldings) # {'AAPL': 5, 'MSFT': 7, 'TSLA': 10, 'SPOT': 4, 'AMZN': 3, 'DIS': 11}
+    print(shares) # {'AAPL': 5, 'MSFT': 7, 'TSLA': 10, 'SPOT': 4, 'AMZN': 3, 'DIS': 11}
 
     # History: Loop over holdings to find history per ticker_symbol 
     # {AAPL: [{date: 03-06-2021, value:"close * holding.AAPL"}, {date: 03-06-2021, value:"close * holding.AAPL"},......]}, 
     #  GOOG: [{date: 03-06-2021, value:"close * holding.GOOG"}, {date: , value: },{date: , value: }.......], }
 
-    daterange="1y"
+    daterange="1m"
     symbol="AAPL"
     api_token=os.environ.get("API_TOKEN")
 
-    # response = requests.get(f"https://sandbox.iexapis.com/stable/stock/{symbol}/chart/{daterange}?token={api_token}&chartCloseOnly=true")
+    history={}
+    for symbol in shares.keys():
 
-    # print(response.json())
+        response = requests.get(f"https://sandbox.iexapis.com/stable/stock/{symbol}/chart/{daterange}?token={api_token}&chartCloseOnly=true")
+        data = response.json()
+        history[symbol] = [{"date":dictionary["date"],"value":dictionary["close"]} for dictionary in data]
+
+    print(history)
+
 
     # Porfolio: (TOTALED history) : {date:value, date:value, ........}
     # portfolio = {}
@@ -70,4 +76,4 @@ def user():
     # add up the transactions for each ticker
     # so this gives us our totals and lets us know which companies to make API
     # {user, history, portfolio}
-    return {i:transactions[i].to_dict() for i in range(0, len(transactions))}
+    return {"shares":shares, "history":history}
