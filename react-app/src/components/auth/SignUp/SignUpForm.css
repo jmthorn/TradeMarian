@@ -34,6 +34,16 @@
   height: 100%;
 }
 
+.name-fields {
+  display: flex !important;
+  flex-direction: row !important;
+}
+
+.name-fields input {
+  width: 18vw !important;
+  margin-right: 30px;
+}
+
 .signup-input input {
   padding: 9px 12px;
   width: 40vw;

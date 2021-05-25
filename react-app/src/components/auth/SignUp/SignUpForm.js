@@ -6,6 +6,8 @@ import DemoButton from "../DemoButton";
 import './SignUpForm.css';
 
 const SignUpForm = () => {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -16,9 +18,17 @@ const SignUpForm = () => {
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      await dispatch(signUp(username, email, password));
+      await dispatch(signUp(firstName, lastName, username, email, password));
     }
   };
+
+  const updateFirstName = (e) => {
+    setFirstName(e.target.value);
+  }
+
+  const updateLastName = (e) => {
+    setLastName(e.target.value);
+  }
 
   const updateUsername = (e) => {
     setUsername(e.target.value);
@@ -50,6 +60,26 @@ const SignUpForm = () => {
           </div>
           <div id='signup-form-container'>
             <form onSubmit={onSignUp} id='signup-form'>
+              <div className='name-fields'>
+                <div className='signup-input'>
+                  <input
+                    type="text"
+                    name="firstName"
+                    placeholder='First Name'
+                    onChange={updateFirstName}
+                    value={firstName}
+                  ></input>
+                </div>
+                <div className='signup-input'>
+                  <input
+                    type="text"
+                    name="lastName"
+                    placeholder='Last Name'
+                    onChange={updateLastName}
+                    value={lastName}
+                  ></input>
+                </div>
+              </div>
               <div className='signup-input'>
                 <input
                   type="text"
