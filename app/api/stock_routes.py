@@ -10,7 +10,7 @@ stock_token = os.getenv('test_token')
 def stock_graph_data(ticker_symbol):
     data = requests.get(
         f"https://sandbox.iexapis.com/stable/stock/{ticker_symbol}/chart/3m/?token={stock_token}&chartCloseOnly=true").json()
-
+    
     stock_data = {}
 
     for i in range(1, len(data)):
