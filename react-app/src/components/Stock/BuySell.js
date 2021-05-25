@@ -7,7 +7,7 @@ const BuySell = ({ ticker_symbol }) => {
   const price = Number(useSelector(state => state.transactions.transactionPrice)[0]).toFixed(2);
 
   const [transactionPrice, setTransactionPrice] = useState((0).toFixed(2));
-  const [shares, setShares] = useState(0);
+  const [shares, setShares] = useState(1);
   useEffect(() => {
     dispatch(stockPrice(ticker_symbol));
   }, [dispatch, ticker_symbol]);
@@ -43,7 +43,7 @@ const BuySell = ({ ticker_symbol }) => {
         </div>
         <div className='transaction-labels'>Estimated Cost</div>
         <div id='transaction-estimate'>
-          ${(shares * price).toFixed(2)}
+          ${transactionPrice}
         </div>
       </form>
     </div>
