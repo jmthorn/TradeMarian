@@ -1,4 +1,5 @@
 from flask import Blueprint
+from app.models import transactions, assets
 import requests
 import os
 
@@ -20,4 +21,4 @@ def stock_graph_data(ticker_symbol):
 
 @transaction_routes.route('/<ticker_symbol>', methods=["POST"])
 def buy_stock(ticker_symbol):
-    pass
+    asset_id = asset.query.filter_by(ticker_symbol=ticker_symbol)
