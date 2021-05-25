@@ -28,10 +28,9 @@ const Buy = ({ ticker_symbol }) => {
     e.preventDefault();
 
     const newTransaction = {
-      asset_id: '',
       user_id: user.id,
-      share_quantity: shares,
-      price_per_share: price,
+      share_quantity: Number(shares),
+      price_per_share: Number(price),
       buy_sell: true
     }
     console.log('newtransactions',newTransaction)

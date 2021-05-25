@@ -1,5 +1,5 @@
 from flask import Blueprint
-from app.models import Transaction, Asset
+from app.models import Transaction, Asset, db
 import requests
 import os
 
@@ -20,7 +20,20 @@ def stock_graph_data(ticker_symbol):
 
 
 @transaction_routes.route('/<ticker_symbol>', methods=["POST", "GET"])
-def buy_stock(ticker_symbol):
-    asset_id = Asset.query.filter_by(ticker_symbol=ticker_symbol)
-    print('==========', asset_id)
-    return asset_id
+def buy_stock(transactionData):
+    data = transactionData.data
+    print('transactionData', transactionData)
+    ticker_symbol = transactionData.ticker_symbol
+    asset_id = Asset.query.filter(Asset.ticker_symbol == ticker_symbol).one()
+    transaction = Transaction(
+        asset_id = asset_id,
+        user_id = data.user_id,
+        share_quantity = data.share_quantity,
+        price_per_share = data.price_per_share,
+        buy_sell = data.buy_sell
+    )
+
+    db.session.add(transaction)
+    db.session.commit()
+    # print('==========', transaction)
+    return transaction

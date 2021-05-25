@@ -26,7 +26,7 @@ export const stockTransaction = (data, ticker_symbol) => async (dispatch) => {
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ data })
+    body: JSON.stringify({ data, ticker_symbol })
   });
 
   if (res.ok) {
@@ -44,13 +44,13 @@ export default function reducer(state = initialState, action) {
   switch (action.type) {
     case GET_PRICE:
       return {
+        ...state,
         transactionPrice: action.transactionPriceDict
       };
     case BUY_STOCK:
       return {
         ...state,
-        // ...state.transactionPrice,
-        ...action.transactionData
+        ...action.transaction
       }
     default:
       return state;
