@@ -3,11 +3,13 @@ import thunk from 'redux-thunk';
 import session from './session';
 import portfolio from './portfolio';
 import assets from './assets';
+import transactions from './transactions';
 
 const rootReducer = combineReducers({
     session,
     portfolio,
-    assets
+    assets,
+    transactions
 });
 
 let enhancer;

@@ -2,10 +2,9 @@ import React, { useEffect } from "react";
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { stockPrices } from "../../store/assets";
+import BuySell from './BuySell';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import './stock.css';
-import { scaleLog } from 'd3-scale';
-const scale = scaleLog().base(Math.E);
 
 const Stock = () => {
     const { ticker_symbol } = useParams();
@@ -33,6 +32,7 @@ const Stock = () => {
                 <Tooltip />
                 <Line type="monotone" dataKey="close" stroke={lineColor} strokeWidth={1.5} dot={false}/>
             </LineChart>
+            <BuySell ticker_symbol={ticker_symbol}/>
         </div>
     )
 }
