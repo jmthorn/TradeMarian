@@ -44,9 +44,14 @@ const Portfolio = () => {
       setDateRange(portfolio_data.slice(0, portfolio_data.length/2))
     } else if (date == '1m') {
       setDateRange(portfolio_data.slice(0, portfolio_data.length/12))
+    } else if (date == '3m') {
+      setDateRange(portfolio_data.slice(0, portfolio_data.length/4))
     }
   }
 
+  const handleClick = (value) => {
+    console.log('====value', value)
+  }
 
   return (
       <>
@@ -54,8 +59,8 @@ const Portfolio = () => {
           <div className="portfolio-container">
               <div>
                   <LineChart width={730} height={250} data={dateRange ? dateRange : portfolio_data}
-                      margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
-                      <Line type="monotone"  dataKey="value" stroke={lineColor} strokeWidth={2} dot={false}/>
+                      margin={{ top: 5, right: 30, left: 20, bottom: 5 }} onMouseMove={(e) => handleClick(e.activePayload ? e?.activePayload[0].payload.value : portfolio_data[(portfolio_data.length)-1].value)}>
+                      <Line type="monotone"  dataKey="value" stroke={lineColor} strokeWidth={2} dot={false} />
                       {/* <CartesianGrid stroke="#ccc" strokeDasharray="3 3" hide={true}/> */}
                       <XAxis dataKey="date"  hide={true}/>
                       <YAxis dataKey="value" domain={['auto', 'auto']} hide={true}/>
@@ -68,10 +73,21 @@ const Portfolio = () => {
             <button type='button' value='1m' onClick={(e)=> dateFunc(e.target.value)}>1m</button>
           </div>
           <div>
+            <button type='button' value='3m' onClick={(e)=> dateFunc(e.target.value)}>3m</button>
+          </div>
+          <div>
             <button type='button' value='6m' onClick={(e)=> dateFunc(e.target.value)}>6m</button>
           </div>
           <div>
             <button type='button' value='1Y' onClick={(e)=> dateFunc(e.target.value)} onLoad={dateFunc(portfolio_data)}>1Y</button>
+          </div>
+          <div className='buying-power'>
+            <div className='buying-power_title'>
+              <p>Buying Power</p>
+            </div>
+            <div className='buying-power_amount'>
+              <p>{`$${user.buying_power}`}</p>
+            </div>
           </div>
         <Sidebar/>
 
