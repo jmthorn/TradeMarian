@@ -30,14 +30,14 @@ function App() {
   }
 
   let sessionLinks;
-  if(user) { 
+  if(user) {
     sessionLinks = (
       <Portfolio />
-    ) 
-  } else { 
+    )
+  } else {
     sessionLinks = (
       <Splash />
-    ) 
+    )
   }
 
   return (
