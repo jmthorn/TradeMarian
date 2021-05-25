@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from 'react-redux'
-import { Redirect, useHistory } from 'react-router-dom';
+import { Redirect, NavLink } from 'react-router-dom';
 import { signUp } from '../../../store/session';
 import DemoButton from "../DemoButton";
 import './SignUpForm.css';
@@ -12,7 +12,6 @@ const SignUpForm = () => {
   const [repeatPassword, setRepeatPassword] = useState("");
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
-  const history = useHistory();
 
   const onSignUp = async (e) => {
     e.preventDefault();
@@ -36,11 +35,6 @@ const SignUpForm = () => {
   const updateRepeatPassword = (e) => {
     setRepeatPassword(e.target.value);
   };
-
-  const navLogin = (e) => {
-    e.preventDefault();
-    history.push('/login');
-  }
 
   if (user) {
     return <Redirect to="/" />;
@@ -100,7 +94,7 @@ const SignUpForm = () => {
                   <p>
                     Already have an account?
                   </p>
-                  <a href="/login" onClick={navLogin}> Log in here</a>
+                  <NavLink to="/login" exact={true}> Log in here</NavLink>
                 </div>
               </div>
             </form>
