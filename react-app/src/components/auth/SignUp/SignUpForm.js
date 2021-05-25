@@ -60,7 +60,7 @@ const SignUpForm = () => {
           </div>
           <div id='signup-form-container'>
             <form onSubmit={onSignUp} id='signup-form'>
-              <div className='name-fields'>
+              <div id='name-fields'>
                 <div className='signup-input'>
                   <input
                     type="text"

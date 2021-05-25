@@ -139,40 +139,45 @@
     flex-direction: column;
   }
 
-  #signup-container {
+  #signup {
     width: 100%;
+    overflow-y: hidden;
   }
 
-  .name-fields {
+  #signup-container {
     display: flex;
     flex-direction: column;
+  }
+
+  .signup-input input {
+    width: 90%;
+  }
+
+  #redirect-login {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
   }
 
   #fine-print {
     width: 100%;
     text-align: left;
-    margin-left: 30px;
   }
 
   #signup-misc {
     width: 100%;
     text-align: left;
-    /* margin-top: -30px; */
     padding-bottom: 60px;
     margin-bottom: -100px;
   }
 
   #signup-misc p {
     width: 100%;
-    /* text-align: center; */
-    /* justify-content: center; */
     margin: 0 auto;
   }
 
   #signup-misc h4 {
     width: 100%;
     margin-left: 90px;
-    /* text-align: center; */
-    /* justify-content: center; */
   }
 }
