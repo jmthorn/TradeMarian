@@ -13,35 +13,29 @@ const Stock = () => {
 
     let closePrice = [];
 
-    for (let i = 0; i <= prices.length - 1; i++) {
-        for (let obj in prices) {
-            closePrice.push(prices[obj]['close'])
-            // for (let key in obj) {
-            //     if (key === 'close') {
-            //         closePrice.push(obj[key])
-            //     }
-            // }
-        }
+    for (let obj in prices) {
+            closePrice.push({ 'close': prices[obj]['close'], 'date': prices[obj]['date'] })
     }
 
-        console.log('test----', closePrice)
-        useEffect(() => {
-            dispatch(stockPrices(ticker_symbol.toUpperCase()))
-        }, [dispatch, ticker_symbol])
 
-        return (
-            <div id='stock-container'>
-                <LineChart width={730} height={250} data={closePrice}
-                    margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="date" />
-                    <YAxis dataKey="price" />
-                    <Tooltip />
-                    <Legend />
-                    <Line type="monotone" dataKey="equity" stroke="#8884d8" />
-                </LineChart>
-            </div>
-        )
-    }
+    console.log('test----', closePrice)
+    useEffect(() => {
+        dispatch(stockPrices(ticker_symbol.toUpperCase()))
+    }, [dispatch, ticker_symbol])
 
-    export default Stock;
+    return (
+        <div id='stock-container'>
+            <LineChart width={730} height={250} data={closePrice}
+                margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="date" />
+                <YAxis dataKey="price" />
+                <Tooltip />
+                <Legend />
+                <Line type="monotone" dataKey="close" stroke="#dc436f" />
+            </LineChart>
+        </div>
+    )
+}
+
+export default Stock;
