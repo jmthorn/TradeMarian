@@ -11,16 +11,17 @@ const Portfolio = () => {
   const user = useSelector(state => state.session.user)
   const portfolio_data = useSelector(state => state.portfolio?.portfolio?.portfolio_data)
   const dispatch = useDispatch()
+  const [dateRange, setDateRange] = useState(portfolio_data)
 
 
-  useEffect(async() => { 
+  useEffect(async() => {
     const portfolio = await dispatch(userPortfolio())
   }, [])
 
 
 
-  useEffect(async()=> { 
-    const portfolio_array = await portfolio_data;
+  useEffect(async()=> {
+    const portfolio_array = await dateRange;
     console.log(portfolio_array)
     if(portfolio_array){
       if (portfolio_array[0].value > portfolio_array[(portfolio_array.length)-1].value) {
@@ -29,11 +30,21 @@ const Portfolio = () => {
         setLineColor("#97ef0c"); //green
       }
     }
-    
-  }, [portfolio_data, lineColor])
-  console.log(lineColor)
-  
-   if(!portfolio_data) return null
+
+  }, [portfolio_data, lineColor, dateRange])
+
+
+  if(!portfolio_data) return null
+
+  const dateFunc = (date) => {
+    if(date == '1Y') {
+      setDateRange(portfolio_data)
+    } else if (date == '6m') {
+      setDateRange(portfolio_data.slice(0, portfolio_data.length/2))
+    } else if (date == '1m') {
+      setDateRange(portfolio_data.slice(0, portfolio_data.length/12))
+    }
+  }
 
 
   return (
@@ -41,7 +52,7 @@ const Portfolio = () => {
         <h1>$Portfolio</h1>
           <div className="portfolio-container">
               <div>
-                  <LineChart width={730} height={250} data={portfolio_data}
+                  <LineChart width={730} height={250} data={dateRange}
                       margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
                       <Line type="monotone"  dataKey="value" stroke={lineColor} strokeWidth={2} dot={false}/>
                       {/* <CartesianGrid stroke="#ccc" strokeDasharray="3 3" hide={true}/> */}
@@ -52,7 +63,17 @@ const Portfolio = () => {
                   </LineChart>
               </div>
           </div>
+          <div>
+            <button type='button' value='1m' onClick={(e)=> dateFunc(e.target.value)}>1m</button>
+          </div>
+          <div>
+            <button type='button' value='6m' onClick={(e)=> dateFunc(e.target.value)}>6m</button>
+          </div>
+          <div>
+            <button type='button' value='1Y' onClick={(e)=> dateFunc(e.target.value)}>1Y</button>
+          </div>
         <Sidebar/>
+
       </>
   )
 };
