@@ -9,7 +9,7 @@ function DemoButton() {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const handleSubmit = async (e) => {
+  const handleClick = async (e) => {
     e.preventDefault();
 
     await dispatch(login('demo@aa.io', 'password'));
@@ -17,9 +17,7 @@ function DemoButton() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className='demo'>
-      <button type='submit' id='demo-btn'>Demo User</button>
-    </form>
+    <button onClick={handleClick} type='submit' id='demo-btn'>Demo User</button>
   )
 }
 

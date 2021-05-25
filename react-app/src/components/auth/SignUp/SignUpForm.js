@@ -1,25 +1,34 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from 'react-redux'
-import { Redirect, useHistory } from 'react-router-dom';
+import { Redirect, NavLink } from 'react-router-dom';
 import { signUp } from '../../../store/session';
 import DemoButton from "../DemoButton";
 import './SignUpForm.css';
 
 const SignUpForm = () => {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
-  const history = useHistory();
 
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      await dispatch(signUp(username, email, password));
+      await dispatch(signUp(firstName, lastName, username, email, password));
     }
   };
+
+  const updateFirstName = (e) => {
+    setFirstName(e.target.value);
+  }
+
+  const updateLastName = (e) => {
+    setLastName(e.target.value);
+  }
 
   const updateUsername = (e) => {
     setUsername(e.target.value);
@@ -37,11 +46,6 @@ const SignUpForm = () => {
     setRepeatPassword(e.target.value);
   };
 
-  const navLogin = (e) => {
-    e.preventDefault();
-    history.push('/login');
-  }
-
   if (user) {
     return <Redirect to="/" />;
   }
@@ -56,6 +60,26 @@ const SignUpForm = () => {
           </div>
           <div id='signup-form-container'>
             <form onSubmit={onSignUp} id='signup-form'>
+              <div className='name-fields'>
+                <div className='signup-input'>
+                  <input
+                    type="text"
+                    name="firstName"
+                    placeholder='First Name'
+                    onChange={updateFirstName}
+                    value={firstName}
+                  ></input>
+                </div>
+                <div className='signup-input'>
+                  <input
+                    type="text"
+                    name="lastName"
+                    placeholder='Last Name'
+                    onChange={updateLastName}
+                    value={lastName}
+                  ></input>
+                </div>
+              </div>
               <div className='signup-input'>
                 <input
                   type="text"
@@ -95,15 +119,15 @@ const SignUpForm = () => {
               </div>
               <div id='redirect-login'>
                 <button type="submit" id='signup-btn'>Sign Up</button>
+                <DemoButton />
                 <div>
                   <p>
                     Already have an account?
                   </p>
-                  <a href="/login" onClick={navLogin}> Log in here</a>
+                  <NavLink to="/login" exact={true}> Log in here</NavLink>
                 </div>
               </div>
             </form>
-            <DemoButton />
           </div>
           <div id='fine-print'>
             <p>
