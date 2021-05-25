@@ -7,7 +7,8 @@ const BuySell = ({ ticker_symbol }) => {
   const price = Number(useSelector(state => state.transactions.transactionPrice)[0]).toFixed(2);
 
   const [transactionPrice, setTransactionPrice] = useState((0).toFixed(2));
-  const [shares, setShares] = useState(1);
+  const [shares, setShares] = useState(0);
+
   useEffect(() => {
     dispatch(stockPrice(ticker_symbol));
   }, [dispatch, ticker_symbol]);
@@ -15,7 +16,7 @@ const BuySell = ({ ticker_symbol }) => {
   const transactionTotal = e => {
     setShares(e.target.value)
     setTransactionPrice((e.target.value * price).toFixed(2));
-    console.log('================',transactionPrice) // transaction price is not updating properly
+    console.log('================', transactionPrice) // transaction price is not updating properly
   }
 
 
@@ -25,7 +26,7 @@ const BuySell = ({ ticker_symbol }) => {
         Buy {ticker_symbol}
         <div className='transaction-labels'>Shares</div>
         <select name="shares" id="shares" onChange={transactionTotal} value={shares}>
-          <option value="" selected></option>
+          <option value="" disabled></option>
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>

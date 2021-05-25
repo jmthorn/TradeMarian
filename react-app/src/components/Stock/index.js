@@ -30,9 +30,9 @@ const Stock = () => {
                 <XAxis dataKey="close" hide={true} />
                 <YAxis domain={['auto', 'auto']} hide={true} />
                 <Tooltip />
-                <Line type="monotone" dataKey="close" stroke={lineColor} strokeWidth={1.5} dot={false}/>
+                <Line type="monotone" dataKey="close" stroke={lineColor} strokeWidth={1.5} dot={false} />
             </LineChart>
-            <BuySell ticker_symbol={ticker_symbol}/>
+            <BuySell ticker_symbol={ticker_symbol.toUpperCase()} />
         </div>
     )
 }

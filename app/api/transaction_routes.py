@@ -16,3 +16,8 @@ def stock_graph_data(ticker_symbol):
     closePrice = {k: v for k, v in closePrice.items() if k in ("close")}
 
     return closePrice
+
+
+@transaction_routes.route('/<ticker_symbol>', methods=["POST"])
+def buy_stock(ticker_symbol):
+    pass
