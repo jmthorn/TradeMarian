@@ -33,7 +33,8 @@ const Buy = ({ ticker_symbol }) => {
       price_per_share: price,
       buy_sell: 'True'
     }
-    dispatch(stockTransaction(newTransaction));
+    console.log('newtransactions',newTransaction)
+    dispatch(stockTransaction(newTransaction, ticker_symbol));
   }
 
 

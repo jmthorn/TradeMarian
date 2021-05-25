@@ -21,8 +21,8 @@ export const stockPrice = (ticker_symbol) => async (dispatch) => {
   }
 };
 
-export const stockTransaction = (data) => async (dispatch) => {
-  const res = await fetch(`/api/transactions`, {
+export const stockTransaction = (data, ticker_symbol) => async (dispatch) => {
+  const res = await fetch(`/api/transactions${ticker_symbol}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
