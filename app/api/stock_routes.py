@@ -8,15 +8,12 @@ stock_token = os.getenv('test_token')
 
 @stock_routes.route('/<ticker_symbol>')
 def stock_graph_data(ticker_symbol):
-    reqs = requests.get(
-        f"https://sandbox.iexapis.com/stable/stock/{ticker_symbol}/chart/1y/?token={stock_token}&chartCloseOnly=true")
+    data = requests.get(
+        f"https://sandbox.iexapis.com/stable/stock/{ticker_symbol}/chart/1y/?token={stock_token}&chartCloseOnly=true").json()
 
     stock_data = {}
 
-    id = 0
-    while id < len(reqs.json()):
-        for dict_ in reqs.json():
-            stock_data[id] = dict_
-            id += 1
+    for i in range(1, len(data)):
+        stock_data[i] = {k: v for k, v in data[i].items() if k in ("close", "date")}
     # print('stock data', stock_data)
     return stock_data
