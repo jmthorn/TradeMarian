@@ -83,7 +83,8 @@
   font-weight: bold;
 }
 
-#signin-btn, .login-form-container #demo-btn {
+#signin-btn,
+.login-form-container #demo-btn {
   background-color: #645b8c;
   color: white;
   width: 138px;
@@ -94,7 +95,8 @@
   border: 1px solid transparent;
 }
 
-#signin-btn:hover, .login-form-container #demo-btn:hover {
+#signin-btn:hover,
+.login-form-container #demo-btn:hover {
   background-color: #5c5381;
   transition: 0.3s;
 }
@@ -127,5 +129,9 @@
 
   #signin-btn {
     margin-top: -90px;
+  }
+
+  .btns-div {
+    margin-top: -80px;
   }
 }

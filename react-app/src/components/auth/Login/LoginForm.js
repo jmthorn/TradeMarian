@@ -71,8 +71,10 @@ const LoginForm = () => {
               </p>
             </div>
           </div>
-        <button type="submit" id='signin-btn'>Sign In</button>
-        <DemoButton />
+        <div className="btns-div">
+          <button type="submit" id='signin-btn'>Sign In</button>
+          <DemoButton />
+        </div>
         </form>
       </div>
     </div>
