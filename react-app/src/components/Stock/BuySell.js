@@ -4,20 +4,20 @@ import { stockPrice } from "../../store/transactions";
 
 const BuySell = ({ ticker_symbol }) => {
   const dispatch = useDispatch();
-  const price = useSelector(state => state.transactions.transactionPrice);
+  const price = Number(useSelector(state => state.transactions.transactionPrice)[0]).toFixed(2);
+
   const [transactionPrice, setTransactionPrice] = useState((0).toFixed(2));
   const [shares, setShares] = useState(0);
-
   useEffect(() => {
     dispatch(stockPrice(ticker_symbol));
   }, [dispatch, ticker_symbol]);
 
   const transactionTotal = e => {
     setShares(e.target.value)
-    let total = shares * Number(price[0]);
-    setTransactionPrice(total.toFixed(2))
-    return transactionPrice
+    setTransactionPrice((e.target.value * price).toFixed(2));
+    console.log('================',transactionPrice) // transaction price is not updating properly
   }
+
 
   return (
     <div>
@@ -39,11 +39,11 @@ const BuySell = ({ ticker_symbol }) => {
         </select>
         <div className='transaction-labels'>Market Price</div>
         <div id='transaction-stock-price'>
-          ${Number(price[0]).toFixed(2)}
+          ${price}
         </div>
         <div className='transaction-labels'>Estimated Cost</div>
-        <div id='transaction-estimate' onChange={transactionTotal}>
-          ${transactionPrice}
+        <div id='transaction-estimate'>
+          ${(shares * price).toFixed(2)}
         </div>
       </form>
     </div>
