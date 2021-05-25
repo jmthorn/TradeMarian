@@ -83,39 +83,22 @@
   font-weight: bold;
 }
 
-#signin-btn {
-  background-color: #645b8c;
-  color: white;
-  height: 48px;
-  min-width: 120px;
-  padding: 0 48px;
-  white-space: nowrap;
-  border-radius: 4px;
-  border: 1px solid transparent;
-  margin-top: 24px;
-}
-
-#signin-btn:hover {
-  background-color: #5c5381;
-  transition: 0.3s;
-}
-
+#signin-btn,
 .login-form-container #demo-btn {
   background-color: #645b8c;
   color: white;
-  height: 48px;
   width: 138px;
   padding: 14px 0;
-  margin-top: 167px;
+  margin: 25px 10px 0 0;
   white-space: nowrap;
   border-radius: 4px;
   border: 1px solid transparent;
-  position: absolute;
-  right: 370px;
 }
 
+#signin-btn:hover,
 .login-form-container #demo-btn:hover {
   background-color: #5c5381;
+  transition: 0.3s;
 }
 
 @media screen and (max-width: 872px) {
@@ -146,5 +129,9 @@
 
   #signin-btn {
     margin-top: -90px;
+  }
+
+  .btns-div {
+    margin-top: -80px;
   }
 }

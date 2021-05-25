@@ -11,34 +11,34 @@ const NavBar = () => {
   if (user) {
     sessionLinks = (
       <span className="nav-options">
-        <li id="nav-home">
+        {/* <li id="nav-home">
           <NavLink to="/" exact={true} activeClassName="active">
             Home
           </NavLink>
-        </li>
+        </li> */}
         <li id="nav-portfolio">
-          <NavLink to="/" exact={true} activeClassName="active">
+          <NavLink to="/" exact={true}>
             Portfolio
           </NavLink>
         </li>
-      <li id="nav-logout">
-            <LogoutButton />
-      </li>
-    </span>
+        <li id="nav-logout">
+          <LogoutButton />
+        </li>
+      </span>
     );
   } else {
     sessionLinks = (
       <span className="nav-options">
         <li id="nav-login">
-          <NavLink to="/login" exact={true} activeClassName="active">
+          <NavLink to="/login" exact={true} >
             Log In
           </NavLink>
         </li>
         <li id="nav-signup">
-          <NavLink to="/sign-up" exact={true} activeClassName="active">
+          <NavLink to="/sign-up" exact={true} >
             Sign Up
           </NavLink>
-        </li>      
+        </li>
       </span>
     );
   }
@@ -47,12 +47,12 @@ const NavBar = () => {
     <nav>
       <ul id="nav-list">
         <li id="nav-home">
-          <NavLink to="/" exact={true} activeClassName="active">
-            <img className="logo" src={'/images/logo.png'} alt="logo"/>
+          <NavLink to="/" exact={true}>
+            <img className="logo" src={'/images/logo.png'} alt="logo" />
           </NavLink>
         </li>
         <li id="nav-search">
-          <input type="text" placeholder="Search"/>
+          <input type="text" placeholder="Search" />
         </li>
         {sessionLinks}
       </ul>

@@ -9,7 +9,7 @@ def seed_users():
         last_name='User',
         username='Demo',
         email='demo@aa.io',
-        buying_power=500,
+        buying_power=80000,
         password='password')
 
     db.session.add(demo)
