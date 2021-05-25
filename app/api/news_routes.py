@@ -3,10 +3,14 @@ import requests
 
 news_routes = Blueprint('news', __name__)
 
-@news_routes.route('/stock/<ticker>')
-def specific_news(ticker):
+stock_token = os.environ.get('STOCK_API')
+stock_news = os.environ.get('All_NEWS_API')
+
+
+@news_routes.route('/stock/<ticker_symbol>')
+def specific_news(ticker_symbol):
     reqs = requests.get(
-        f"https://cloud.iexapis.com/stable/stock/{ticker}/news/?token=pk_9dfa82416e944f4e8cdec532d33129eb")
+        f"https://cloud.iexapis.com/stable/stock/{ticker_symbol}/news/?token={stock_token}")
 
     list_ = {}
 
@@ -17,6 +21,7 @@ def specific_news(ticker):
             id += 1
 
     return list_
+
 
 @news_routes.route('/news')
 def all_news():
