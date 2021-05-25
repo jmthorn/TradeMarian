@@ -34,7 +34,7 @@ def seed_transactions():
     t5 = Transaction(
         asset_id = 5,
         user_id = 1,
-        share_quantity = .2,
+        share_quantity = 2,
         price_per_share = 3201.00,
         buy_sell = True
     )
@@ -52,6 +52,20 @@ def seed_transactions():
         price_per_share = 110.99,
         buy_sell = True
     )
+    t8 = Transaction(
+        asset_id = 7,
+        user_id = 1,
+        share_quantity = -11,
+        price_per_share = 110.99,
+        buy_sell = False
+    )
+    t9 = Transaction(
+        asset_id = 5,
+        user_id = 1,
+        share_quantity = 4,
+        price_per_share = 3210.00,
+        buy_sell = True
+    )
 
     db.session.add(t1)
     db.session.add(t2)
@@ -60,6 +74,8 @@ def seed_transactions():
     db.session.add(t5)
     db.session.add(t6)
     db.session.add(t7)
+    db.session.add(t8)
+    db.session.add(t9)
     db.session.commit()
 
 
