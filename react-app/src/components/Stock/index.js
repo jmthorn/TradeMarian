@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { stockInformation } from "../../store/assets";
-import BuySell from './BuySell';
+import { stockPrice, stockTransaction } from "../../store/transactions";
+import Buy from './Buy';
+import Sell from './Sell';
 import StockGraph from './StockGraph';
 
 import './stock.css';
@@ -10,58 +12,65 @@ import './stock.css';
 const Stock = () => {
     const { ticker_symbol } = useParams();
     const stock = useSelector(state => state.assets.stockData);
-    // const stockData = stock.stock_data;
+
+    const stockTransactions = useSelector(state => state.transactions.transactionPrice)
+    const closePrice = stockTransactions.price?.close.toFixed(2);
+    const userShares = stockTransactions.shares?.[ticker_symbol];
+  
+    const stockData = stock.stock_data;
     const stockOverview = stock.stock_info;
     const dispatch = useDispatch();
-
-    console.log('stockkkkk', stockOverview)
+    const user = useSelector(state => state.session.user);
     
     useEffect(() => {
         dispatch(stockInformation(ticker_symbol.toUpperCase()));
     }, [dispatch, ticker_symbol]);
-    
-    if (!stockOverview) return null;
+
+    useEffect(() => {
+        dispatch(stockPrice(ticker_symbol));
+    }, [dispatch, ticker_symbol]);
 
     return (
         <div id='stock-container'>
-            {stockOverview.company_name}
+            {stockOverview?.company_name}
             <div id='stock-graph'>
                 <StockGraph />
-                <BuySell ticker_symbol={ticker_symbol.toUpperCase()} />
+                <Buy user={user} ticker_symbol={ticker_symbol.toUpperCase()} price={closePrice} />
+                <Sell user={user} ticker_symbol={ticker_symbol.toUpperCase()} price={closePrice} shares={userShares} />
             </div>
             <div id='about-stock'>
                 <h4>About</h4>
-                {stockOverview.description}
+                {stockOverview?.description}
                 <div>
                     CEO
-                    <div>{stockOverview.ceo}</div>
+                    <div>{stockOverview?.ceo}</div>
                 </div>
                 <div>
                     Employees
-                    <div>{stockOverview.employees}</div>
+                    <div>{stockOverview?.employees}</div>
                 </div>
                 <div>
                     Headquarters
-                    <div>{stockOverview.headquarters}</div>
+                    <div>{stockOverview?.headquarters}</div>
                 </div>
                 <div>
                     Founded
-                    <div>{stockOverview.founded}</div>
+                    <div>{stockOverview?.founded}</div>
                 </div>
             </div>
             <div id='key-stats'>
                 <h4>Key Statistics</h4>
                 <div>
                     Market Cap
-                    <div>{stockOverview.market_cap}</div>
+                    <div>{stockOverview?.market_cap}</div>
                 </div>
                 <div>
                     Price-Earnings Ratio
-                    <div>{stockOverview.price_earning_ratio}</div>
+                    <div>{stockOverview?.price_earning_ratio}</div>
                 </div>
                 <div>
                     Average Volume
-                    <div>{stockOverview.average_volume}</div>
+                    <div>{stockOverview?.average_volume}</div>
                 </div>
             </div>
         </div>
