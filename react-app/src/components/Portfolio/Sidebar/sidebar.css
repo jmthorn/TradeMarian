@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   height: 90%;
-  width: 18em;
+  width: 20em;
   overflow-y: scroll;
   border: 0px solid lightgray;
   box-shadow: 0px 0px 15px rgb(209, 209, 209);
@@ -17,7 +17,7 @@
 }
 
 .smallChart {
-  margin: 0.8em 2em;
+  margin: 0.8em 1em;
 }
 
 .small-stock-container {
@@ -30,10 +30,12 @@
 
 #shares-div {
   display: inline;
+  width: 20px;
 }
 
-.sidebar-share div {
+.sidebar-share {
   font-size: 12px;
+  width: 5em;
 }
 
 .stock-line {
