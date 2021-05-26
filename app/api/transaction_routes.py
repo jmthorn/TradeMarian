@@ -46,10 +46,11 @@ def buy_stock(ticker_symbol):
         'buy_sell': transaction.buy_sell
     }
 
-    # user = User.query.filter(User.id == data['user_id']).one().update({'buying_power':data['buying_power']})
-    # print('--------------user', user)
+    user = User.query.filter(User.id == data['user_id']).one()
+    user.buying_power = data['buying_power']
+
     db.session.add(transaction)
-    # db.session.add(user)
+    db.session.add(user)
     db.session.commit()
 
     return transaction_data

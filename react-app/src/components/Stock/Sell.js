@@ -5,7 +5,8 @@ const Sell = ({ ticker_symbol }) => {
     const dispatch = useDispatch();
     const [shares, setShares] = useState(0);
     const [sellPrice, setSellPrice] = useState((0).toFixed(2));
-
+    const [buyingPower, setBuyingPower] = useState(user.buying_power);
+    
     const sellTotal = e => {
         setShares(e.target.value)
         setTransactionPrice((e.target.value * price).toFixed(2));

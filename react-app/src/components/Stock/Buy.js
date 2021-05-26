@@ -23,13 +23,14 @@ const Buy = ({ ticker_symbol }) => {
   const buyAsset = async (e) => {
     e.preventDefault();
     setBuyingPower((buyingPower - transactionPrice).toFixed(2));
-
+    let newBuyingPower = (buyingPower - transactionPrice).toFixed(2)
+ 
     let newTransaction = {
       user_id: user.id,
       share_quantity: Number(shares),
       price_per_share: Number(price),
       buy_sell: true,
-      buying_power: Number(buyingPower)
+      buying_power: Number(newBuyingPower)
     }
     dispatch(stockTransaction(newTransaction, ticker_symbol));
   }
