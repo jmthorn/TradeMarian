@@ -32,9 +32,47 @@ const Stock = () => {
 
     return (
         <div id='stock-container'>
-            <StockGraph />
-            <Buy user={user} ticker_symbol={ticker_symbol.toUpperCase()} price={closePrice} />
-            <Sell user={user} ticker_symbol={ticker_symbol.toUpperCase()} price={closePrice} shares={userShares} />
+            {stockOverview?.company_name}
+            <div id='stock-graph'>
+                <StockGraph />
+                <Buy user={user} ticker_symbol={ticker_symbol.toUpperCase()} price={closePrice} />
+                <Sell user={user} ticker_symbol={ticker_symbol.toUpperCase()} price={closePrice} shares={userShares} />
+            </div>
+            <div id='about-stock'>
+                <h4>About</h4>
+                {stockOverview?.description}
+                <div>
+                    CEO
+                    <div>{stockOverview?.ceo}</div>
+                </div>
+                <div>
+                    Employees
+                    <div>{stockOverview?.employees}</div>
+                </div>
+                <div>
+                    Headquarters
+                    <div>{stockOverview?.headquarters}</div>
+                </div>
+                <div>
+                    Founded
+                    <div>{stockOverview?.founded}</div>
+                </div>
+            </div>
+            <div id='key-stats'>
+                <h4>Key Statistics</h4>
+                <div>
+                    Market Cap
+                    <div>{stockOverview?.market_cap}</div>
+                </div>
+                <div>
+                    Price-Earnings Ratio
+                    <div>{stockOverview?.price_earning_ratio}</div>
+                </div>
+                <div>
+                    Average Volume
+                    <div>{stockOverview?.average_volume}</div>
+                </div>
+            </div>
         </div>
     )
 }
