@@ -13,7 +13,7 @@ const buyStock = (transaction) => ({
 
 export const stockPrice = (ticker_symbol) => async (dispatch) => {
   const res = await fetch(`/api/transactions/${ticker_symbol}`);
-  console.log('---------------res', res)
+
   if (res.ok) {
     let data = await res.json();
     dispatch(getPrice(data));

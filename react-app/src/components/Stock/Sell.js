@@ -3,13 +3,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { stockTransaction } from "../../store/transactions";
 
 const Sell = ({ user, ticker_symbol, price, shares }) => {
+    // console.log('sharessssssssss', shares)
     const dispatch = useDispatch();
     const [sellPrice, setSellPrice] = useState((0).toFixed(2));
     const [userShares, setUserShares] = useState(shares);
-    // console.log('------shares------', userShares);
+    console.log('------shares------', typeof userShares);
     const [sharesSold, setSharesSold] = useState(0);
     const [buyingPower, setBuyingPower] = useState(user.buying_power);
-
+    // if (!shares) return null    
+    
     const sellTotal = e => {
         setSharesSold(e.target.value)
         setSellPrice((e.target.value * price).toFixed(2));
@@ -17,10 +19,12 @@ const Sell = ({ user, ticker_symbol, price, shares }) => {
 
     const sellAsset = async (e) => {
         e.preventDefault();
-
+        // setUserShares(userShares - sharesSold)
+        // console.log(userShares)
         setBuyingPower((Number(buyingPower) + Number(sellPrice)).toString());
-        setUserShares(userShares - sharesSold)
-        console.log(userShares - sharesSold, 'userShares - sharesSold')
+
+        console.log((userShares - sharesSold), 'userShares - sharesSold')
+
         let newBuyingPower = (Number(buyingPower) + Number(sellPrice)).toFixed(2);
 
         let newTransaction = {

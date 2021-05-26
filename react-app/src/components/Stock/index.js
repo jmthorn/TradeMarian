@@ -16,7 +16,7 @@ const Stock = () => {
     const stockTransactions = useSelector(state => state.transactions.transactionPrice)
     const closePrice = stockTransactions.price?.close.toFixed(2);
     const userShares = stockTransactions.shares?.[ticker_symbol];
-
+  
     const stockData = stock.stock_data;
     const stockOverview = stock.stock_info;
     const dispatch = useDispatch();
