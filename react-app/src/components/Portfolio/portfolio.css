@@ -1,0 +1,46 @@
+#page-container {
+  display: flex;
+  flex-direction: row;
+}
+
+#portfolio-container {
+  margin: 3em 3em 3em;
+  display: flex;
+  flex-direction: column;
+}
+
+#portfolio-graph-container {
+  /* margin: 1em 3em 3em; */
+}
+
+#ticker {
+  margin: 0em 0em;
+}
+
+#ticker h1 {
+  font-size: 2em;
+}
+
+#button-container {
+  margin: 1em 0em;
+  display: flex;
+  flex-direction: row;
+}
+
+#button-container button {
+  margin: 0em 0.4em;
+  background-color: #ffffff;
+  border: 0px solid #ffffff;
+  font-size: 14px;
+}
+
+.buying-power {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.portfolio-line {
+  border-bottom: 1px solid lightgray;
+  margin: 1em 0em;
+}
