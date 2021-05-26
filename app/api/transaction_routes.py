@@ -2,6 +2,7 @@ from flask import Blueprint, request
 from app.models import Transaction, Asset, db
 import requests
 import os
+import json
 
 transaction_routes = Blueprint("transactions", __name__)
 
@@ -30,14 +31,22 @@ def buy_stock(ticker_symbol):
     asset = Asset.query.filter(Asset.ticker_symbol == ticker_symbol).one()
 
     transaction = Transaction(
-        asset_id = asset.id,
-        user_id = data['user_id'],
-        share_quantity = data['share_quantity'],
-        price_per_share = data['price_per_share'],
-        buy_sell = data['buy_sell']
+        asset_id=asset.id,
+        user_id=data['user_id'],
+        share_quantity=data['share_quantity'],
+        price_per_share=data['price_per_share'],
+        buy_sell=data['buy_sell']
     )
+
+    transaction_data = {
+        'asset_id': transaction.asset_id,
+        'user_id': transaction.asset,
+        'share_quantity': transaction.share_quantity,
+        'price_per_share': transaction.price_per_share,
+        'buy_sell': transaction.buy_sell
+    }
 
     db.session.add(transaction)
     db.session.commit()
 
-    return transaction
+    return transaction_data

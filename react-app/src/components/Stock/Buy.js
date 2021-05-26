@@ -21,26 +21,26 @@ const Buy = ({ ticker_symbol }) => {
   const transactionTotal = e => {
     setShares(e.target.value)
     setTransactionPrice((e.target.value * price).toFixed(2));
-    console.log('================', transactionPrice) // transaction price is not updating properly
+    // console.log('================', transactionPrice) // transaction price is not updating properly
   };
 
-  const buyAsset = (e) => {
+
+  const buyAsset = async (e) => {
     e.preventDefault();
 
-    const newTransaction = {
+    let newTransaction = {
       user_id: user.id,
       share_quantity: Number(shares),
       price_per_share: Number(price),
       buy_sell: true
     }
-    console.log('newtransactions',newTransaction)
+
     dispatch(stockTransaction(newTransaction, ticker_symbol));
   }
 
-
   return (
     <div>
-      <form onSubmit={buyAsset} method="post">
+      <form onSubmit={buyAsset}>
         Buy {ticker_symbol}
         <div className='transaction-labels'>Shares</div>
         <select name="shares" id="shares" onChange={transactionTotal} value={shares}>
@@ -65,7 +65,7 @@ const Buy = ({ ticker_symbol }) => {
           ${transactionPrice}
         </div>
         <div>Buying Power: ${user.buying_power}</div>
-        <button>Buy</button>
+        <button type="submit" onClick={(e) => buyAsset(e)}>Buy</button>
       </form>
     </div>
   )

@@ -8,7 +8,7 @@ const getPrice = (transactionPriceDict) => ({
 
 const buyStock = (transaction) => ({
   type: BUY_STOCK,
-  transaction
+  payload: transaction
 })
 
 export const stockPrice = (ticker_symbol) => async (dispatch) => {
@@ -26,12 +26,18 @@ export const stockTransaction = (data, ticker_symbol) => async (dispatch) => {
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ data, ticker_symbol })
+    body: JSON.stringify({
+      data,
+      ticker_symbol
+    }),
   });
+
+  console.log('res------', res);
 
   if (res.ok) {
     const transactionInfo = await res.json();
-    console.log('transactionInfo------', transactionInfo)
+
+    console.log('transactioninfo------', transactionInfo);
     dispatch(buyStock(transactionInfo));
   }
 };
@@ -44,14 +50,16 @@ let initialState = {
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case GET_PRICE:
+      console.log('test')
       return {
         ...state,
         transactionPrice: action.transactionPriceDict
       };
     case BUY_STOCK:
+      console.log('hello');
       return {
         ...state,
-        ...action.transaction
+        transactionData: action.payload.transaction
       }
     default:
       return state;
