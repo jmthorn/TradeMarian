@@ -27,7 +27,6 @@ def stock_graph_data(ticker_symbol):
         "average_volume": asset.average_volume
     }
 
-    print(stock_info, 'stock-infooooooooooooooooo')
     stock_data = {}
     for i in range(0, len(data)):
         close = ""
