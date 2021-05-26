@@ -21,16 +21,14 @@ def stock_graph_data(ticker_symbol):
 
 @transaction_routes.route('/<ticker_symbol>', methods=["POST"])
 def buy_stock(ticker_symbol):
-    # data = request.args.ticker_symbol.data
+
     jsonData = request.get_json()
 
-    print('---------jsonData-', jsonData)
     ticker_symbol = jsonData['ticker_symbol']
     data = jsonData['data']
 
-    print('data====================================================', data['user_id'])
     asset = Asset.query.filter(Asset.ticker_symbol == ticker_symbol).one()
-    print('asset id', asset)
+
     transaction = Transaction(
         asset_id = asset.id,
         user_id = data['user_id'],
@@ -41,5 +39,5 @@ def buy_stock(ticker_symbol):
 
     db.session.add(transaction)
     db.session.commit()
-    print('==============transaction', transaction)
+
     return transaction
