@@ -6,6 +6,7 @@ import { stockPrice, stockTransaction } from "../../store/transactions";
 import Buy from './Buy';
 import Sell from './Sell';
 import StockGraph from './StockGraph';
+import WatchlistModal from '../../context/watchlistmodal/index';
 
 import './stock.css';
 
@@ -35,6 +36,7 @@ const Stock = () => {
             <StockGraph />
             <Buy user={user} ticker_symbol={ticker_symbol.toUpperCase()} price={closePrice} />
             <Sell user={user} ticker_symbol={ticker_symbol.toUpperCase()} price={closePrice} shares={userShares} />
+            <WatchlistModal ticker_symbol={ticker_symbol.toUpperCase()}/>
         </div>
     )
 }
