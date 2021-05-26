@@ -1,3 +1,28 @@
 #stock-container {
-  margin: 200px 0 200px 200px;
+  margin: 100px 0 0 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#stock-graph-container {
+  margin: 0 3em 3em;
+  display: flex;
+  flex-direction: column;
+}
+
+#stock-graph-btns {
+  display: flex;
+  flex-direction: row;
+}
+
+#stock-graph-btns button {
+  margin: 0em 0.4em;
+  background-color: #ffffff;
+  border: 0px solid #ffffff;
+  font-size: 14px;
+}
+
+#stock-graph-btns button:hover {
+  
 }
