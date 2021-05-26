@@ -1,0 +1,37 @@
+#sidebar-container {
+  display: flex;
+  flex-direction: column;
+  height: 90%;
+  width: 16em;
+  overflow-y: scroll;
+  border: 1px solid lightgray;
+  border-radius: 6px;
+  padding: 1em 2em;
+  margin: auto 5em;
+  align-items: center;
+}
+
+#stock-title {
+  font-size: 18px;
+}
+
+.smallChart {
+  margin: 0.8em 2em;
+}
+
+.small-stock-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sidebar-share div {
+  font-size: 12px;
+}
+
+.stock-line {
+  border-bottom: 1px solid lightgray;
+  margin: 1em 0em;
+  width: 127%;
+}
