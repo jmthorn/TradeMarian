@@ -26,7 +26,7 @@ def stock_graph_data(ticker_symbol):
         "dividend_yield": asset.dividend_yield,
         "average_volume": asset.average_volume
     }
-
+    
     stock_data = {}
     for i in range(0, len(data)):
         close = ""
