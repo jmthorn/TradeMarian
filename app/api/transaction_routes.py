@@ -1,4 +1,5 @@
 from flask import Blueprint, request
+from flask_login import login_required, current_user
 from app.models import Transaction, Asset, User, db
 import requests
 import os
@@ -17,7 +18,16 @@ def stock_graph_data(ticker_symbol):
     closePrice = data.pop()
     closePrice = {k: v for k, v in closePrice.items() if k in ("close")}
 
-    return closePrice
+    transactions = Transaction.query.filter((Transaction.user_id == current_user.id) AND Transaction.ticker_symbol = ticker_symbol).one()
+
+    holdings = {}
+    for transaction in transactions:
+        if transaction.asset.ticker_symbol in holdings:
+            holdings[transaction.asset.ticker_symbol] += transaction.share_quantity
+        else:
+            holdings[transaction.asset.ticker_symbol] = transaction.share_quantity
+
+    return {"price": closePrice, "transactions": holdings}
 
 
 @transaction_routes.route('/<ticker_symbol>', methods=["POST"])

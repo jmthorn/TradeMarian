@@ -12,11 +12,13 @@ import './stock.css';
 const Stock = () => {
     const { ticker_symbol } = useParams();
     const stock = useSelector(state => state.assets.stockData);
+    const stockTransactions = useSelector(state => state.transactions.transactionPrice)[0]
+    console.log('-------', otherStockInfo)
     const stockData = stock.stock_data;
     const stockOverview = stock.stock_info;
     const dispatch = useDispatch();
     const user = useSelector(state => state.session.user);
-   
+    
     useEffect(() => {
         dispatch(stockInformation(ticker_symbol.toUpperCase()));
     }, [dispatch, ticker_symbol]);

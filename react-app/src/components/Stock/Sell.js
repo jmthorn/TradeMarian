@@ -6,6 +6,8 @@ const Sell = ({ user, ticker_symbol }) => {
     const dispatch = useDispatch();
     const price = Number(useSelector(state => state.transactions.transactionPrice)[0]).toFixed(2);
     const [sellPrice, setSellPrice] = useState((0).toFixed(2));
+    const [userShares, setUserShares] = useState(user.share_quantity);
+    console.log('------shares------', userShares);
     const [shares, setShares] = useState(0);
     const [buyingPower, setBuyingPower] = useState(user.buying_power);
 
@@ -16,8 +18,9 @@ const Sell = ({ user, ticker_symbol }) => {
 
     const sellAsset = async (e) => {
         e.preventDefault();
+        console.log('buyingggggg=====', Number(buyingPower) + Number(sellPrice))
+        setBuyingPower((Number(buyingPower) + Number(sellPrice)).toString());
 
-        setBuyingPower(Number(buyingPower) + Number(sellPrice)).toFixed(2);
         let newBuyingPower = (Number(buyingPower) + Number(sellPrice)).toFixed(2);
 
         let newTransaction = {
@@ -56,6 +59,7 @@ const Sell = ({ user, ticker_symbol }) => {
                 <div id='transaction-estimate'>
                     ${sellPrice}
                 </div>
+                <div>{userShares} Shares Available</div>
                 <div>Buying Power: ${buyingPower}</div>
                 <button type="submit" onClick={(e) => sellAsset(e)}>Sell</button>
             </form>
