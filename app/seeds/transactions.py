@@ -35,7 +35,7 @@ def seed_transactions():
         asset_id = 5,
         user_id = 1,
         share_quantity = 2,
-        price_per_share = 3201.00,
+        price_per_share = 21,
         buy_sell = True
     )
     t6 = Transaction(
@@ -63,7 +63,7 @@ def seed_transactions():
         asset_id = 5,
         user_id = 1,
         share_quantity = 4,
-        price_per_share = 3210.00,
+        price_per_share = 21,
         buy_sell = True
     )
 

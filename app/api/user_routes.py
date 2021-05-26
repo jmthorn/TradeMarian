@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify
 from flask_login import login_required, current_user
-from app.models import User, transaction
+from app.models import User
 from app.models import Transaction
 from app.models import Asset
 import json
@@ -61,6 +61,16 @@ def user():
 
     # Porfolio: (TOTALED history) : {date:value, date:value, ........}
 
+
+    equity = {} #symbol: (trans.price_per_share*shares)-(shares*close)
+    for symbol in history:
+        asset = Asset.query.filter(Asset.ticker_symbol == symbol).one()
+        trans = Transaction.query.filter(Transaction.user_id == userid).filter(Transaction.asset_id == asset.id).first()
+        print('transactions------------', trans)
+        equity[symbol] = (history[symbol][len(history[symbol]) - 1]['value'] * shares[symbol]) - (trans.price_per_share * shares[symbol])
+
+    print('equity-------', equity)
+
     obj={}
     for i in range(len(list(history.values())[0])):
         for key, stock in history.items():
@@ -77,4 +87,4 @@ def user():
 
     portfolio_data = [{"date":key, "value": value} for (key,value) in obj.items()]
 
-    return {"shares":shares, "history":history, "portfolio_data":portfolio_data}
+    return {"shares":shares, "history":history, "portfolio_data":portfolio_data, "equity":equity}

@@ -1,19 +1,19 @@
 import React from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import './sidebar.css';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from "recharts";
+import { LineChart, Line, XAxis, YAxis } from "recharts";
 
 const Sidebar = () => {
 
   const user = useSelector(state => state.session.user)
   const history = useSelector(state => state.portfolio.portfolio?.history)
   const shares = useSelector(state => state.portfolio?.portfolio?.shares)
+  const equity = useSelector(state => state.portfolio?.portfolio?.equity)
 
   const dispatch = useDispatch()
 
+
   const charts = []
-
-
   const smallCharts = () => {
       for (const stock in history) {
             console.log("HISTORY[STOCK]",stock)
@@ -42,8 +42,7 @@ const Sidebar = () => {
                         </LineChart>
                     </div>
                     <div>
-                        <div>{}</div>
-                        <div>{}</div>               
+                        <div>{`$${ Math.round(equity[stock]*100) /100 }`}</div>
                     </div>
                 </div>
           )
