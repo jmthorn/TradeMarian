@@ -9,32 +9,28 @@ const Buy = ({ ticker_symbol }) => {
   const user = useSelector(state => state.session.user);
   const [transactionPrice, setTransactionPrice] = useState((0).toFixed(2));
   const [shares, setShares] = useState(0);
+  const [buyingPower, setBuyingPower] = useState(user.buying_power);
 
   useEffect(() => {
     dispatch(stockPrice(ticker_symbol));
   }, [dispatch, ticker_symbol]);
 
-  useEffect(() => {
-
-  });
-
   const transactionTotal = e => {
     setShares(e.target.value)
     setTransactionPrice((e.target.value * price).toFixed(2));
-    // console.log('================', transactionPrice) // transaction price is not updating properly
   };
-
 
   const buyAsset = async (e) => {
     e.preventDefault();
+    setBuyingPower((buyingPower - transactionPrice).toFixed(2));
 
     let newTransaction = {
       user_id: user.id,
       share_quantity: Number(shares),
       price_per_share: Number(price),
-      buy_sell: true
+      buy_sell: true,
+      buying_power: Number(buyingPower)
     }
-
     dispatch(stockTransaction(newTransaction, ticker_symbol));
   }
 
@@ -64,7 +60,7 @@ const Buy = ({ ticker_symbol }) => {
         <div id='transaction-estimate'>
           ${transactionPrice}
         </div>
-        <div>Buying Power: ${user.buying_power}</div>
+        <div>Buying Power: ${buyingPower}</div>
         <button type="submit" onClick={(e) => buyAsset(e)}>Buy</button>
       </form>
     </div>

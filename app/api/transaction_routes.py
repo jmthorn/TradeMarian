@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from app.models import Transaction, Asset, db
+from app.models import Transaction, Asset, User, db
 import requests
 import os
 import json
@@ -40,13 +40,16 @@ def buy_stock(ticker_symbol):
 
     transaction_data = {
         'asset_id': transaction.asset_id,
-        'user_id': transaction.asset,
+        'user_id': transaction.user_id,
         'share_quantity': transaction.share_quantity,
         'price_per_share': transaction.price_per_share,
         'buy_sell': transaction.buy_sell
     }
 
+    # user = User.query.filter(User.id == data['user_id']).one().update({'buying_power':data['buying_power']})
+    # print('--------------user', user)
     db.session.add(transaction)
+    # db.session.add(user)
     db.session.commit()
 
     return transaction_data
