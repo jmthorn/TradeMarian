@@ -60,12 +60,12 @@ const Portfolio = () => {
   const handleClick = (value) => {
     setCurrentPrice(Math.round(value * 100) / 100)
     // condition on state of dateRange
-    setCurrentChange(Math.round((value - portfolio_data[0].value)*100) /100)
+    setCurrentChange(Math.abs(Math.round((value - portfolio_data[0].value)*100)) /100)
     // calc percent change
     if (portfolio_data[(portfolio_data?.length) -1].value > portfolio_data[0].value) {
-      setCurrentPercentChg( Math.round((((portfolio_data[0].value - value) / value)*100) *100) /100)
+      setCurrentPercentChg( Math.abs(Math.round((((portfolio_data[0].value - value) / value)*100) *100)) /100)
     } else {
-      setCurrentPercentChg( Math.round((((value - portfolio_data[0].value) / portfolio_data[0].value)*100) *100) /100 )
+      setCurrentPercentChg( Math.abs(Math.round((((value - portfolio_data[0].value) / portfolio_data[0].value)*100) *100)) /100 )
     }
     //set sign
     if (portfolio_data[(portfolio_data?.length) -1].value > portfolio_data[0].value) {
@@ -94,8 +94,8 @@ const Portfolio = () => {
               <h1 id="">${currentPrice ? currentPrice : portfolio_data[(portfolio_data?.length)-1].value}</h1>
             </div>
             <div id='ticker-change'>
-              <p>{`${sign}$${ currentChange ? currentChange : Math.round((portfolio_data[(portfolio_data?.length) -1].value - portfolio_data[0].value) * 100) /100 }
-                (${sign}${currentPercentChg ? currentPercentChg : Math.round(((((portfolio_data[0].value - portfolio_data[(portfolio_data?.length) -1].value)/ portfolio_data[(portfolio_data?.length) -1].value) * 100) * 100) /100)  }%)`}
+              <p>{`${sign ? sign : portfolio_data[(portfolio_data?.length) -1].value > portfolio_data[0].value ? '+' : '-'}$${ currentChange ? currentChange : Math.abs(Math.round((portfolio_data[(portfolio_data?.length) -1].value - portfolio_data[0].value)) * 100) /100 }
+                (${sign ? sign : portfolio_data[(portfolio_data?.length) -1].value > portfolio_data[0].value ? '+' : '-'}${currentPercentChg ? currentPercentChg : Math.abs(Math.round(((((portfolio_data[0].value - portfolio_data[(portfolio_data?.length) -1].value)/ portfolio_data[(portfolio_data?.length) -1].value) * 100) * 100) /100))  }%)`}
                 { past ? past : 'Past Year'}
               </p>
             </div>
