@@ -8,10 +8,10 @@ const getAsset = (data) => ({
 
 export const stockInformation = (ticker_symbol) => async (dispatch) => {
     const res = await fetch(`/api/stocks/${ticker_symbol}`);
-    console.log('==========', res)
+    // console.log('==========', res)
     if (res.ok) {
         let data = await res.json();
-        console.log('==========data', data)
+        // console.log('==========data', data)
         dispatch(getAsset(data))
     }
 }
