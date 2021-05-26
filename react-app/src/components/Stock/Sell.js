@@ -19,13 +19,13 @@ const Sell = ({ user, ticker_symbol, price, shares }) => {
 
     const sellAsset = async (e) => {
         e.preventDefault();
-        // setUserShares(userShares - sharesSold)
         // console.log(userShares)
-
+        setUserShares(userShares - sharesSold)
+        console.log('userShares', userShares)
         setBuyingPower((Number(buyingPower) + Number(sellPrice)).toString());
-
+        
         let newBuyingPower = (Number(buyingPower) + Number(sellPrice)).toFixed(2);
-
+        
         let newTransaction = {
             user_id: user.id,
             share_quantity: Number(-sharesSold),
@@ -33,6 +33,7 @@ const Sell = ({ user, ticker_symbol, price, shares }) => {
             buy_sell: false,
             buying_power: Number(newBuyingPower)
         }
+        
         dispatch(stockTransaction(newTransaction, ticker_symbol));
     }
 
@@ -62,9 +63,9 @@ const Sell = ({ user, ticker_symbol, price, shares }) => {
                 <div id='transaction-estimate'>
                     ${sellPrice}
                 </div>
-                <div>{shares - sharesSold} Shares Available</div>
+                <div>{userShares} Shares Available</div>
                 <div>Buying Power: ${buyingPower}</div>
-                <button type="submit" onClick={(e) => sellAsset(e)} disabled={(sharesSold != "") ? false : true}>Sell</button>
+                <button type="submit" onClick={(e) => sellAsset(e)} disabled={(shares - sharesSold > 0 && sharesSold != "") ? false : true}>Sell</button>
             </form>
         </div>
     )
