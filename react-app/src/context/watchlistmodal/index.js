@@ -20,7 +20,7 @@ function WatchlistModal({ ticker_symbol }) {
         <Modal onClose={() => setShowModal(false)}>
           <form>
               <h3>Add {ticker_symbol} to Your Lists</h3>
-              <button onClick={}>Save Changes</button>
+              <button >Save Changes</button>
           </form>
         </Modal>
       )}
