@@ -1,28 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { stockPrice, stockTransaction } from "../../store/transactions";
+import { stockTransaction } from "../../store/transactions";
 
-const Buy = ({ ticker_symbol }) => {
+const Buy = ({ user, ticker_symbol }) => {
   const dispatch = useDispatch();
   const price = Number(useSelector(state => state.transactions.transactionPrice)[0]).toFixed(2);
   const data = useSelector(state => state.transactions.transactionData);
-  const user = useSelector(state => state.session.user);
+
   const [transactionPrice, setTransactionPrice] = useState((0).toFixed(2));
   const [shares, setShares] = useState(0);
   const [buyingPower, setBuyingPower] = useState(user.buying_power);
 
-  useEffect(() => {
-    dispatch(stockPrice(ticker_symbol));
-  }, [dispatch, ticker_symbol]);
-
-
   const transactionTotal = e => {
     setShares(e.target.value)
     setTransactionPrice((e.target.value * price).toFixed(2));
-
-    // if (buyingPower < Number(price)) {
-    //   document.getElementById('buy-btn').disabled = false;
-    // }
   };
 
   const buyAsset = async (e) => {
@@ -69,7 +60,7 @@ const Buy = ({ ticker_symbol }) => {
           ${transactionPrice}
         </div>
         <div>Buying Power: ${buyingPower}</div>
-        <button id='buy-btn' type="submit" onClick={(e) => buyAsset(e)} disabled={buyingPower > Number(transactionPrice) ? false : true}>Buy</button>
+        <button id='buy-btn' type="submit" onClick={(e) => buyAsset(e)} disabled={(buyingPower > Number(transactionPrice) && shares != "")? false : true}>Buy</button>
       </form>
     </div>
   )

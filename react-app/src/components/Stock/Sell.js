@@ -1,21 +1,39 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { stockTransaction } from "../../store/transactions";
 
-const Sell = ({ ticker_symbol }) => {
+const Sell = ({ user, ticker_symbol }) => {
     const dispatch = useDispatch();
-    const [shares, setShares] = useState(0);
+    const price = Number(useSelector(state => state.transactions.transactionPrice)[0]).toFixed(2);
     const [sellPrice, setSellPrice] = useState((0).toFixed(2));
+    const [shares, setShares] = useState(0);
     const [buyingPower, setBuyingPower] = useState(user.buying_power);
-    
+
     const sellTotal = e => {
         setShares(e.target.value)
-        setTransactionPrice((e.target.value * price).toFixed(2));
+        setSellPrice((e.target.value * price).toFixed(2));
     };
+
+    const sellAsset = async (e) => {
+        e.preventDefault();
+
+        setBuyingPower(Number(buyingPower) + Number(sellPrice)).toFixed(2);
+        let newBuyingPower = (Number(buyingPower) + Number(sellPrice)).toFixed(2);
+
+        let newTransaction = {
+            user_id: user.id,
+            share_quantity: -Number(shares),
+            price_per_share: Number(price),
+            buy_sell: false,
+            buying_power: newBuyingPower
+        }
+        dispatch(stockTransaction(newTransaction, ticker_symbol));
+    }
 
     return (
         <div>
-            <form onSubmit={buyAsset}>
-                Buy {ticker_symbol}
+            <form onSubmit={sellAsset}>
+                Sell {ticker_symbol}
                 <div className='transaction-labels'>Shares</div>
                 <select name="shares" id="shares" onChange={sellTotal} value={shares}>
                     <option value=""></option>
@@ -34,12 +52,12 @@ const Sell = ({ ticker_symbol }) => {
                 <div id='transaction-stock-price'>
                     ${price}
                 </div>
-                <div className='transaction-labels'>Estimated Cost</div>
+                <div className='transaction-labels'>Estimated Credit</div>
                 <div id='transaction-estimate'>
-                    ${transactionPrice}
+                    ${sellPrice}
                 </div>
-                <div>Buying Power: ${user.buying_power}</div>
-                <button type="submit" onClick={(e) => buyAsset(e)}>Buy</button>
+                <div>Buying Power: ${buyingPower}</div>
+                <button type="submit" onClick={(e) => sellAsset(e)}>Sell</button>
             </form>
         </div>
     )
