@@ -62,11 +62,13 @@ def user():
     # Porfolio: (TOTALED history) : {date:value, date:value, ........}
 
 
+
     equity = {} #symbol: (trans.price_per_share*shares)-(shares*close)
+    totalCost= 0 #total: price_per_share * shares  +  price_per_share * shares  - (frontend #)
     for symbol in history:
         asset = Asset.query.filter(Asset.ticker_symbol == symbol).one()
         trans = Transaction.query.filter(Transaction.user_id == userid).filter(Transaction.asset_id == asset.id).first()
-        print('transactions------------', trans)
+        totalCost += trans.price_per_share * shares[symbol] #
         equity[symbol] = (history[symbol][len(history[symbol]) - 1]['value'] * shares[symbol]) - (trans.price_per_share * shares[symbol])
 
     print('equity-------', equity)
@@ -87,4 +89,4 @@ def user():
 
     portfolio_data = [{"date":key, "value": value} for (key,value) in obj.items()]
 
-    return {"shares":shares, "history":history, "portfolio_data":portfolio_data, "equity":equity}
+    return {"shares":shares, "history":history, "portfolio_data":portfolio_data, "equity":equity, "totalCost": totalCost}

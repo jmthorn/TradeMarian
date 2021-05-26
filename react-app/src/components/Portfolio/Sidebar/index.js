@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import './sidebar.css';
 import { LineChart, Line, XAxis, YAxis } from "recharts";
@@ -9,6 +10,7 @@ const Sidebar = () => {
   const history = useSelector(state => state.portfolio.portfolio?.history)
   const shares = useSelector(state => state.portfolio?.portfolio?.shares)
   const equity = useSelector(state => state.portfolio?.portfolio?.equity)
+
 
   const dispatch = useDispatch()
 
@@ -27,6 +29,7 @@ const Sidebar = () => {
             }
 
             charts.push(
+              <Link to={`/stocks/${stock}`}>
                 <div className="small-stock-container">
                     <div className="sidebar-share">
                         <div>{stock}</div>
@@ -45,6 +48,8 @@ const Sidebar = () => {
                         <div>{`$${ Math.round(equity[stock]*100) /100 }`}</div>
                     </div>
                 </div>
+              </Link>
+
           )
       }
       return charts
