@@ -59,7 +59,7 @@ const Buy = ({ user, ticker_symbol, price }) => {
           ${transactionPrice}
         </div>
         <div>Buying Power: ${buyingPower}</div>
-        <button id='buy-btn' type="submit" onClick={(e) => buyAsset(e)} disabled={(buyingPower > Number(transactionPrice) && shares != "")? false : true}>Buy</button>
+        <button id='buy-btn' type="submit" onClick={(e) => buyAsset(e)} disabled={(buyingPower > Number(transactionPrice) && shares != "") ? false : true}>Buy</button>
       </form>
     </div>
   )

@@ -21,10 +21,8 @@ const Sell = ({ user, ticker_symbol, price, shares }) => {
         e.preventDefault();
         // setUserShares(userShares - sharesSold)
         // console.log(userShares)
-        
-        setBuyingPower((Number(buyingPower) + Number(sellPrice)).toString());
 
-        console.log((userShares - sharesSold), 'userShares - sharesSold')
+        setBuyingPower((Number(buyingPower) + Number(sellPrice)).toString());
 
         let newBuyingPower = (Number(buyingPower) + Number(sellPrice)).toFixed(2);
 
@@ -64,9 +62,9 @@ const Sell = ({ user, ticker_symbol, price, shares }) => {
                 <div id='transaction-estimate'>
                     ${sellPrice}
                 </div>
-                <div>{shares} Shares Available</div>
+                <div>{shares - sharesSold} Shares Available</div>
                 <div>Buying Power: ${buyingPower}</div>
-                <button type="submit" onClick={(e) => sellAsset(e)}>Sell</button>
+                <button type="submit" onClick={(e) => sellAsset(e)} disabled={(sharesSold != "") ? false : true}>Sell</button>
             </form>
         </div>
     )
