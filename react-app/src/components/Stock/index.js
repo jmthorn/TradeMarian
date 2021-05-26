@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { stockInformation } from "../../store/assets";
-import BuySell from './BuySell';
+import Buy from './Buy';
 import StockGraph from './StockGraph';
 
 import './stock.css';
@@ -21,7 +21,7 @@ const Stock = () => {
     return (
         <div id='stock-container'>
             <StockGraph />
-            <BuySell ticker_symbol={ticker_symbol.toUpperCase()} />
+            <Buy ticker_symbol={ticker_symbol.toUpperCase()} />
         </div>
     )
 }
