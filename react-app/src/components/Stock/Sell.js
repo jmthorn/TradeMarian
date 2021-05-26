@@ -21,6 +21,7 @@ const Sell = ({ user, ticker_symbol, price, shares }) => {
         e.preventDefault();
         // setUserShares(userShares - sharesSold)
         // console.log(userShares)
+        
         setBuyingPower((Number(buyingPower) + Number(sellPrice)).toString());
 
         console.log((userShares - sharesSold), 'userShares - sharesSold')
