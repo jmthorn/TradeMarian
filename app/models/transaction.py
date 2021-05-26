@@ -11,7 +11,7 @@ class Transaction(db.Model):
     asset_id = db.Column(db.Integer, db.ForeignKey("assets.id"), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     share_quantity = db.Column(db.Integer, nullable=False)
-    price_per_share = db.Column(db.Integer, nullable=False)
+    price_per_share = db.Column(db.Float(), nullable=False)
     created_at = db.Column(db.DateTime, default = datetime.datetime.now())
     # buy = true, sell = false
     buy_sell = db.Column(db.Boolean, nullable=False)

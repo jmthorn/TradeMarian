@@ -31,6 +31,7 @@ export const stockTransaction = (data, ticker_symbol) => async (dispatch) => {
 
   if (res.ok) {
     const transactionInfo = await res.json();
+    console.log('transactionInfo------', transactionInfo)
     dispatch(buyStock(transactionInfo));
   }
 };
