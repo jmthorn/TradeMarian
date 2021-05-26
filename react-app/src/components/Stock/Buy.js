@@ -2,9 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { stockTransaction } from "../../store/transactions";
 
-const Buy = ({ user, ticker_symbol }) => {
+const Buy = ({ user, ticker_symbol, price }) => {
   const dispatch = useDispatch();
-  const price = Number(useSelector(state => state.transactions.transactionPrice)[0]).toFixed(2);
   const data = useSelector(state => state.transactions.transactionData);
 
   const [transactionPrice, setTransactionPrice] = useState((0).toFixed(2));

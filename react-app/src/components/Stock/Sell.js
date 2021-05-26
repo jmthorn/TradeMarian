@@ -2,33 +2,33 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { stockTransaction } from "../../store/transactions";
 
-const Sell = ({ user, ticker_symbol }) => {
+const Sell = ({ user, ticker_symbol, price, shares }) => {
     const dispatch = useDispatch();
-    const price = Number(useSelector(state => state.transactions.transactionPrice)[0]).toFixed(2);
     const [sellPrice, setSellPrice] = useState((0).toFixed(2));
-    const [userShares, setUserShares] = useState(user.share_quantity);
-    console.log('------shares------', userShares);
-    const [shares, setShares] = useState(0);
+    const [userShares, setUserShares] = useState(shares);
+    // console.log('------shares------', userShares);
+    const [sharesSold, setSharesSold] = useState(0);
     const [buyingPower, setBuyingPower] = useState(user.buying_power);
 
     const sellTotal = e => {
-        setShares(e.target.value)
+        setSharesSold(e.target.value)
         setSellPrice((e.target.value * price).toFixed(2));
     };
 
     const sellAsset = async (e) => {
         e.preventDefault();
-        console.log('buyingggggg=====', Number(buyingPower) + Number(sellPrice))
-        setBuyingPower((Number(buyingPower) + Number(sellPrice)).toString());
 
+        setBuyingPower((Number(buyingPower) + Number(sellPrice)).toString());
+        setUserShares(userShares - sharesSold)
+        console.log(userShares - sharesSold, 'userShares - sharesSold')
         let newBuyingPower = (Number(buyingPower) + Number(sellPrice)).toFixed(2);
 
         let newTransaction = {
             user_id: user.id,
-            share_quantity: -Number(shares),
+            share_quantity: Number(-sharesSold),
             price_per_share: Number(price),
             buy_sell: false,
-            buying_power: newBuyingPower
+            buying_power: Number(newBuyingPower)
         }
         dispatch(stockTransaction(newTransaction, ticker_symbol));
     }
@@ -38,7 +38,7 @@ const Sell = ({ user, ticker_symbol }) => {
             <form onSubmit={sellAsset}>
                 Sell {ticker_symbol}
                 <div className='transaction-labels'>Shares</div>
-                <select name="shares" id="shares" onChange={sellTotal} value={shares}>
+                <select name="shares" id="shares" onChange={sellTotal} value={sharesSold}>
                     <option value=""></option>
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -59,7 +59,7 @@ const Sell = ({ user, ticker_symbol }) => {
                 <div id='transaction-estimate'>
                     ${sellPrice}
                 </div>
-                <div>{userShares} Shares Available</div>
+                <div>{shares} Shares Available</div>
                 <div>Buying Power: ${buyingPower}</div>
                 <button type="submit" onClick={(e) => sellAsset(e)}>Sell</button>
             </form>

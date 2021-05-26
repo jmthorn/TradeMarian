@@ -12,8 +12,11 @@ import './stock.css';
 const Stock = () => {
     const { ticker_symbol } = useParams();
     const stock = useSelector(state => state.assets.stockData);
-    const stockTransactions = useSelector(state => state.transactions.transactionPrice)[0]
-    console.log('-------', otherStockInfo)
+
+    const stockTransactions = useSelector(state => state.transactions.transactionPrice)
+    const closePrice = stockTransactions.price?.close.toFixed(2);
+    const userShares = stockTransactions.shares?.[ticker_symbol];
+
     const stockData = stock.stock_data;
     const stockOverview = stock.stock_info;
     const dispatch = useDispatch();
@@ -30,8 +33,8 @@ const Stock = () => {
     return (
         <div id='stock-container'>
             <StockGraph />
-            {/* <Buy user={user} ticker_symbol={ticker_symbol.toUpperCase()} /> */}
-            <Sell user={user} ticker_symbol={ticker_symbol.toUpperCase()} />
+            <Buy user={user} ticker_symbol={ticker_symbol.toUpperCase()} price={closePrice} />
+            <Sell user={user} ticker_symbol={ticker_symbol.toUpperCase()} price={closePrice} shares={userShares} />
         </div>
     )
 }

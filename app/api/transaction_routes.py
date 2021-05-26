@@ -18,16 +18,18 @@ def stock_graph_data(ticker_symbol):
     closePrice = data.pop()
     closePrice = {k: v for k, v in closePrice.items() if k in ("close")}
 
-    transactions = Transaction.query.filter((Transaction.user_id == current_user.id) AND Transaction.ticker_symbol = ticker_symbol).one()
+    transactions = Transaction.query.filter(Transaction.user_id == current_user.id).all()
+    asset = Asset.query.filter(Asset.ticker_symbol == ticker_symbol).one()
 
     holdings = {}
     for transaction in transactions:
-        if transaction.asset.ticker_symbol in holdings:
-            holdings[transaction.asset.ticker_symbol] += transaction.share_quantity
-        else:
-            holdings[transaction.asset.ticker_symbol] = transaction.share_quantity
+        if transaction.asset_id == asset.id:
+            if asset.ticker_symbol in holdings:
+                 holdings[ticker_symbol] += transaction.share_quantity
+            else:
+                holdings[ticker_symbol] = transaction.share_quantity
 
-    return {"price": closePrice, "transactions": holdings}
+    return {"price": closePrice, "shares": holdings}
 
 
 @transaction_routes.route('/<ticker_symbol>', methods=["POST"])
@@ -39,6 +41,7 @@ def buy_stock(ticker_symbol):
     data = jsonData['data']
 
     asset = Asset.query.filter(Asset.ticker_symbol == ticker_symbol).one()
+    print(data['buying_power'], 'backend buying power check', data['share_quantity'])
 
     transaction = Transaction(
         asset_id=asset.id,
@@ -55,6 +58,7 @@ def buy_stock(ticker_symbol):
         'price_per_share': transaction.price_per_share,
         'buy_sell': transaction.buy_sell
     }
+
 
     user = User.query.filter(User.id == data['user_id']).one()
     user.buying_power = data['buying_power']
