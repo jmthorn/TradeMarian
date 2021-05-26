@@ -35,7 +35,7 @@ const Sidebar = () => {
                     <div className="smallChart" key={history[stock].date}>
                         <LineChart width={110} height={40} data={history[stock]}
                             margin={{ top: 0, right: 10, left: 10, bottom: 5 }}>
-                            <Line type="monotone"  dataKey="value" stroke={lineColor} strokeWidth={2} dot={false}/>
+                            <Line type="monotone"  dataKey="value" stroke={lineColor} strokeWidth={1} dot={false}/>
                             <XAxis dataKey="date" hide={true}/>
                             <YAxis dataKey="value" domain={['auto', 'auto']}  hide={true}/>
                             {/* <Tooltip /> */}
