@@ -30,15 +30,15 @@ const Sidebar = () => {
                 <div className="small-stock-container">
                     <div className="sidebar-share">
                         <div>{stock}</div>
-                        <div>{shares[stock]} Share</div>
+                        <div id="shares-div">{shares[stock]} Shares</div>
                     </div>
                     <div className="smallChart" key={history[stock].date}>
-                        <LineChart width={120} height={40} data={history[stock]}
-                            margin={{ top: 0, right: 30, left: 20, bottom: 5 }}>
+                        <LineChart width={110} height={40} data={history[stock]}
+                            margin={{ top: 0, right: 10, left: 10, bottom: 5 }}>
                             <Line type="monotone"  dataKey="value" stroke={lineColor} strokeWidth={2} dot={false}/>
                             <XAxis dataKey="date" hide={true}/>
                             <YAxis dataKey="value" domain={['auto', 'auto']}  hide={true}/>
-                            <Tooltip />
+                            {/* <Tooltip /> */}
                         </LineChart>
                     </div>
                     <div>
