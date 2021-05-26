@@ -15,16 +15,23 @@ const Buy = ({ ticker_symbol }) => {
     dispatch(stockPrice(ticker_symbol));
   }, [dispatch, ticker_symbol]);
 
+
   const transactionTotal = e => {
     setShares(e.target.value)
     setTransactionPrice((e.target.value * price).toFixed(2));
+
+    // if (buyingPower < Number(price)) {
+    //   document.getElementById('buy-btn').disabled = false;
+    // }
   };
 
   const buyAsset = async (e) => {
     e.preventDefault();
+    
     setBuyingPower((buyingPower - transactionPrice).toFixed(2));
     let newBuyingPower = (buyingPower - transactionPrice).toFixed(2)
- 
+    
+    
     let newTransaction = {
       user_id: user.id,
       share_quantity: Number(shares),
@@ -62,7 +69,7 @@ const Buy = ({ ticker_symbol }) => {
           ${transactionPrice}
         </div>
         <div>Buying Power: ${buyingPower}</div>
-        <button type="submit" onClick={(e) => buyAsset(e)}>Buy</button>
+        <button id='buy-btn' type="submit" onClick={(e) => buyAsset(e)} disabled={buyingPower > Number(transactionPrice) ? false : true}>Buy</button>
       </form>
     </div>
   )
