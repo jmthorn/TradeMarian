@@ -11,7 +11,7 @@ const buyStock = (transaction) => ({
   payload: transaction
 })
 
-export const stockPrice = (ticker_symbol) => async (dispatch) => {
+export const getPriceShares = (ticker_symbol) => async (dispatch) => {
   const res = await fetch(`/api/transactions/${ticker_symbol}`);
 
   if (res.ok) {
@@ -35,6 +35,7 @@ export const stockTransaction = (data, ticker_symbol) => async (dispatch) => {
   if (res.ok) {
     const transactionInfo = await res.json();
     dispatch(buyStock(transactionInfo));
+    dispatch(getPriceShares(ticker_symbol));
   }
 };
 
@@ -48,12 +49,12 @@ export default function reducer(state = initialState, action) {
     case GET_PRICE:
       return {
         ...state,
-        transactionPrice: action.transactionPriceDict,
+        transactionPrice: action.transactionPriceDict
       };
     case BUY_STOCK:
       return {
         ...state,
-        transactionData: action.payload,
+        transactionData: action.payload
       }
     default:
       return state;

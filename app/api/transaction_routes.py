@@ -39,7 +39,6 @@ def buy_stock(ticker_symbol):
     data = jsonData['data']
 
     asset = Asset.query.filter(Asset.ticker_symbol == ticker_symbol).one()
-    print(data['buying_power'], 'backend buying power check', data['share_quantity'])
 
     transaction = Transaction(
         asset_id=asset.id,
@@ -48,6 +47,15 @@ def buy_stock(ticker_symbol):
         price_per_share=data['price_per_share'],
         buy_sell=data['buy_sell']
     )
+
+    transaction_data = {
+        'asset_id': transaction.asset_id,
+        'user_id': transaction.user_id,
+        'share_quantity': transaction.share_quantity,
+        'price_per_share': transaction.price_per_share,
+        'buy_sell': transaction.buy_sell
+    }
+
 
     user = User.query.filter(User.id == data['user_id']).one()
     user.buying_power = data['buying_power']
