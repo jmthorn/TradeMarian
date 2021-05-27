@@ -56,6 +56,9 @@ function App() {
         <Route exact path={`/stocks/:ticker_symbol`}>
           <Stock />
         </Route>
+        <Route exact path={`/watchlists/:watc`}>
+          <Watchlist />
+        </Route>
       </Switch>
       <Footer />
     </BrowserRouter>

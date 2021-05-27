@@ -7,7 +7,7 @@ const DELETE_ASSET = 'watchlists/DELETE_ASSET'
 
 const loadWatchlists = (lists) => ({
     type: LOAD_WATCHLISTS,
-    payload: lists
+    lists
 });
 
 const createWatchlist = (list) => ({
@@ -39,7 +39,7 @@ const deleteAsset = (watchlistId, assetId) => ({
 // thunks
 // get all watchlists
 export const getWatchLists = () => async (dispatch) => {
-    const res = await fetch('/api/watchlists')
+    const res = await fetch('/api/watchlists/')
 
     if (res.ok) {
         let data = await res.json();
@@ -93,6 +93,7 @@ export const addAssetWatchlist = (asset, watchlistId) => async (dispatch) => {
     });
 
     if (res.ok) {
+        console.log(res.json())
         dispatch(addAsset(asset, watchlistId));
     }
 }
@@ -114,11 +115,7 @@ export default function reducer(state=initialState, action) {
     switch (action.type) {
         // initially load watchlists
         case LOAD_WATCHLISTS: {
-            const newWatchlists = {};
-            action.lists.forEach((list) => {
-                newWatchlists[list.id] = list;
-            })
-            return {...state, newWatchlists}
+            return {...state, ...action.lists}
         }
             // adding a new watchlist
         case CREATE_WATCHLIST:

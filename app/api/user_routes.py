@@ -33,10 +33,10 @@ def user():
 
     holdings = {}
     for transaction in transactions:
-        if transaction.asset.ticker_symbol in holdings:
-            holdings[transaction.asset.ticker_symbol] += transaction.share_quantity
+        if transaction.assets.ticker_symbol in holdings:
+            holdings[transaction.assets.ticker_symbol] += transaction.share_quantity
         else:
-            holdings[transaction.asset.ticker_symbol] = transaction.share_quantity
+            holdings[transaction.assets.ticker_symbol] = transaction.share_quantity
 
     # print(holdings)  #{'AAPL': 5, 'MSFT': 7, 'TSLA': 10, 'SPOT': 4, 'GE': 0, 'AMZN': 3, 'DIS': 11}
 

@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {Link} from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import './sidebar.css';
 import { LineChart, Line, XAxis, YAxis } from "recharts";
+import {getWatchLists} from '../../../store/watchlists'
 
 const Sidebar = () => {
 
@@ -10,10 +11,13 @@ const Sidebar = () => {
   const history = useSelector(state => state.portfolio.portfolio?.history)
   const shares = useSelector(state => state.portfolio?.portfolio?.shares)
   const equity = useSelector(state => state.portfolio?.portfolio?.equity)
-
+  const watchlists = useSelector(state => state.watchlists)
 
   const dispatch = useDispatch()
 
+  useEffect(async() => { 
+      await dispatch(getWatchLists())
+  }, [])
 
   const charts = []
   const smallCharts = () => {
