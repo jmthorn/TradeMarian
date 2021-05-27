@@ -4,12 +4,14 @@ import session from './session';
 import portfolio from './portfolio';
 import assets from './assets';
 import transactions from './transactions';
+import search from './search';
 
 const rootReducer = combineReducers({
     session,
     portfolio,
     assets,
-    transactions
+    transactions,
+    search
 });
 
 let enhancer;
