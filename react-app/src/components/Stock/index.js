@@ -30,7 +30,14 @@ const Stock = () => {
         dispatch(stockPrice(ticker_symbol));
     }, [dispatch, ticker_symbol]);
     
-    // if (!userShares) return null;
+    if (!userShares) {
+        return (
+            <div id='stock-graph'>
+                <StockGraph />
+                <Buy user={user} ticker_symbol={ticker_symbol.toUpperCase()} price={closePrice} />
+            </div>
+        )
+    };
 
     return (
         <div id='stock-container'>
@@ -38,9 +45,7 @@ const Stock = () => {
             <div id='stock-graph'>
                 <StockGraph />
                 <Buy user={user} ticker_symbol={ticker_symbol.toUpperCase()} price={closePrice} />
-                {userShares != 0 && 
-                    <Sell user={user} ticker_symbol={ticker_symbol.toUpperCase()} price={closePrice} shares={userShares} />
-                }
+                <Sell user={user} ticker_symbol={ticker_symbol.toUpperCase()} price={closePrice} shares={userShares} />
             </div>
             <div id='stock-specific-info'>
                 <div id='about-stock'>
