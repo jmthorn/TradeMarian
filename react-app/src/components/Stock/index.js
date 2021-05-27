@@ -25,10 +25,12 @@ const Stock = () => {
     useEffect(() => {
         dispatch(stockInformation(ticker_symbol.toUpperCase()));
     }, [dispatch, ticker_symbol]);
-
+    
     useEffect(() => {
         dispatch(stockPrice(ticker_symbol));
     }, [dispatch, ticker_symbol]);
+    
+    // if (!userShares) return null;
 
     return (
         <div id='stock-container'>
@@ -36,7 +38,9 @@ const Stock = () => {
             <div id='stock-graph'>
                 <StockGraph />
                 <Buy user={user} ticker_symbol={ticker_symbol.toUpperCase()} price={closePrice} />
-                <Sell user={user} ticker_symbol={ticker_symbol.toUpperCase()} price={closePrice} shares={userShares} />
+                {userShares != 0 && 
+                    <Sell user={user} ticker_symbol={ticker_symbol.toUpperCase()} price={closePrice} shares={userShares} />
+                }
             </div>
             <div id='about-stock'>
                 <h4>About</h4>
