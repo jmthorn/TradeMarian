@@ -52,4 +52,17 @@ const Sidebar = () => {
           )
       }
       return charts
-  }
+    }
+    
+    return (
+        <div id="sidebar-container">
+        <div id="stock-title">
+            <div>Stocks</div>
+        </div>
+        <div className="stock-line"></div>
+        {smallCharts()}
+        </div>
+    )
+};
+
+export default Sidebar;
