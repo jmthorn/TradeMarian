@@ -10,6 +10,10 @@ const Sell = ({ user, ticker_symbol, price, shares }) => {
     const [sharesSold, setSharesSold] = useState(0);
     const [buyingPower, setBuyingPower] = useState(user.buying_power);
 
+    // useEffect(() => {
+    //     setUserShares(shares)
+    // }, [shares])
+
     const sellTotal = e => {
         setSharesSold(e.target.value)
         setSellPrice((e.target.value * price).toFixed(2));
@@ -18,7 +22,6 @@ const Sell = ({ user, ticker_symbol, price, shares }) => {
     const sellAsset = async (e) => {
         e.preventDefault();
         setUserShares(userShares - sharesSold)
-        // console.log(userShares, 'userShares------------')
         setBuyingPower((Number(buyingPower) + Number(sellPrice)).toString());
         
         let newBuyingPower = (Number(buyingPower) + Number(sellPrice)).toFixed(2);
@@ -77,7 +80,6 @@ const Sell = ({ user, ticker_symbol, price, shares }) => {
                 </div>
             </form>
             <div className='transaction-labels' id='available-shares'>{userShares} Shares Available</div>
-            <div>Buying Power: ${buyingPower}</div>
         </div>
     )
 }

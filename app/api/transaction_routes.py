@@ -19,7 +19,6 @@ def stock_data(ticker_symbol):
     closePrice = {k: v for k, v in closePrice.items() if k in ("close")}
 
     transactions = Transaction.query.filter(Transaction.user_id == current_user.id).all()
-    # asset = Asset.query.filter(Asset.ticker_symbol == ticker_symbol).one()
 
     holdings = {}
     for transaction in transactions:
@@ -27,8 +26,6 @@ def stock_data(ticker_symbol):
             holdings[ticker_symbol] += transaction.share_quantity
         else:
             holdings[ticker_symbol] = transaction.share_quantity
-
-    # user = User.query.filter(User.id == current_user.id).one()
 
     return {"price": closePrice, "shares": holdings}
 
@@ -42,7 +39,6 @@ def buy_stock(ticker_symbol):
     data = jsonData['data']
 
     asset = Asset.query.filter(Asset.ticker_symbol == ticker_symbol).one()
-    print(data['buying_power'], 'backend buying power check', data['share_quantity'])
 
     transaction = Transaction(
         asset_id=asset.id,
