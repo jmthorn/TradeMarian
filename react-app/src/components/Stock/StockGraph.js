@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 // import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 // import { stockInformation } from "../../store/assets";
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, Tooltip } from 'recharts';
 
 const StockGraph = () => {
   const stock = useSelector(state => state.assets.stockData);
@@ -28,8 +28,9 @@ const StockGraph = () => {
 
   }, [stockData, lineColor])
 
+
   const dateFunc = (date) => {
-    if (date == '1Y') {
+    if (date === '1Y') {
       setDateRange(stockData)
     } else if (date == '6M') {
       setDateRange(stockData.slice(0, stockData.length / 2))
@@ -42,9 +43,8 @@ const StockGraph = () => {
 
   return (
     <div id='stock-graph-container'>
-      <LineChart width={730} height={250} data={stockData}
+      <LineChart width={730} height={250} data={dateRange ? dateRange : stockData}
         margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
-        <CartesianGrid horizontal={false} vertical={false} />
         <XAxis dataKey="date" hide={true} />
         <YAxis dataKey="price" domain={['auto', 'auto']} hide={true} />
         <Tooltip offset={55} />
