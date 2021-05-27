@@ -27,8 +27,15 @@ def get_user_watchlist():
         db.session.commit()
 
     watchlists = Watchlist.query.filter(Watchlist.user_id == user_id).all()
+    # for each watchlist grab assets
+    # hand back {watchlists :[ {watchlist: { id: 1, user_id: 1, watchlist_name: "list1", assets: [{asset1}, {asset2}]}},
+    #                          {watchlist: { id: 2, user_id: 1, watchlist_name: "list2", assets: [{asset1}]}}]}
+    # watchlists_dict = {}
+    # for watchlist in watchlists.items():
+    #     assets = Asset.query.filter(Asset.id == watchlist.assets.id).all()
+    #     watchlists_dict[]
 
-    return watchlists.to_dict()
+    return {"watchlists": watchlists}
 
 
 """ Delete watchlist - remove an entire watchlist from a user's watchlists
@@ -64,7 +71,7 @@ def delete_asset_in_watchlist(watchlistId, assetId):
 @login_required
 def add_asset(watchlistId, assetId):
     asset_to_add = Asset.query.get(assetId)
-    Watchlist.query.get(watchlistId).append(asset_to_add)
+    Watchlist.query.get(watchlistId).assets.append(asset_to_add)
 
     #  update?
     db.session.update(asset_to_add)
