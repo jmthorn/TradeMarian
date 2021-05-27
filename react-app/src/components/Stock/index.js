@@ -64,15 +64,6 @@ const Stock = () => {
         dispatch(stockPrice(ticker_symbol));
     }, [dispatch, ticker_symbol]);
 
-    // if (!userShares) {
-    //     return (
-    //         <div id='stock-graph'>
-    //             <StockGraph />
-    //             <Buy user={user} ticker_symbol={ticker_symbol.toUpperCase()} price={closePrice} />
-    //         </div>
-    //     )
-    // };
-
     return (
         <div id='stock-container'>
             {stockOverview?.company_name}

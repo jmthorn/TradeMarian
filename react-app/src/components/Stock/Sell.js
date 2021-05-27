@@ -18,7 +18,6 @@ const Sell = ({ user, ticker_symbol, price, shares }) => {
     const sellAsset = async (e) => {
         e.preventDefault();
         setUserShares(userShares - sharesSold)
-        // console.log(userShares, 'userShares------------')
         setBuyingPower((Number(buyingPower) + Number(sellPrice)).toString());
         
         let newBuyingPower = (Number(buyingPower) + Number(sellPrice)).toFixed(2);

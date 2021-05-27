@@ -1,5 +1,5 @@
 const GET_PRICE = "transactions/GET_PRICE";
-const BUY_STOCK = "transactions/BUY_STOCK";
+export const BUY_STOCK = "transactions/BUY_STOCK";
 
 const getPrice = (transactionPriceDict) => ({
   type: GET_PRICE,
@@ -48,12 +48,12 @@ export default function reducer(state = initialState, action) {
     case GET_PRICE:
       return {
         ...state,
-        transactionPrice: action.transactionPriceDict
+        transactionPrice: action.transactionPriceDict,
       };
     case BUY_STOCK:
       return {
         ...state,
-        transactionData: action.payload.transaction
+        transactionData: action.payload,
       }
     default:
       return state;
