@@ -15,29 +15,28 @@ const StockGraph = () => {
     stockDatePrice.push({ "date": stockData[i]["date"], "price": stockData[i]["price"] })
   }
 
-  useEffect(async () => {
-    let stockDatePriceArr = await dateRange ? dateRange : stockData;
-
+  useEffect( () => {
+    let stockDatePriceArr = dateRange ? dateRange : stockData;
     if (stockDatePriceArr) {
-      if (stockDatePriceArr[0].value > stockDatePriceArr[(stockDatePriceArr.length) - 1].value) {
+      if (stockDatePriceArr[0]["price"] > stockDatePriceArr[(stockDatePriceArr.length) - 1]["price"]) {
         setLineColor("#dc436f"); //pink
       } else {
         setLineColor("#97ef0c"); //green
       }
     }
 
-  }, [stockData, lineColor])
+  }, [stockData, lineColor, dateRange])
 
 
   const dateFunc = (date) => {
     if (date === '1Y') {
       setDateRange(stockData)
     } else if (date == '6M') {
-      setDateRange(stockData.slice(0, stockData.length / 2))
+      setDateRange(stockData.slice((stockData.length) / 2))
     } else if (date == '3M') {
-      setDateRange(stockData.slice(0, stockData.length / 4))
+      setDateRange(stockData.slice(((stockData.length) / 4) * 3))
     } else if (date == '1M') {
-      setDateRange(stockData.slice(0, stockData.length / 12))
+      setDateRange(stockData.slice(((stockData.length) / 12) * 11))
     }
   }
 
