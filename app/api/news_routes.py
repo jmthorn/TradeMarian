@@ -1,5 +1,6 @@
 from flask import Blueprint
 import requests
+import os
 
 news_routes = Blueprint('news', __name__)
 
@@ -7,7 +8,7 @@ stock_token = os.environ.get('STOCK_API')
 stock_news = os.environ.get('All_NEWS_API')
 
 
-@news_routes.route('/stock/<ticker_symbol>')
+@news_routes.route('/<ticker_symbol>')
 def specific_news(ticker_symbol):
     reqs = requests.get(
         f"https://cloud.iexapis.com/stable/stock/{ticker_symbol}/news/?token={stock_token}")
@@ -23,13 +24,12 @@ def specific_news(ticker_symbol):
     return list_
 
 
-@news_routes.route('/news')
+@news_routes.route('/')
 def all_news():
     reqs = requests.get(
-        "https://newsapi.org/v2/everything?q=stocks&apiKey=b5d1f835466045a19d46216f6729c833")
+        f'https://newsapi.org/v2/everything?q=stocks&pageSize=5&apiKey={stock_news}')
 
     res = reqs.json()
-
     for article in res:
         news_list = res[article]
 
@@ -41,4 +41,5 @@ def all_news():
             news_[id] = d
             id += 1
 
+    # print(news_)
     return news_
