@@ -9,13 +9,18 @@ const Search = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(stockSearch(stocks))
-  }, [dispatch, stocks])
+    dispatch(stockSearch())
+  }, [dispatch])
+
+  const onSearch = e => {
+    e.preventDefault();
+
+  }
 
   return (
     <div>
       <form action="" method='post'>
-        <input type="text" placeholder='Search' />
+        <input type="text" placeholder='Search' onChange={onSearch}/>
       </form>
     </div>
   )

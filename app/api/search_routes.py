@@ -6,13 +6,12 @@ search_routes = Blueprint("search", __name__)
 @search_routes.route('/', methods=['GET', 'POST'])
 def get_stocks():
     data = {}
-    if request.method == 'GET':
-        stocks = Asset.query.all()
-        console.log('==========stock-backend', stocks.to_dict())
-        new_stocks = stocks.to_dict()
-        
-        for stock in stocks:
-            data[stock.ticker_symbol]: stock.company_name
-        console.log(data,'==========data')
-    # return {"stock_names": data}
+    stocks = Asset.query.all()
+    # for stock in stocks:
+    #     data[stock.ticker_symbol] = stock.company_name
+    # print(data,'==========data')
+    for i in range(0, len(stocks)):
+        data[i] = {"ticker_symbol": stocks[i].ticker_symbol, "company_name": stocks[i].company_name}
+   
+    print('=========---------------------=data', data)
     return data
