@@ -27,18 +27,18 @@ const Portfolio = () => {
   }, [])
 
 
-  useEffect(async()=> {
-    const portfolio_array = await dateRange ? dateRange : portfolio_data;
+  useEffect(()=> {
+    const portfolio_array =  dateRange ? dateRange : portfolio_data;
     console.log(portfolio_array)
     if(portfolio_array){
-      if (portfolio_array[0].value > portfolio_array[(portfolio_array.length)-1].value) {
+      if (portfolio_array[0]["value"] > portfolio_array[(portfolio_array.length)-1]["value"]) {
         setLineColor("#dc436f"); //pink
       } else {
         setLineColor("#97ef0c"); //green
       }
     }
 
-  }, [portfolio_data, lineColor])
+  }, [portfolio_data, lineColor, dateRange])
 
 
   if(!portfolio_data) return null
@@ -49,13 +49,13 @@ const Portfolio = () => {
       setDateRange(portfolio_data)
     } else if (date == '6m') {
       setTimeInterval('6m')
-      setDateRange(portfolio_data.slice(0, portfolio_data.length/2))
+      setDateRange(portfolio_data.slice(portfolio_data.length/2))
     } else if (date == '1m') {
       setTimeInterval('1m')
-      setDateRange(portfolio_data.slice(0, portfolio_data.length/12))
+      setDateRange(portfolio_data.slice((portfolio_data.length/12)* 11))
     } else if (date == '3m') {
       setTimeInterval('3m')
-      setDateRange(portfolio_data.slice(0, portfolio_data.length/4))
+      setDateRange(portfolio_data.slice((portfolio_data.length/4) * 3))
     }
   }
 

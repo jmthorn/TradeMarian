@@ -18,7 +18,6 @@ const Sidebar = () => {
   const charts = []
   const smallCharts = () => {
       for (const stock in history) {
-            console.log("HISTORY[STOCK]",stock)
 
         let lineColor = "";
             let prices = history[stock]
