@@ -71,7 +71,7 @@ def delete_asset_in_watchlist(watchlistId, assetId):
     asset_to_be_removed.watchlists.remove(Watchlist.query.get(watchlistId))
 
     #  update?
-    db.session.update(asset_to_be_removed)
+    db.session.add(asset_to_be_removed)
     db.session.commit()
     return {asset_to_be_removed}
 
@@ -87,6 +87,6 @@ def add_asset(watchlistId, assetId):
     Watchlist.query.get(watchlistId).assets.append(asset_to_add)
 
     #  update?
-    db.session.update(asset_to_add)
+    db.session.add(asset_to_add)
     db.session.commit()
     return {asset_to_add}

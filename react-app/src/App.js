@@ -10,6 +10,7 @@ import Footer from "./components/Footer/index";
 import Splash from "./components/Splash/index";
 import Portfolio from "./components/Portfolio/index";
 import Stock from "./components/Stock/index";
+import Watchlist from "./components/Watchlist/index";
 import { authenticate } from "./store/session";
 
 function App() {
@@ -56,7 +57,7 @@ function App() {
         <Route exact path={`/stocks/:ticker_symbol`}>
           <Stock />
         </Route>
-        <Route exact path={`/watchlists/:watc`}>
+        <Route exact path={`/watchlists/:watchlistId`}>
           <Watchlist />
         </Route>
       </Switch>
