@@ -2,16 +2,20 @@ import React from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import './sidebar.css';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from "recharts";
+import { getWatchLists } from '../../../store/watchlists';
 
 const Sidebar = () => {
 
   const user = useSelector(state => state.session.user)
   const history = useSelector(state => state.portfolio.portfolio?.history)
   const shares = useSelector(state => state.portfolio?.portfolio?.shares)
+  const watchlists = useSelector(state => state.watchlists.newWatchLists);
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-  const charts = []
+  const charts = [];
+
+  console.log(watchlists);
 
 
   const smallCharts = () => {

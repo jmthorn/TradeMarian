@@ -9,6 +9,8 @@ watchlist_routes = Blueprint("watchlists", __name__)
 
 """ Watchlists - get user's watchlists
                - create a new watchlist for user """
+
+
 @watchlist_routes.route('/', methods=['GET', 'POST'])
 @login_required
 def get_user_watchlist():
@@ -41,17 +43,21 @@ def get_user_watchlist():
 """ Delete watchlist - remove an entire watchlist from a user's watchlists
  *** only available after demo has created a new list so as to not delete default list?
  *** handle this on front end by not having a delete button  """
+
+
 @watchlist_routes.route('/<watchlistId>', methods=['DELETE'])
 @login_required
 def delete_user_watchlist(watchlistId):
     watchlist_to_delete = Watchlist.query.get(watchlistId)
     db.session.delete(watchlist_to_delete)
     db.session.commit()
-    return "delete sucessful"
+    return {watchlist_to_delete}
 
 
 """ Update watchlist - remove single asset from a given watchlist
 """
+
+
 @watchlist_routes.route('/<watchlistId>/<assetId>', methods=["DELETE"])
 @login_required
 def delete_asset_in_watchlist(watchlistId, assetId):
@@ -62,11 +68,13 @@ def delete_asset_in_watchlist(watchlistId, assetId):
     #  update?
     db.session.update(asset_to_be_removed)
     db.session.commit()
-    return "update sucessful"
+    return {asset_to_be_removed}
 
 
 """ Update watchlist - add asset to given watchlist
 """
+
+
 @watchlist_routes.route('/<watchlistId>/<assetId>', methods=["POST"])
 @login_required
 def add_asset(watchlistId, assetId):
@@ -76,4 +84,4 @@ def add_asset(watchlistId, assetId):
     #  update?
     db.session.update(asset_to_add)
     db.session.commit()
-    return "update successful"
+    return {asset_to_add}
