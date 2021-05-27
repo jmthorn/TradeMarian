@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 // import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 // import { stockInformation } from "../../store/assets";
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, Tooltip } from 'recharts';
 
 const StockGraph = () => {
   const stock = useSelector(state => state.assets.stockData);
@@ -15,36 +15,35 @@ const StockGraph = () => {
     stockDatePrice.push({ "date": stockData[i]["date"], "price": stockData[i]["price"] })
   }
 
-  useEffect(async () => {
-    let stockDatePriceArr = await dateRange ? dateRange : stockData;
-
+  useEffect( () => {
+    let stockDatePriceArr = dateRange ? dateRange : stockData;
     if (stockDatePriceArr) {
-      if (stockDatePriceArr[0].value > stockDatePriceArr[(stockDatePriceArr.length) - 1].value) {
+      if (stockDatePriceArr[0]["price"] > stockDatePriceArr[(stockDatePriceArr.length) - 1]["price"]) {
         setLineColor("#dc436f"); //pink
       } else {
         setLineColor("#97ef0c"); //green
       }
     }
 
-  }, [stockData, lineColor])
+  }, [stockData, lineColor, dateRange])
+
 
   const dateFunc = (date) => {
-    if (date == '1Y') {
+    if (date === '1Y') {
       setDateRange(stockData)
     } else if (date == '6M') {
-      setDateRange(stockData.slice(0, stockData.length / 2))
+      setDateRange(stockData.slice((stockData.length) / 2))
     } else if (date == '3M') {
-      setDateRange(stockData.slice(0, stockData.length / 4))
+      setDateRange(stockData.slice(((stockData.length) / 4) * 3))
     } else if (date == '1M') {
-      setDateRange(stockData.slice(0, stockData.length / 12))
+      setDateRange(stockData.slice(((stockData.length) / 12) * 11))
     }
   }
 
   return (
     <div id='stock-graph-container'>
-      <LineChart width={730} height={250} data={stockData}
+      <LineChart width={730} height={250} data={dateRange ? dateRange : stockData}
         margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
-        <CartesianGrid horizontal={false} vertical={false} />
         <XAxis dataKey="date" hide={true} />
         <YAxis dataKey="price" domain={['auto', 'auto']} hide={true} />
         <Tooltip offset={55} />

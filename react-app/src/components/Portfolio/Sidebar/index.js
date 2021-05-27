@@ -1,26 +1,23 @@
 import React from "react";
+import {Link} from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import './sidebar.css';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from "recharts";
-import { getWatchLists } from '../../../store/watchlists';
+import { LineChart, Line, XAxis, YAxis } from "recharts";
 
 const Sidebar = () => {
 
   const user = useSelector(state => state.session.user)
   const history = useSelector(state => state.portfolio.portfolio?.history)
   const shares = useSelector(state => state.portfolio?.portfolio?.shares)
-  const watchlists = useSelector(state => state.watchlists.newWatchLists);
-
-  const dispatch = useDispatch();
-
-  const charts = [];
-
-  console.log(watchlists);
+  const equity = useSelector(state => state.portfolio?.portfolio?.equity)
 
 
+  const dispatch = useDispatch()
+
+
+  const charts = []
   const smallCharts = () => {
       for (const stock in history) {
-            console.log("HISTORY[STOCK]",stock)
 
         let lineColor = "";
             let prices = history[stock]
@@ -31,6 +28,7 @@ const Sidebar = () => {
             }
 
             charts.push(
+              <Link to={`/stocks/${stock}`}>
                 <div className="small-stock-container">
                     <div className="sidebar-share">
                         <div>{stock}</div>
@@ -46,25 +44,12 @@ const Sidebar = () => {
                         </LineChart>
                     </div>
                     <div>
-                        <div>{}</div>
-                        <div>{}</div>               
+                        <div>{`$${ Math.round(equity[stock]*100) /100 }`}</div>
                     </div>
                 </div>
+              </Link>
+
           )
       }
       return charts
   }
-
-
-  return (
-      <div id="sidebar-container">
-        <div id="stock-title">
-            <div>Stocks</div>
-        </div>
-        <div className="stock-line"></div>
-        {smallCharts()}
-      </div>
-  )
-};
-
-export default Sidebar;
