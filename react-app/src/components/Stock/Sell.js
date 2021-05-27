@@ -37,33 +37,41 @@ const Sell = ({ user, ticker_symbol, price, shares }) => {
     return (
         <div>
             <form onSubmit={sellAsset}>
-                Sell {ticker_symbol}
-                <div className='transaction-labels'>Shares</div>
-                <select name="shares" id="shares" onChange={sellTotal} value={sharesSold}>
-                    <option value=""></option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                </select>
-                <div className='transaction-labels'>Market Price</div>
-                <div id='transaction-stock-price'>
-                    ${price}
+                <div className='transaction-info'>
+                    <div className='transaction-labels'>Shares</div>
+                    <select name="shares" id="shares" onChange={sellTotal} value={sharesSold}>
+                        <option value=""></option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
                 </div>
-                <div className='transaction-labels'>Estimated Credit</div>
-                <div id='transaction-estimate'>
-                    ${sellPrice}
+                <div className='transaction-info'>
+                    <div className='transaction-labels'>Market Price</div>
+                    <div id='transaction-stock-price'>
+                        ${price}
+                    </div>
                 </div>
-                <div>{userShares} Shares Available</div>
-                <div>Buying Power: ${buyingPower}</div>
-                <button type="submit" onClick={(e) => sellAsset(e)} disabled={(sharesSold != "" && userShares >= sharesSold) ? false : true}>Sell</button>
+                <hr />
+                <div className='transaction-info'>
+                    <div className='transaction-labels'>Estimated Credit</div>
+                    <div id='transaction-estimate'>
+                        ${sellPrice}
+                    </div>
+                </div>
+                <div className='transaction-btn'>
+                    <button id='sell-btn' type="submit" onClick={(e) => sellAsset(e)} disabled={(sharesSold != "" && userShares >= sharesSold) ? false : true}>Review Order</button>
+                </div>
             </form>
+            <div className='transaction-labels' id='available-shares'>{userShares} Shares Available</div>
+            <div>Buying Power: ${buyingPower}</div>
         </div>
     )
 }

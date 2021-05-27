@@ -35,31 +35,39 @@ const Buy = ({ user, ticker_symbol, price }) => {
   return (
     <div>
       <form onSubmit={buyAsset}>
-        Buy {ticker_symbol}
-        <div className='transaction-labels'>Shares</div>
-        <select name="shares" id="shares" onChange={transactionTotal} value={sharesBought}>
-          <option value=""></option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
-          <option value="8">8</option>
-          <option value="9">9</option>
-          <option value="10">10</option>
-        </select>
-        <div className='transaction-labels'>Market Price</div>
-        <div id='transaction-stock-price'>
-          ${price}
+        <div className='transaction-info'>
+          <div className='transaction-labels'>Shares</div>
+          <select name="shares" id="shares" onChange={transactionTotal} value={sharesBought}>
+            <option value=""></option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select>
         </div>
-        <div className='transaction-labels'>Estimated Cost</div>
-        <div id='transaction-estimate'>
-          ${transactionPrice}
+        <div className='transaction-info'>
+          <div className='transaction-labels'>Market Price</div>
+          <div id='transaction-stock-price'>
+            ${price}
+          </div>
         </div>
-        <div>Buying Power: ${buyingPower}</div>
-        <button id='buy-btn' type="submit" onClick={(e) => buyAsset(e)} disabled={(buyingPower > Number(transactionPrice) && sharesBought != "") ? false : true}>Buy</button>
+        <hr />
+        <div className='transaction-info'>
+          <div className='transaction-labels'>Estimated Cost</div>
+          <div id='transaction-estimate'>
+            ${transactionPrice}
+          </div>
+         </div>
+        <div className='transaction-btn'>
+          <button id='buy-btn' type="submit" onClick={(e) => buyAsset(e)} disabled={(buyingPower > Number(transactionPrice) && sharesBought != "") ? false : true}>Review Order</button>
+        </div>
+        <div className='transaction-labels' id='buying-power'>${buyingPower} buying power available</div>
       </form>
     </div>
   )

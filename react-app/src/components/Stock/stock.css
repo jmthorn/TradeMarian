@@ -1,12 +1,12 @@
 #stock-graph {
-  margin: 100px 0 0 0;
+  margin: 40px 0 0 0;
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
 
 #stock-graph-container {
-  margin: 0 3em 3em;
+  margin: 3em 1em 0;
   display: flex;
   flex-direction: column;
 }
@@ -27,7 +27,135 @@
   
 }
 
-#stock-details {
+/* #stock-details {
   display: flex;
   flex-direction: column;
+} */
+/* Buy Sell Component */
+
+section {
+  margin: 0 40px 10px;
+  padding: 20px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  box-shadow: 0px 0px 15px rgb(209, 209, 209);
+}
+
+
+
+.tab-header {
+  margin: 0;
+  display: flex;
+  list-style: none;
+  justify-content: space-evenly;
+  padding-left: 0;
+}
+
+.tab-header > li {
+  /* width: 100%; */
+  padding: 5px;
+  text-align: center;
+  cursor: pointer;
+  color: black;
+  font-weight: 500;
+  /* background-color: lightpink; */
+}
+
+.tab-header > li:first-child {
+  /* background-color: #645b8c; */
+  /* flex-grow: 3; */
+  
+}
+
+.tab-header > li:last-child {
+  /* flex-grow: 3; */
+}
+
+.tab-header > li:hover {
+  /* background-color: lightblue; */
+  color: #645b8c;
+}
+
+.tab-header > li.active {
+  color: #645b8c;
+  font-weight: bold;
+  /* background-color: lightblue; */
+  border-bottom: 2px solid #645b8c;
+}
+
+.tabs {
+  width: 232px;
+}
+
+.tab-content {
+  /* font-weight: bold; */
+  color: black;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  /* justify-content: left; */
+  /* background-color: lightblue; */
+}
+
+.transaction-labels, #transaction-stock-price, #transaction-estimate {
+  font-weight: 500;
+  font-size: 13.5px;
+}
+
+/* #transaction-stock-price */
+
+.transaction-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 1.5em 0;
+  align-items: center;
+}
+
+hr {
+  color: lightgray;
+  opacity: 0.2;
+}
+
+.transaction-btn {
+  display: flex;
+  justify-content: center;
+}
+
+.transaction-btn button {
+  background-color: #645b8c;
+  color: white;
+  width: 100%;
+  height: 45px;
+  margin-top: 20px;
+  border-radius: 5px;
+  border: 1px solid transparent;
+}
+
+.transaction-btn button:hover {
+  background-color: #7268a0;
+}
+
+.transaction-btn button:disabled {
+  background-color: gray;
+  cursor: not-allowed;
+}
+
+#available-shares, #buying-power {
+  margin-top: 30px;
+  text-align: center;
+  color: #7268a0;
+}
+
+#shares {
+  width: 30%;
+  height: 30px;
+  border: 1px solid lightgray;
+  border-radius: 4px;
+  text-align-last: right;
+}
+
+#shares:focus {
+  outline-color: #7268a0;
 }
