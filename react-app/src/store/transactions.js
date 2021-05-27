@@ -46,13 +46,11 @@ let initialState = {
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case GET_PRICE:
-      console.log('test')
       return {
         ...state,
         transactionPrice: action.transactionPriceDict
       };
     case BUY_STOCK:
-      console.log('hello');
       return {
         ...state,
         transactionData: action.payload.transaction
