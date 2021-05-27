@@ -26,8 +26,8 @@ def seed():
 
 @seed_commands.command('undo')
 def undo():
-    # undo_watchlist_table()
-    # undo_watchlists()
+    undo_watchlist_table()
+    undo_watchlists()
     undo_users()
     undo_assets()
     undo_transactions()

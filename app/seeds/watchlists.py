@@ -7,6 +7,9 @@ def seed_watchlists():
         user_id=1
     )
 
+    db.session.add(w1)
+    db.session.commit()
+
 
 def undo_watchlists():
     db.session.execute('TRUNCATE watchlists RESTART IDENTITY')
