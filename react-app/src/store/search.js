@@ -1,16 +1,17 @@
-const GET_SEARCH_STRING = "search/GET_SEARCH_STRING"
+const GET_SEARCH_STOCKS = "search/GET_SEARCH_STOCKS"
 
-const getSearchString = (data) => ({
-    type: GET_SEARCH_STRING,
-    data
+const getSearchStocks = (stocks) => ({
+    type: GET_SEARCH_STOCKS,
+    stocks
 });
 
-export const searchString = (data) => async (dispatch) => {
-    const res = await fetch(`/api/search/${data}`);
+export const stockSearch = () => async (dispatch) => {
+    const res = await fetch(`/api/search`, {
+        mode: 'no-cors',
+    });
 
     if (res.ok) {
-        let data = await res.json();
-        dispatch(getSearchString(data))
+        dispatch(getSearchStocks());
     }
 }
 
@@ -20,9 +21,9 @@ let initialState = {
 
 export default function reducer(state=initialState, action) {
     switch (action.type) {
-        case GET_SEARCH_STRING:
+        case GET_SEARCH_STOCKS:
             return {
-                searchInfo: action.data
+                searchInfo: action.stocks
             }
         default:
             return state;
