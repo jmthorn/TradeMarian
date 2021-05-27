@@ -7,11 +7,12 @@ const getSearchStocks = (stocks) => ({
 
 export const stockSearch = () => async (dispatch) => {
     const res = await fetch(`/api/search`, {
-        mode: 'no-cors',
+        // mode: 'no-cors',
     });
 
+    console.log('===========res=======', res)
     if (res.ok) {
-        dispatch(getSearchStocks());
+        dispatch(getSearchStocks(res.json()));
     }
 }
 
