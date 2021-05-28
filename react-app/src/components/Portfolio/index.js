@@ -30,7 +30,7 @@ const Portfolio = () => {
   useEffect(()=> {
     const portfolio_array =  dateRange ? dateRange : portfolio_data;
     if(portfolio_array){
-      if (portfolio_array[0]["value"] > portfolio_array[(portfolio_array.length)-1]["value"]) {
+      if ((portfolio_data[0] ? portfolio_array[0]["value"] : 0) > (portfolio_data[0] ? portfolio_array[(portfolio_array.length)-1]["value"] : 0)) {
         setLineColor("#dc436f"); //pink
       } else {
         setLineColor("#97ef0c"); //green
@@ -87,24 +87,34 @@ const Portfolio = () => {
   }
 
 
+  const stockTitle = () => { 
+    if (portfolio_data[0]) { 
+      return (
+        <>
+            <div id="ticker">
+              <h1 id="">${currentPrice ? currentPrice : Math.round((( portfolio_data[(portfolio_data?.length)-1].value - totalCost)*100)/100)}</h1>
+            </div>
+            <div id='ticker-change'>
+              <p>{`${sign ? sign : portfolio_data[(portfolio_data?.length) -1].value > portfolio_data[0].value? '+' : '-'}$${ currentChange ? currentChange : Math.abs(Math.round((portfolio_data[(portfolio_data?.length) -1].value  -  portfolio_data[0].value )) * 100) /100 }
+                (${sign ? sign :  portfolio_data[(portfolio_data?.length) -1].value > portfolio_data[0].value  ? '+' : '-'}${currentPercentChg ? currentPercentChg : Math.abs(Math.round(((((portfolio_data[0].value - portfolio_data[(portfolio_data?.length) -1].value )/  portfolio_data[(portfolio_data?.length) -1].value ) * 100) * 100) /100))  }%)`}
+                { past ? past : 'Past Year'}
+              </p>
+            </div>
+        </>
+      )
+    }
+  }
+
+
   return (
       <>
         <div id="page-container">
           <div id="portfolio-container">
-            <div id="ticker">
-              <h1 id="">${currentPrice ? currentPrice : Math.round((((portfolio_data[(portfolio_data?.length)-1].value) - totalCost)*100)/100)}</h1>
-            </div>
-            <div id='ticker-change'>
-              <p>{`${sign ? sign : portfolio_data[(portfolio_data?.length) -1].value > portfolio_data[0].value ? '+' : '-'}$${ currentChange ? currentChange : Math.abs(Math.round((portfolio_data[(portfolio_data?.length) -1].value - portfolio_data[0].value)) * 100) /100 }
-                (${sign ? sign : portfolio_data[(portfolio_data?.length) -1].value > portfolio_data[0].value ? '+' : '-'}${currentPercentChg ? currentPercentChg : Math.abs(Math.round(((((portfolio_data[0].value - portfolio_data[(portfolio_data?.length) -1].value)/ portfolio_data[(portfolio_data?.length) -1].value) * 100) * 100) /100))  }%)`}
-                { past ? past : 'Past Year'}
-              </p>
-            </div>
-
+            {stockTitle()}
               <div id="portfolio-graph-container">
                   <div>
                       <LineChart width={730} height={250} data={dateRange ? dateRange : portfolio_data}
-                          margin={{ top: 5, right: 30, left: 20, bottom: 5 }} onMouseMove={(e) => handleClick(e.activePayload ? e?.activePayload[0].payload.value : portfolio_data[(portfolio_data.length)-1].value)}>
+                          margin={{ top: 5, right: 30, left: 20, bottom: 5 }} onMouseMove={(e) => handleClick(e.activePayload ? (portfolio_data[0] ? e?.activePayload[0].payload.value : 0) : (portfolio_data[0] ? portfolio_data[(portfolio_data.length)-1].value : 0))}>
                           <Line type="monotone"  dataKey="value" stroke={lineColor} strokeWidth={2} dot={false} />
                           {/* <CartesianGrid stroke="#ccc" strokeDasharray="3 3" hide={true}/> */}
                           <XAxis dataKey="date"  hide={true}/>
