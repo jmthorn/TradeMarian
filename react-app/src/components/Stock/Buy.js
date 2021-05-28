@@ -19,7 +19,6 @@ const Buy = ({ user, ticker_symbol, price }) => {
     e.preventDefault();
     setOrder('Ordered');
     setBuyingPower((buyingPower - transactionPrice).toFixed(2));
-    
     let newBuyingPower = (buyingPower - transactionPrice).toFixed(2)
 
     let newTransaction = {
@@ -35,7 +34,7 @@ const Buy = ({ user, ticker_symbol, price }) => {
   if (buyAsset) {
     setTimeout(() => {
         setOrder('Review Order');
-    }, 3500);
+      }, 3500);
   }
 
   return (

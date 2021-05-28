@@ -11,7 +11,7 @@ const Search = () => {
 
   const tickerSymbols = stocks.stock_names?.map(stock => (stock['ticker_symbol']));
   const companyNames = stocks.stock_names?.map(stock => (stock['company_name']));
-  
+
   const names = tickerSymbols?.map((tickerSymbol, companyName) => {
     return `${tickerSymbol}: ${companyNames[companyName]}`
   })
@@ -22,13 +22,13 @@ const Search = () => {
   const handleChange = e => {
     setSearchTerm(e.target.value);
   };
-  
+
   useEffect(() => {
     const results = names?.filter(symbol => symbol.toLowerCase().includes(searchTerm.split(" ").join("")));
 
     setSearchResults(results);
   }, [searchTerm]);
-  
+
   return (
     <div id='search-component'>
       <input
@@ -44,6 +44,7 @@ const Search = () => {
           setSearchResults([]);
         }}
         value={searchTerm} />
+      <div id='search-results'>
         <ul>
           {searchResults?.map(item => (
             <div className='stock-search-items' onClick={() => {
@@ -54,6 +55,8 @@ const Search = () => {
             </div>
           ))}
         </ul>
+      </div>
+
     </div>
   )
 }
