@@ -12,7 +12,7 @@ const loadWatchlists = (lists) => ({
 
 const createWatchlist = (list) => ({
     type: CREATE_WATCHLIST,
-    payload: list
+    list
 })
 
 const removeWatchlist = (listId) => ({
@@ -122,8 +122,11 @@ export default function reducer(state=initialState, action) {
         }
             // adding a new watchlist
         case CREATE_WATCHLIST:
-            // return {...state, [action.list.watchlist_name]: action.list}
-            return {...state, ...action.list}
+            newState = { ...state };
+            console.log('teeeeeeeeeeeeeeest', newState);
+            // newState[action.list] = action.list;
+
+            return newState;
             // delete an entire watchlist
         case DELETE_WATCHLIST:
             newState = {...state};
@@ -131,11 +134,11 @@ export default function reducer(state=initialState, action) {
             return newState
         case ADD_ASSET:
             newState = {...state};
-            console.log('AGASDGASTFASFASS', newState[action.payload.watchlistId]);
             newState[action.payload.watchlistId].assets.push(action.payload.asset);
         case DELETE_ASSET:
             newState = {...state};
-            // newState[action.watchlistId].assets.remove( assets.find(asset => asset.id == action.assetId) );
+            // newState[action.watchlistId].assets.remove(find(asset => asset.id == action.assetId);
+            newState[action.payload.watchlistId].assets.filter(asset => asset.id !== action.payload.assetId);
             return newState;
         default:
             return state
