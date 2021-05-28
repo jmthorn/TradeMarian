@@ -6,6 +6,7 @@ import { getPriceShares, stockTransaction } from "../../store/transactions";
 import Buy from './Buy';
 import Sell from './Sell';
 import StockGraph from './StockGraph';
+import WatchlistModal from '../../context/watchlistmodal/index';
 import News from '../News';
 
 import './stock.css';
