@@ -8,12 +8,14 @@ const Buy = ({ user, ticker_symbol, price }) => {
   const [transactionPrice, setTransactionPrice] = useState((0).toFixed(2));
   const [sharesBought, setSharesBought] = useState(0);
   const [order, setOrder] = useState('Review Order')
-  const [buyingPower, setBuyingPower] = useState(user?.buying_power || 0);
+  const [buyingPower, setBuyingPower] = useState(user?.buying_power);
 
   const transactionTotal = e => {
     setSharesBought(e.target.value)
     setTransactionPrice((e.target.value * price).toFixed(2));
   };
+
+
 
   const buyAsset = async (e) => {
     e.preventDefault();
@@ -36,6 +38,7 @@ const Buy = ({ user, ticker_symbol, price }) => {
         setOrder('Review Order');
       }, 3500);
   }
+
 
   return (
     <div>
@@ -73,6 +76,7 @@ const Buy = ({ user, ticker_symbol, price }) => {
           <button id='buy-btn' type="submit"
             onClick={(e) => {
               buyAsset(e);
+              buyingPowerFunc()
             }}
             disabled={(buyingPower > Number(transactionPrice) && sharesBought != "") ? false : true}>
               {order}
