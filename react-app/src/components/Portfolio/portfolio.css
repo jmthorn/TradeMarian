@@ -8,6 +8,8 @@
   margin: 3em 3em 3em;
   display: flex;
   flex-direction: column;
+  align-content: flex-start;
+  width: 50em;
 }
 
 #portfolio-graph-container {
@@ -44,4 +46,8 @@
 .portfolio-line {
   border-bottom: 1px solid lightgray;
   margin: 1em 0em;
+}
+
+.buying-power p {
+  font-weight: 500
 }

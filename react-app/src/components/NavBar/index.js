@@ -2,6 +2,8 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
+import Logo from '../../images/logo.png'
+import Search from './Search';
 import './navbar.css'
 
 const NavBar = () => {
@@ -10,21 +12,26 @@ const NavBar = () => {
   let sessionLinks;
   if (user) {
     sessionLinks = (
-      <span className="nav-options">
-        {/* <li id="nav-home">
-          <NavLink to="/" exact={true} activeClassName="active">
-            Home
-          </NavLink>
-        </li> */}
-        <li id="nav-portfolio">
-          <NavLink to="/" exact={true}>
-            Portfolio
-          </NavLink>
-        </li>
-        <li id="nav-logout">
-          <LogoutButton />
-        </li>
-      </span>
+      <>
+        <div>
+          <Search />
+        </div>
+        <span className="nav-options">
+          {/* <li id="nav-home">
+            <NavLink to="/" exact={true} activeClassName="active">
+              Home
+            </NavLink>
+          </li> */}
+          <li id="nav-portfolio">
+            <NavLink to="/" exact={true}>
+              Portfolio
+            </NavLink>
+          </li>
+          <li id="nav-logout">
+            <LogoutButton />
+          </li>
+        </span>
+      </>
     );
   } else {
     sessionLinks = (
@@ -48,12 +55,12 @@ const NavBar = () => {
       <ul id="nav-list">
         <li id="nav-home">
           <NavLink to="/" exact={true}>
-            <img className="logo" src={'/images/logo.png'} alt="logo" />
+            <img className="logo" src={Logo} alt="logo" />
           </NavLink>
         </li>
-        <li id="nav-search">
+        {/* <li id="nav-search">
           <input type="text" placeholder="Search" />
-        </li>
+        </li> */}
         {sessionLinks}
       </ul>
     </nav>

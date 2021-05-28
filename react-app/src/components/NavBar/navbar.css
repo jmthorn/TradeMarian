@@ -24,19 +24,18 @@ nav {
   margin: 0.4em 6em 0em 4em;
 }
 
-#nav-search input {
+/* #nav-search input {
   width: 170%;
   padding: 0.6em 2em;
   border: 1px solid rgb(180, 180, 180);
   border-radius: 5px;
   color: rgb(148, 147, 147);
   margin-top: 0.45em;
-}
+} */
 
 .nav-options {
   position: absolute;
-  margin-left: auto;
-  right: 2.5em;
+  right: 8em;
   margin-top: 0.47em;
 }
 
