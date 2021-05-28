@@ -13,7 +13,7 @@ stock_token = os.getenv('STOCK_API')
 @transaction_routes.route('/<ticker_symbol>')
 def stock_data(ticker_symbol):
     data = requests.get(
-        f"https://cloud.iexapis.com/stable/stock/{ticker_symbol}/chart/1m/?token={stock_token}&chartCloseOnly=true").json()
+        f"https://sandbox.iexapis.com/stable/stock/{ticker_symbol}/chart/1m/?token={stock_token}&chartCloseOnly=true").json()
 
     closePrice = data.pop()
     closePrice = {k: v for k, v in closePrice.items() if k in ("close")}
