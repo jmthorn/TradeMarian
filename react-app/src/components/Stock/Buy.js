@@ -76,7 +76,6 @@ const Buy = ({ user, ticker_symbol, price }) => {
           <button id='buy-btn' type="submit"
             onClick={(e) => {
               buyAsset(e);
-              buyingPowerFunc()
             }}
             disabled={(buyingPower > Number(transactionPrice) && sharesBought != "") ? false : true}>
               {order}
