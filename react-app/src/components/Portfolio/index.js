@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import './portfolio.css';
 import { userPortfolio } from "../../store/portfolio"
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from "recharts";
+import { LineChart, Line, XAxis, YAxis, Tooltip} from "recharts";
 import Sidebar from './Sidebar'
 import News from '../News'
 
@@ -14,7 +14,6 @@ const Portfolio = () => {
   const totalCost = useSelector(state => state.portfolio?.portfolio?.totalCost)
   const dispatch = useDispatch()
   const [dateRange, setDateRange] = useState(portfolio_data)
-  // const [currentPrice, setCurrentPrice] = useState(portfolio_data ? portfolio_data[(portfolio_data?.length)-1].value : 21541.08)
   const [currentPrice, setCurrentPrice] = useState('')
   const [currentChange, setCurrentChange] = useState('')
   const [currentPercentChg, setCurrentPercentChg] = useState('')
@@ -59,17 +58,21 @@ const Portfolio = () => {
   }
 
   const handleClick = (value) => {
-    setCurrentPrice(Math.round((value - totalCost) * 100) / 100)
+    if (!portfolio_data[0]) { 
+      return 
+    }
+    setCurrentPrice((value - totalCost).toFixed(2))
     // condition on state of dateRange
-    setCurrentChange(Math.abs(Math.round((value - portfolio_data[0].value)*100)) /100)
+    setCurrentChange( Math.abs( (value - portfolio_data[0].value).toFixed(2) ) )
     // calc percent change
     if (portfolio_data[(portfolio_data?.length) -1].value > portfolio_data[0].value) {
-      setCurrentPercentChg( Math.abs(Math.round((((portfolio_data[0].value - value) / value)*100) *100)) /100)
+      setCurrentPercentChg( Math.abs(((portfolio_data[0].value - value) / value).toFixed(5)/100))
     } else {
-      setCurrentPercentChg( Math.abs(Math.round((((value - portfolio_data[0].value) / portfolio_data[0].value)*100) *100)) /100 )
+      setCurrentPercentChg( Math.abs( ((value - portfolio_data[0].value) / portfolio_data[0].value).toFixed(5)/100 ))
     }
+
     //set sign
-    if (portfolio_data[(portfolio_data?.length) -1].value > portfolio_data[0].value) {
+    if ( dateRange ? dateRange[0]['value'] < dateRange[dateRange.length -1]['value'] : portfolio_data[(portfolio_data?.length) -1].value > portfolio_data[0].value) {
       setSign('+')
     } else {
       setSign('-')
@@ -92,13 +95,24 @@ const Portfolio = () => {
       return (
         <>
             <div id="ticker">
-              <h1 id="">${currentPrice ? currentPrice : Math.round((( portfolio_data[(portfolio_data?.length)-1].value - totalCost)*100)/100)}</h1>
+              <h1 id="">${currentPrice ? currentPrice : ((portfolio_data[(portfolio_data?.length)-1].value) - totalCost).toFixed(2)}</h1>
             </div>
             <div id='ticker-change'>
-              <p>{`${sign ? sign : portfolio_data[(portfolio_data?.length) -1].value > portfolio_data[0].value? '+' : '-'}$${ currentChange ? currentChange : Math.abs(Math.round((portfolio_data[(portfolio_data?.length) -1].value  -  portfolio_data[0].value )) * 100) /100 }
-                (${sign ? sign :  portfolio_data[(portfolio_data?.length) -1].value > portfolio_data[0].value  ? '+' : '-'}${currentPercentChg ? currentPercentChg : Math.abs(Math.round(((((portfolio_data[0].value - portfolio_data[(portfolio_data?.length) -1].value )/  portfolio_data[(portfolio_data?.length) -1].value ) * 100) * 100) /100))  }%)`}
+              <p>{`${sign ? sign : portfolio_data[(portfolio_data?.length) -1].value > portfolio_data[0].value ? '+' : '-'}$${ currentChange ? currentChange : Math.abs( (portfolio_data[(portfolio_data?.length) -1].value - portfolio_data[0].value).toFixed(2) ) }
+                (${sign ? sign : portfolio_data[(portfolio_data?.length) -1].value > portfolio_data[0].value ? '+' : '-'}${currentPercentChg ? currentPercentChg : Math.abs( (((portfolio_data[0].value - portfolio_data[(portfolio_data?.length) -1].value)/ portfolio_data[(portfolio_data?.length) -1].value) * 100).toFixed(5) )  }%)`}
                 { past ? past : 'Past Year'}
               </p>
+            </div>
+        </>
+      )
+    } else { 
+      return (
+        <>
+            <div id="ticker">
+              <h1 id="">You have no stocks!</h1>
+            </div>
+            <div id='ticker-change'>
+              <p>Get started by using the search bar to find a company whose stocks you'd like to buy</p>
             </div>
         </>
       )
@@ -164,14 +178,3 @@ const Portfolio = () => {
 export default Portfolio;
 
 
-
-{/* <div id='stock-container'>
-            <LineChart width={730} height={250} data={prices}
-                margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
-                <CartesianGrid horizontal={false} vertical={false} />
-                <XAxis dataKey="close" hide={true} />
-                <YAxis domain={['auto', 'auto']} hide={true} />
-                <Tooltip />
-                <Line type="monotone" dataKey="close" stroke={lineColor} strokeWidth={1.5} dot={false}/>
-            </LineChart>
-        </div> */}

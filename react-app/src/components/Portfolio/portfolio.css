@@ -47,3 +47,7 @@
   border-bottom: 1px solid lightgray;
   margin: 1em 0em;
 }
+
+.buying-power p {
+  font-weight: 500
+}
