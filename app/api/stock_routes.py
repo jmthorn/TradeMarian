@@ -11,7 +11,7 @@ stock_token = os.getenv('STOCK_API')
 @stock_routes.route('/<ticker_symbol>')
 def stock_graph_data(ticker_symbol):
     data = requests.get(
-        f"https://cloud.iexapis.com/stable/stock/{ticker_symbol}/chart/1y/?token={stock_token}&chartCloseOnly=true").json()
+        f"https://sandbox.iexapis.com/stable/stock/{ticker_symbol}/chart/1y/?token={stock_token}&chartCloseOnly=true").json()
 
     # print('========data', data) # [ {'date': '2021-02-16', 'close': 133.36}, {}, {}...]
     asset = Asset.query.filter(
