@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { stockSearch } from "../../store/search";
+import { stockSearch } from "../../../store/search";
 import './Search.css';
 
 const Search = () => {

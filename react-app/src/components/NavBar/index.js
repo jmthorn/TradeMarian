@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
-import Search from '../../components/Search';
+import Search from './Search';
 import './navbar.css'
 
 const NavBar = () => {
