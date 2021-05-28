@@ -5,7 +5,6 @@ import { stockInformation } from "../../store/assets";
 import { getPriceShares, stockTransaction } from "../../store/transactions";
 import Buy from './Buy';
 import Sell from './Sell';
-import StockGraph from './StockGraph';
 import News from '../News';
 import { LineChart, Line, XAxis, YAxis, Tooltip } from 'recharts';
 
