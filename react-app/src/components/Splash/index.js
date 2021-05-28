@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom';
+import Splash_Image from '../../images/Splash_Image.png'
 import './splash.css';
 
 const Splash = () => {
@@ -25,7 +26,7 @@ const Splash = () => {
                 <button onClick={handleSubmit}>Sign Up</button>
             </div>
             <div id="image-container">
-              <img height="600em" src="images/Splash_Image.png" alt="splash_img"></img>
+              <img height="600em" src={Splash_Image} alt="splash_img"></img>
                 <video id="video" loop="true" autoplay="autoplay" muted>
                   <source src="/images/Iphone_Animation.mp4" type="video/mp4"></source>
                 </video>
