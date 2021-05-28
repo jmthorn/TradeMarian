@@ -25,6 +25,7 @@ const Search = () => {
   useEffect(() => {
     const results = names?.filter(symbol => symbol.toLowerCase().includes(searchTerm.split(" ").join("")));
     if (!results) setSearchTerm("");
+
     setSearchResults(results);
   }, [searchTerm]);
   
@@ -47,9 +48,9 @@ const Search = () => {
           {searchResults?.map(item => (
             <div className='stock-search-items' onClick={() => {
               setSearchTerm(" ");
-              history.push(`/stocks/${item}`);
+              history.push(`/stocks/${item.split(":")[0]}`);
             }}>
-              <NavLink to={`/stocks/${item}`}>{item}</NavLink>
+              <NavLink to={`/stocks/${item.split(":")[0]}`}>{item}</NavLink>
             </div>
           ))}
         </ul>
