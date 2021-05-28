@@ -58,8 +58,8 @@ const Portfolio = () => {
   }
 
   const handleClick = (value) => {
-    if (!portfolio_data[0]) { 
-      return 
+    if (!portfolio_data[0]) {
+      return
     }
     setCurrentPrice((value - totalCost).toFixed(2))
     // condition on state of dateRange
@@ -90,8 +90,8 @@ const Portfolio = () => {
   }
 
 
-  const stockTitle = () => { 
-    if (portfolio_data[0]) { 
+  const stockTitle = () => {
+    if (portfolio_data[0]) {
       return (
         <>
             <div id="ticker">
@@ -105,7 +105,7 @@ const Portfolio = () => {
             </div>
         </>
       )
-    } else { 
+    } else {
       return (
         <>
             <div id="ticker">
@@ -176,5 +176,3 @@ const Portfolio = () => {
 };
 
 export default Portfolio;
-
-
