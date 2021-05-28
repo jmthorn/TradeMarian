@@ -85,7 +85,7 @@ const Sell = ({ user, ticker_symbol, price, shares }) => {
                     </button>
                 </div>
             </form>
-            <div className='transaction-labels' id='available-shares'>{userShares} Shares Available</div>
+            <div className='transaction-labels' id='available-shares'>{userShares || 0} Shares Available</div>
         </div>
     )
 }

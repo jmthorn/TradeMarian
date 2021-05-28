@@ -18,10 +18,15 @@ const Search = () => {
 
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  // const [dropDown, setDropDown] = useState(false)
 
   const handleChange = e => {
     setSearchTerm(e.target.value);
   };
+
+  // useEffect(() => {
+  //   setDropDown(true);
+  // }, [dropDown])
 
   useEffect(() => {
     const results = names?.filter(symbol => symbol.toLowerCase().includes(searchTerm.split(" ").join("")));
@@ -35,10 +40,16 @@ const Search = () => {
         type="text"
         placeholder='Search'
         onFocus={useEffect(() => {
+          // setDropDown(true);
           setSearchTerm("");
           dispatch(stockSearch())
         }, [dispatch])}
         onChange={handleChange}
+        // onBlur={() => {
+          // setDropDown(false);
+          // setSearchTerm(searchTerm);
+          // setSearchResults([]);
+        // }}
         onClick={() => {
           setSearchTerm("");
           setSearchResults([]);
@@ -46,11 +57,13 @@ const Search = () => {
         value={searchTerm} />
       <div id='search-results'>
         <ul>
-          {searchResults?.map(item => (
-            <div className='stock-search-items' onClick={() => {
-              setSearchTerm("-");
-              history.push(`/stocks/${item.split(":")[0]}`);
-            }}>
+          {/*dropDown && */searchResults?.map(item => (
+            <div className='stock-search-items'
+              onClick={() => {
+                setSearchTerm("-");
+                history.push(`/stocks/${item.split(":")[0]}`);
+              }}
+            >
               <NavLink to={`/stocks/${item.split(":")[0]}`}>{item}</NavLink>
             </div>
           ))}
