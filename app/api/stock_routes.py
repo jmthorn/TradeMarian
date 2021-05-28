@@ -17,6 +17,8 @@ def stock_graph_data(ticker_symbol):
     asset = Asset.query.filter(
         Asset.ticker_symbol == ticker_symbol).one()  # <Asset one>
     stock_info = {
+        "id": asset.id,
+        "company_name": asset.company_name,
         "ticker_symbol": asset.ticker_symbol,
         "description": asset.description,
         "ceo": asset.ceo,
