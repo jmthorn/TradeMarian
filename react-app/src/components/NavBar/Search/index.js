@@ -11,6 +11,9 @@ const Search = () => {
 
   const tickerSymbols = stocks.stock_names?.map(stock => (stock['ticker_symbol']))
   const companyNames = stocks.stock_names?.map(stock => (stock['company_name']))
+  const names = tickerSymbols?.map((tickerSymbol, companyName) => {
+    return `${tickerSymbol}: ${companyNames[companyName]}`
+  })
 
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
@@ -20,17 +23,10 @@ const Search = () => {
   };
   
   useEffect(() => {
-    const results = tickerSymbols?.filter(symbol => symbol.toLowerCase().includes(searchTerm));
-    if (!results) setSearchTerm("");
+    const results = names?.filter(symbol => symbol.toLowerCase().includes(searchTerm.split(" ").join("")));
+
     setSearchResults(results);
   }, [searchTerm]);
-
-  // useEffect(() => {
-  //   if (!focus && searchTerm) {
-  //     setSearchTerm(" ");
-  //     setSearchResults([]);
-  //   }
-  // }, [searchTerm])
   
   return (
     <div id='search-component'>
@@ -50,10 +46,10 @@ const Search = () => {
         <ul>
           {searchResults?.map(item => (
             <div className='stock-search-items' onClick={() => {
-              setSearchTerm(" ");
-              history.push(`/stocks/${item}`);
+              setSearchTerm("");
+              history.push(`/stocks/${item.split(":")[0]}`);
             }}>
-              <NavLink to={`/stocks/${item}`}>{item}</NavLink>
+              <NavLink to={`/stocks/${item.split(":")[0]}`}>{item}</NavLink>
             </div>
           ))}
         </ul>
