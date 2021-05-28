@@ -14,8 +14,8 @@
 #search-component input:focus {
   outline-color: #645b8c; 
   border-bottom: 1px solid transparent;
+  
 }
-
 
 #search-component ul {
   padding: 0;
