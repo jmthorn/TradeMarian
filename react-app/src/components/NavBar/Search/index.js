@@ -9,8 +9,9 @@ const Search = () => {
   const history = useHistory();
   const stocks = useSelector(state => state.search.searchInfo);
 
-  const tickerSymbols = stocks.stock_names?.map(stock => (stock['ticker_symbol']))
-  const companyNames = stocks.stock_names?.map(stock => (stock['company_name']))
+  const tickerSymbols = stocks.stock_names?.map(stock => (stock['ticker_symbol']));
+  const companyNames = stocks.stock_names?.map(stock => (stock['company_name']));
+  
   const names = tickerSymbols?.map((tickerSymbol, companyName) => {
     return `${tickerSymbol}: ${companyNames[companyName]}`
   })
