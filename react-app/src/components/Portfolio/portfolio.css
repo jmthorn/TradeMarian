@@ -8,6 +8,8 @@
   margin: 3em 3em 3em;
   display: flex;
   flex-direction: column;
+  align-content: flex-start;
+  width: 50em;
 }
 
 #portfolio-graph-container {

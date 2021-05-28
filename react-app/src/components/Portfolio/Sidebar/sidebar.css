@@ -8,7 +8,7 @@
   box-shadow: 0px 0px 15px rgb(209, 209, 209);
   border-radius: 6px;
   padding: 1em 0em;
-  margin: auto 5em;
+  margin: 5em 5em;
   align-items: center;
 }
 
@@ -17,7 +17,7 @@
   color: black;
 }
 
-#stock-title {
+.sidebar-titles {
   font-size: 18px;
 }
 
@@ -54,4 +54,16 @@
   border-bottom: 1px solid lightgray;
   margin: 1em 0em;
   width: 127%;
+}
+
+.watchlist-container p {
+  text-align: left;
+  width: 19em;
+  padding: 1.5em 1.5em;
+  margin: 0em;
+}
+
+.watchlist-container:hover {
+  background-color: rgb(238, 236, 236);
+  background-size: 100%;
 }

@@ -29,7 +29,6 @@ const Portfolio = () => {
 
   useEffect(()=> {
     const portfolio_array =  dateRange ? dateRange : portfolio_data;
-    console.log(portfolio_array)
     if(portfolio_array){
       if (portfolio_array[0]["value"] > portfolio_array[(portfolio_array.length)-1]["value"]) {
         setLineColor("#dc436f"); //pink

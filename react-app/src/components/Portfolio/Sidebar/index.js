@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import {Link} from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
+import { useParams } from 'react-router-dom';
 import './sidebar.css';
 import { LineChart, Line, XAxis, YAxis } from "recharts";
 import {getWatchLists} from '../../../store/watchlists'
@@ -13,7 +14,10 @@ const Sidebar = () => {
   const equity = useSelector(state => state.portfolio?.portfolio?.equity)
   const watchlists = useSelector(state => state.watchlists)
 
+  const params = useParams()
   const dispatch = useDispatch()
+
+  let watchlistId = params.watchlistId
 
   useEffect(async() => { 
       await dispatch(getWatchLists())
@@ -58,13 +62,28 @@ const Sidebar = () => {
       return charts
     }
     
+    const watchlist_arr = Object.values(watchlists)
+
+
     return (
         <div id="sidebar-container">
         <div id="stock-title">
-            <div>Stocks</div>
+            <div className="sidebar-titles">Stocks</div>
         </div>
         <div className="stock-line"></div>
         {smallCharts()}
+        <div className="stock-line"></div>
+        <div className="sidebar-titles">Your Watchlists</div>
+        <div className="stock-line"></div>
+        <div id="watchlists-container">
+            {watchlist_arr.map((watchlist) => (
+                <a href={`/watchlists/${watchlistId}`}>
+                    <div className="watchlist-container">
+                        <p>{watchlist?.watchlist.watchlist_name}</p>
+                    </div>
+                </a>
+            ))}
+        </div>
         </div>
     )
 };
