@@ -7,6 +7,16 @@
   margin-top: 0.45em;
 }
 
+#search-results {
+  width: 457px;
+  overflow: auto;
+  max-height: 270px;
+  box-shadow: 0px 0px 15px rgb(209, 209, 209);
+  position: absolute;
+  z-index: 1;
+}
+
+
 #search-component input:hover {
   background-color: rgb(243, 243, 243);
 }
@@ -14,16 +24,15 @@
 #search-component input:focus {
   outline-color: #645b8c; 
   border-bottom: 1px solid transparent;
-  
 }
 
 #search-component ul {
   padding: 0;
   background-color: white;
-  position: absolute;
+  position: sticky;
   z-index: 1;
   width: 457px;
-  box-shadow: 0px 0px 15px rgb(209, 209, 209);
+  /* box-shadow: 0px 0px 15px rgb(209, 209, 209); */
 }
 
 .stock-search-items {
