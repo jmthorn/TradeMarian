@@ -18,11 +18,12 @@ def stock_data(ticker_symbol):
     closePrice = data.pop()
     closePrice = {k: v for k, v in closePrice.items() if k in ("close")}
 
-    transactions = Transaction.query.filter(Transaction.user_id == current_user.id).all()
+    transactions = Transaction.query.filter(
+        Transaction.user_id == current_user.id).all()
 
     holdings = {}
     for transaction in transactions:
-        if transaction.asset.ticker_symbol in holdings:
+        if transaction.assets.ticker_symbol in holdings:
             holdings[ticker_symbol] += transaction.share_quantity
         else:
             holdings[ticker_symbol] = transaction.share_quantity
@@ -55,7 +56,6 @@ def buy_stock(ticker_symbol):
         'price_per_share': transaction.price_per_share,
         'buy_sell': transaction.buy_sell
     }
-
 
     user = User.query.filter(User.id == data['user_id']).one()
     user.buying_power = data['buying_power']

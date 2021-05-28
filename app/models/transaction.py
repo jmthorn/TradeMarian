@@ -4,19 +4,21 @@ import datetime
 # asset can have many transactions
 # user can have many transactions
 
+
 class Transaction(db.Model):
     __tablename__ = "transactions"
 
-    id = db.Column(db.Integer, primary_key = True)
-    asset_id = db.Column(db.Integer, db.ForeignKey("assets.id"), nullable=False)
+    id = db.Column(db.Integer, primary_key=True)
+    asset_id = db.Column(db.Integer, db.ForeignKey(
+        "assets.id"), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     share_quantity = db.Column(db.Integer, nullable=False)
     price_per_share = db.Column(db.Float, nullable=False)
-    created_at = db.Column(db.DateTime, default = datetime.datetime.now())
+    created_at = db.Column(db.DateTime, default=datetime.datetime.now())
     # buy = true, sell = false
     buy_sell = db.Column(db.Boolean, nullable=False)
-    
-    asset = db.relationship("Asset", back_populates="transactions")
+
+    assets = db.relationship("Asset", back_populates="transactions")
     user = db.relationship("User", back_populates="transactions")
 
     def to_dict(self):
