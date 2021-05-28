@@ -66,7 +66,6 @@ const Stock = () => {
     const[sixMonthColor, setSixMonthColor] = useState('#353535')
 
     const dispatch = useDispatch();
-    const user = useSelector(state => state.session.user);
     const watchlists = useSelector(state => state.watchlists);
 
     console.log('watchlistssssss', watchlists);
