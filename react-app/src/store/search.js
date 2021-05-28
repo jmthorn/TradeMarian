@@ -6,14 +6,8 @@ const getSearchStocks = (stocks) => ({
 });
 
 export const stockSearch = () => async (dispatch) => {
-    const res = await fetch("/api/search/", {
-        mode: 'no-cors',
-        // headers: {
-        //     'Content-Type': 'application/json'
-        // }
-    });
+    const res = await fetch("/api/search/");
 
-    console.log('===========res=======', res)
     if (res.ok) {
         const data = await res.json();
         console.log('===========data=======', data)

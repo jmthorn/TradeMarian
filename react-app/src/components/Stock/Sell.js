@@ -8,7 +8,7 @@ const Sell = ({ user, ticker_symbol, price, shares }) => {
     const [userShares, setUserShares] = useState(shares);
     const [order, setOrder] = useState('Review Order')
     const [sharesSold, setSharesSold] = useState(0);
-    const [buyingPower, setBuyingPower] = useState(user.buying_power);
+    const [buyingPower, setBuyingPower] = useState(user?.buying_power);
 
     // useEffect(() => {
     //     setUserShares(shares)
