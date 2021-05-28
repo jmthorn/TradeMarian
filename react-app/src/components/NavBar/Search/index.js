@@ -11,6 +11,9 @@ const Search = () => {
 
   const tickerSymbols = stocks.stock_names?.map(stock => (stock['ticker_symbol']))
   const companyNames = stocks.stock_names?.map(stock => (stock['company_name']))
+  const names = tickerSymbols?.map((tickerSymbol, companyName) => {
+    return `${tickerSymbol}: ${companyNames[companyName]}`
+  })
 
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
@@ -20,17 +23,10 @@ const Search = () => {
   };
   
   useEffect(() => {
-    const results = tickerSymbols?.filter(symbol => symbol.toLowerCase().includes(searchTerm));
+    const results = names?.filter(symbol => symbol.toLowerCase().includes(searchTerm.split(" ").join("")));
     if (!results) setSearchTerm("");
     setSearchResults(results);
   }, [searchTerm]);
-
-  // useEffect(() => {
-  //   if (!focus && searchTerm) {
-  //     setSearchTerm(" ");
-  //     setSearchResults([]);
-  //   }
-  // }, [searchTerm])
   
   return (
     <div id='search-component'>
