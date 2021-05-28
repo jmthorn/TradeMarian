@@ -10,6 +10,7 @@ from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 from .api.stock_routes import stock_routes
 from .api.transaction_routes import transaction_routes
+from .api.search_routes import search_routes
 from .api.watchlist_routes import watchlist_routes
 from .api.news_routes import news_routes
 
@@ -37,6 +38,7 @@ app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(stock_routes, url_prefix='/api/stocks')
 app.register_blueprint(transaction_routes, url_prefix='/api/transactions')
+app.register_blueprint(search_routes, url_prefix='/api/search')
 app.register_blueprint(watchlist_routes, url_prefix="/api/watchlists")
 app.register_blueprint(news_routes, url_prefix='/api/news')
 

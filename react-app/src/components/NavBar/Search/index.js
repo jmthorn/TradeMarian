@@ -1,0 +1,64 @@
+import React, { useEffect, useState } from "react";
+import { NavLink, useHistory } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { stockSearch } from "../../../store/search";
+import './Search.css';
+
+const Search = () => {
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const stocks = useSelector(state => state.search.searchInfo);
+
+  const tickerSymbols = stocks.stock_names?.map(stock => (stock['ticker_symbol']))
+  const companyNames = stocks.stock_names?.map(stock => (stock['company_name']))
+
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+
+  const handleChange = e => {
+    setSearchTerm(e.target.value);
+  };
+  
+  useEffect(() => {
+    const results = tickerSymbols?.filter(symbol => symbol.toLowerCase().includes(searchTerm));
+    if (!results) setSearchTerm("");
+    setSearchResults(results);
+  }, [searchTerm]);
+
+  // useEffect(() => {
+  //   if (!focus && searchTerm) {
+  //     setSearchTerm(" ");
+  //     setSearchResults([]);
+  //   }
+  // }, [searchTerm])
+  
+  return (
+    <div id='search-component'>
+      <input
+        type="text"
+        placeholder='Search'
+        onFocus={useEffect(() => {
+          setSearchTerm(" ");
+          dispatch(stockSearch())
+        }, [dispatch])}
+        onChange={handleChange}
+        onClick={() => {
+          setSearchTerm("");
+          setSearchResults([]);
+        }}
+        value={searchTerm} />
+        <ul>
+          {searchResults?.map(item => (
+            <div className='stock-search-items' onClick={() => {
+              setSearchTerm(" ");
+              history.push(`/stocks/${item}`);
+            }}>
+              <NavLink to={`/stocks/${item}`}>{item}</NavLink>
+            </div>
+          ))}
+        </ul>
+    </div>
+  )
+}
+
+export default Search;

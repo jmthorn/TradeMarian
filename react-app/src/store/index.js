@@ -4,6 +4,7 @@ import session from './session';
 import portfolio from './portfolio';
 import assets from './assets';
 import transactions from './transactions';
+import search from './search';
 import watchlists from './watchlists'
 import news from './news';
 
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
     portfolio,
     assets,
     transactions,
+    search,
     watchlists,
     news
 });

@@ -8,7 +8,7 @@ const Buy = ({ user, ticker_symbol, price }) => {
   const [transactionPrice, setTransactionPrice] = useState((0).toFixed(2));
   const [sharesBought, setShareBought] = useState(0);
   const [order, setOrder] = useState('Review Order')
-  const [buyingPower, setBuyingPower] = useState(user.buying_power);
+  const [buyingPower, setBuyingPower] = useState(user?.buying_power || 0);
 
   const transactionTotal = e => {
     setShareBought(e.target.value)
@@ -73,7 +73,7 @@ const Buy = ({ user, ticker_symbol, price }) => {
         <div className='transaction-btn'>
           <button id='buy-btn' type="submit" onClick={(e) => buyAsset(e)} disabled={(buyingPower > Number(transactionPrice) && sharesBought != "") ? false : true}>{order}</button>
         </div>
-        <div className='transaction-labels' id='buying-power'>${buyingPower.toFixed(2)} buying power available</div>
+        <div className='transaction-labels' id='buying-power'>${buyingPower} buying power available</div>
       </form>
     </div>
   )
