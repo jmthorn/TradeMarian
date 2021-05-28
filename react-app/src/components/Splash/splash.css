@@ -45,6 +45,7 @@
   position: relative;
   width: 30em;
   height: 45em;
+  top: 2em;
 }
 
 #image-container img {
@@ -52,7 +53,7 @@
   height: 30em;
   z-index: 1;
   left: 0;
-  margin: 20% 0px;
+  margin: 12% 0px;
 }
 
 #video {
@@ -60,7 +61,7 @@
   position: absolute;
   right: 2.2em;
   left: 10em;
-  margin: 20% 0px;
+  margin: 12% 0px;
 }
 
 #splash-white {
