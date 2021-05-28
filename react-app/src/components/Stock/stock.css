@@ -23,8 +23,16 @@
   font-size: 14px;
 }
 
-#stock-graph-btns button:hover {
-  
+#stock-graph-btns button:active {
+  box-sizing: none;
+  /* border: none; */
+  outline:none;
+}
+
+#stock-graph-btns button{
+  box-sizing: none;
+  /* border: none; */
+  outline:none;
 }
 
 /* #stock-details {
@@ -64,7 +72,7 @@ section {
 .tab-header > li:first-child {
   /* background-color: #645b8c; */
   /* flex-grow: 3; */
-  
+
 }
 
 .tab-header > li:last-child {
