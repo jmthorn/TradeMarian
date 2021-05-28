@@ -35,7 +35,7 @@ const Search = () => {
         type="text"
         placeholder='Search'
         onFocus={useEffect(() => {
-          setSearchTerm(" ");
+          setSearchTerm("");
           dispatch(stockSearch())
         }, [dispatch])}
         onChange={handleChange}
@@ -47,7 +47,7 @@ const Search = () => {
         <ul>
           {searchResults?.map(item => (
             <div className='stock-search-items' onClick={() => {
-              setSearchTerm("");
+              setSearchTerm("-");
               history.push(`/stocks/${item.split(":")[0]}`);
             }}>
               <NavLink to={`/stocks/${item.split(":")[0]}`}>{item}</NavLink>
