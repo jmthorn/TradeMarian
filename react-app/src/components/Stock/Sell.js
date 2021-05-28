@@ -9,7 +9,6 @@ const Sell = ({ user, ticker_symbol, price, shares }) => {
     const [order, setOrder] = useState('Review Order')
     const [sharesSold, setSharesSold] = useState(0);
     const [buyingPower, setBuyingPower] = useState(user?.buying_power);
-
     // useEffect(() => {
     //     setUserShares(shares)
     // }, [shares])
@@ -21,6 +20,7 @@ const Sell = ({ user, ticker_symbol, price, shares }) => {
 
     const sellAsset = async (e) => {
         e.preventDefault();
+        setOrder('Ordered');
         setUserShares(userShares - sharesSold)
         setBuyingPower((Number(buyingPower) + Number(sellPrice)).toString());
         
@@ -40,7 +40,7 @@ const Sell = ({ user, ticker_symbol, price, shares }) => {
     if (sellAsset) {
         setTimeout(() => {
             setOrder('Review Order');
-        }, 3000);
+        }, 3500);
     }
 
     return (
@@ -76,7 +76,13 @@ const Sell = ({ user, ticker_symbol, price, shares }) => {
                     </div>
                 </div>
                 <div className='transaction-btn'>
-                    <button id='sell-btn' type="submit" onClick={(e) => sellAsset(e)} disabled={(sharesSold != "" && userShares >= sharesSold) ? false : true}>{order}</button>
+                    <button id='sell-btn' type="submit"
+                        onClick={(e) => {
+                            sellAsset(e);
+                        }}
+                        disabled={(sharesSold != "" && userShares >= sharesSold) ? false : true}>
+                        {order}
+                    </button>
                 </div>
             </form>
             <div className='transaction-labels' id='available-shares'>{userShares} Shares Available</div>

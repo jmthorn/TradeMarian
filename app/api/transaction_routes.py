@@ -23,9 +23,9 @@ def stock_data(ticker_symbol):
 
     holdings = {}
     for transaction in transactions:
-        if transaction.assets.ticker_symbol in holdings:
+        if transaction.assets.ticker_symbol in holdings and transaction.assets.ticker_symbol == ticker_symbol:
             holdings[ticker_symbol] += transaction.share_quantity
-        else:
+        elif transaction.assets.ticker_symbol and transaction.assets.ticker_symbol == ticker_symbol:
             holdings[ticker_symbol] = transaction.share_quantity
 
     return {"price": closePrice, "shares": holdings}
