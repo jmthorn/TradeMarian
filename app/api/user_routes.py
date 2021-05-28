@@ -55,7 +55,7 @@ def user():
     for symbol in shares.keys():
 
         response = requests.get(
-            f"https://sandbox.iexapis.com/stable/stock/{symbol}/chart/{daterange}?token={api_token}&chartCloseOnly=true")
+            f"https://cloud.iexapis.com/stable/stock/{symbol}/chart/{daterange}?token={api_token}&chartCloseOnly=true")
         data = response.json()
         history[symbol] = [{"date": dictionary["date"],
                             "value":dictionary["close"]} for dictionary in data]
