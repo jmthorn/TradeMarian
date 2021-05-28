@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
+import Logo from '../../images/logo.png'
 import Search from './Search';
 import './navbar.css'
 
@@ -54,7 +55,7 @@ const NavBar = () => {
       <ul id="nav-list">
         <li id="nav-home">
           <NavLink to="/" exact={true}>
-            <img className="logo" src={'/images/logo.png'} alt="logo" />
+            <img className="logo" src={Logo} alt="logo" />
           </NavLink>
         </li>
         {/* <li id="nav-search">

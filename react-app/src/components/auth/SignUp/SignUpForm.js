@@ -12,13 +12,14 @@ const SignUpForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
+  const [buyingPower, setBuyingPower] = useState("");
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      await dispatch(signUp(firstName, lastName, username, email, password));
+      await dispatch(signUp(firstName, lastName, username, email, password, buyingPower));
     }
   };
 
@@ -44,6 +45,10 @@ const SignUpForm = () => {
 
   const updateRepeatPassword = (e) => {
     setRepeatPassword(e.target.value);
+  };
+
+  const updateBuyingPower = (e) => {
+    setBuyingPower(e.target.value);
   };
 
   if (user) {
@@ -114,6 +119,16 @@ const SignUpForm = () => {
                   placeholder='Confirm Password'
                   onChange={updateRepeatPassword}
                   value={repeatPassword}
+                  required={true}
+                ></input>
+              </div>
+              <div className='signup-input'>
+                <input
+                  type="text"
+                  name="buying_power"
+                  placeholder='Buying Power'
+                  onChange={updateBuyingPower}
+                  value={buyingPower}
                   required={true}
                 ></input>
               </div>
