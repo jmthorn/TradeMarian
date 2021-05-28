@@ -83,7 +83,7 @@ export const deleteWatchlist = (listId) => async (dispatch) => {
 
 // add asset to a list
 export const addAssetWatchlist = (asset, watchlistId) => async (dispatch) => {
-    const res = await fetch(`/api/watchlists/${watchlistId}/${asset.id}`, {
+    const res = await fetch(`/api/watchlists/${watchlistId}/${asset}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -114,6 +114,7 @@ export const removeAsset = (assetId, watchlistId) => async (dispatch) => {
 
 let initialState = {}
 export default function reducer(state=initialState, action) {
+    let newState = {}
     switch (action.type) {
         // initially load watchlists
         case LOAD_WATCHLISTS: {
@@ -125,12 +126,13 @@ export default function reducer(state=initialState, action) {
             return {...state, ...action.list}
             // delete an entire watchlist
         case DELETE_WATCHLIST:
-            let newState = {...state};
+            newState = {...state};
             delete newState[action.payload]
             return newState
         case ADD_ASSET:
             newState = {...state};
-            newState[action.watchlistId].assets.append(action.asset);
+            console.log('AGASDGASTFASFASS', newState[action.payload.watchlistId]);
+            newState[action.payload.watchlistId].assets.push(action.payload.asset);
         case DELETE_ASSET:
             newState = {...state};
             // newState[action.watchlistId].assets.remove( assets.find(asset => asset.id == action.assetId) );

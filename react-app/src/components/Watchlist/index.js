@@ -20,7 +20,6 @@ const Watchlist = () => {
   }, [])
 
   const createWatchlist = async(e) => { 
-      // setNewWatchlist(e.target.value)
 
       let name = {
         watchlist_name: newWatchlist,

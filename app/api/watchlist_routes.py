@@ -93,13 +93,17 @@ def delete_asset_in_watchlist(watchlistId, assetId):
 """
 
 
+# @login_required
 @watchlist_routes.route('/<watchlistId>/<assetId>', methods=["POST"])
-@login_required
 def add_asset(watchlistId, assetId):
     asset_to_add = Asset.query.get(assetId)
-    Watchlist.query.get(watchlistId).assets.append(asset_to_add)
 
-    #  update?
+    watchlist = Watchlist.query.get(watchlistId)
+    watchlist.assets.append(asset_to_add)
+
     db.session.add(asset_to_add)
     db.session.commit()
-    return {asset_to_add}
+
+    res = asset_to_add.to_dict()
+
+    return res

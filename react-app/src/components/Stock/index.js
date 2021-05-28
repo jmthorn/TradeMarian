@@ -7,6 +7,7 @@ import Buy from './Buy';
 import Sell from './Sell';
 import StockGraph from './StockGraph';
 import WatchlistModal from '../../context/watchlistmodal/index';
+import { getWatchLists, addAssetWatchlist } from '../../store/watchlists';
 import News from '../News';
 
 import './stock.css';
@@ -51,11 +52,19 @@ const Stock = () => {
     const stockOverview = stock.stock_info;
     const dispatch = useDispatch();
     const user = useSelector(state => state.session.user);
+    const watchlists = useSelector(state => state.watchlists);
+
+    console.log('watchlistssssss', watchlists);
+
+    const [showDropdown, setShowDropdown] = useState(false);
+    const [checked, setChecked] = useState(0);
+    const onClick = () => setShowDropdown(true)
 
     const folders = [{ title: `Buy ${ticker_symbol}` }, { title: `Sell ${ticker_symbol}` }]
     const [currentTab, setCurrentTab] = useState(0);
     const folder = folders[currentTab];
     const titles = folders.map((folder) => folder.title);
+
 
     useEffect(() => {
         dispatch(stockInformation(ticker_symbol.toUpperCase()));
@@ -65,7 +74,33 @@ const Stock = () => {
         dispatch(getPriceShares(ticker_symbol.toUpperCase()));
     }, [dispatch, ticker_symbol]);
 
+    useEffect(async() => { 
+        await dispatch(getWatchLists())
+    }, [])
 
+    const watchlist_arr = Object.values(watchlists)
+
+    const Dropdown = () => (
+        <div id="watchlists-container">
+            {watchlist_arr.map((watchlist) => (
+                <a href={`/watchlists/${watchlist.watchlist.id}`}>
+                    <div className="watchlist-container">
+                        <p>{watchlist?.watchlist.watchlist_name}</p>
+                        <input type="radio" checked={checked === watchlist?.watchlist.id} onChange={() => setChecked(watchlist?.watchlist.id)} name="watchlist"></input>
+                        {console.log('after', checked)}
+                    </div>
+                </a>
+            ))}
+        </div>
+    )
+
+    const addToWatchlist = async(e) => { 
+
+        let watchlistId = checked;
+        let asset = stockOverview?.id
+  
+        await dispatch(addAssetWatchlist(asset, watchlistId))
+    }
 
     return (
         <div id='stock-container'>
@@ -85,7 +120,11 @@ const Stock = () => {
                             {currentTab === 1 && <Sell user={user} ticker_symbol={ticker_symbol.toUpperCase()} price={closePrice} shares={userShares} />}
                         </div>
                     </div>
-
+                    <div>
+                        <button onClick={onClick}>Add To List</button>
+                        { showDropdown ? <Dropdown/> : null}
+                        <button onClick={addToWatchlist}>Save Changes</button>
+                    </div>
                 </section>
             </div>
             <div id='stock-specific-info'>
