@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect, useHistory, NavLink } from "react-router-dom";
 import { login } from "../../../store/session";
+import Log_in_img from '../../../images/Log_in_img.jpg'
 import DemoButton from "../DemoButton";
 import './LoginForm.css';
 
@@ -35,7 +36,7 @@ const LoginForm = () => {
   return (
     <div className='login-page'>
       <div className='login-img'>
-        <img src={'/images/Log_in_img.jpg'} alt=""/>
+        <img src={Log_in_img} alt=""/>
       </div>
       <div className='login-form-container'>
         <form onSubmit={onLogin} className='login-form'>
