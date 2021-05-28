@@ -7,7 +7,7 @@ import json
 
 transaction_routes = Blueprint("transactions", __name__)
 
-stock_token = os.getenv('test_token')
+stock_token = os.getenv('STOCK_API')
 
 
 @transaction_routes.route('/<ticker_symbol>')

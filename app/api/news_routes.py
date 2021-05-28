@@ -4,14 +4,17 @@ import os
 
 news_routes = Blueprint('news', __name__)
 
-stock_token = os.environ.get('STOCK_API')
-stock_news = os.environ.get('All_NEWS_API')
+# stock_token = os.environ.get('STOCK_API')
+stock_news = os.environ.get('NEWS_API')
 
 
 @news_routes.route('/<ticker_symbol>')
-def specific_news(ticker_symbol):
+def specific_news(ticker_symbol):  # GE
+    # reqs = requests.get(
+    #     f"https://sandbox.iexapis.com/stable/stock/{ticker_symbol}/news/last/5?token={stock_token}")
+
     reqs = requests.get(
-        f"https://cloud.iexapis.com/stable/stock/{ticker_symbol}/news/?token={stock_token}")
+        f'https://newsapi.org/v2/everything?q=stocks&pageSize=5&apiKey={stock_news}')
 
     list_ = {}
 

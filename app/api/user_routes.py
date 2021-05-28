@@ -49,7 +49,7 @@ def user():
     #  GOOG: [{date: 03-06-2021, value:"close * holding.GOOG"}, {date: , value: },{date: , value: }.......], }
 
     daterange = "1y"
-    api_token = os.environ.get("API_TOKEN")
+    api_token = os.environ.get("STOCK_API")
     history = {}
 
     for symbol in shares.keys():
