@@ -28,6 +28,7 @@ export const genNews = () => async(dispatch) => {
 
 
 export const stockNews = (ticker_symbol) => async(dispatch) => { 
+    
     const response = await fetch(`/api/news/${ticker_symbol}`, {
         headers: { 
             'Content-Type': 'application/json'
@@ -37,7 +38,7 @@ export const stockNews = (ticker_symbol) => async(dispatch) => {
     if(data.errors) { 
         return 
     }
-    dispatch(setStockNews())
+    dispatch(setStockNews(data))
 }
 
 

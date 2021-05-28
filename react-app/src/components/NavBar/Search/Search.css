@@ -1,0 +1,42 @@
+#search-component input {
+  width: 430px;
+  padding: 0.6em 1em;
+  border: 1px solid rgb(180, 180, 180);
+  border-radius: 4px;
+  color: rgb(148, 147, 147);
+  margin-top: 0.45em;
+}
+
+#search-component input:hover {
+  background-color: rgb(243, 243, 243);
+}
+
+#search-component input:focus {
+  outline-color: #645b8c; 
+  border-bottom: 1px solid transparent;
+  
+}
+
+#search-component ul {
+  padding: 0;
+  background-color: white;
+  position: absolute;
+  z-index: 1;
+  width: 457px;
+  box-shadow: 0px 0px 15px rgb(209, 209, 209);
+}
+
+.stock-search-items {
+  padding: 5px 15px 2px;
+  background-color: white;
+  cursor: pointer;
+}
+
+.stock-search-items a {
+  color: black;
+  text-decoration: none;
+}
+
+.stock-search-items:hover {
+  background-color: rgb(243, 243, 243);
+}

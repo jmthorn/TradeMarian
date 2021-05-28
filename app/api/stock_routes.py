@@ -5,7 +5,7 @@ from app.models import Asset
 
 stock_routes = Blueprint("stocks", __name__)
 
-stock_token = os.getenv('test_token')
+stock_token = os.getenv('STOCK_API')
 
 
 @stock_routes.route('/<ticker_symbol>')
