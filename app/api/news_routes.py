@@ -24,6 +24,7 @@ def specific_news(ticker_symbol):  # GE
             list_[id] = dict_
             id += 1
 
+    print(list_)
     return list_
 
 
@@ -44,5 +45,4 @@ def all_news():
             news_[id] = d
             id += 1
 
-    # print(news_)
     return news_
