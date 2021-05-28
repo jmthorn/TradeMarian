@@ -49,3 +49,8 @@
   border-bottom: 1px solid lightgray;
   margin: 1em 0em;
 }
+
+h1 {
+  font-weight: 500;
+  font-size: 1.5em;
+}

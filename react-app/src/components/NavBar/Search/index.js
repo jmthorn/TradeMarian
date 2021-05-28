@@ -9,54 +9,67 @@ const Search = () => {
   const history = useHistory();
   const stocks = useSelector(state => state.search.searchInfo);
 
-  const tickerSymbols = stocks.stock_names?.map(stock => (stock['ticker_symbol']))
-  const companyNames = stocks.stock_names?.map(stock => (stock['company_name']))
+  const tickerSymbols = stocks.stock_names?.map(stock => (stock['ticker_symbol']));
+  const companyNames = stocks.stock_names?.map(stock => (stock['company_name']));
+
+  const names = tickerSymbols?.map((tickerSymbol, companyName) => {
+    return `${tickerSymbol}: ${companyNames[companyName]}`
+  })
 
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  // const [dropDown, setDropDown] = useState(false)
 
   const handleChange = e => {
     setSearchTerm(e.target.value);
   };
-  
+
+  // useEffect(() => {
+  //   setDropDown(true);
+  // }, [dropDown])
+
   useEffect(() => {
-    const results = tickerSymbols?.filter(symbol => symbol.toLowerCase().includes(searchTerm));
-    if (!results) setSearchTerm("");
+    const results = names?.filter(symbol => symbol.toLowerCase().includes(searchTerm.split(" ").join("")));
+
     setSearchResults(results);
   }, [searchTerm]);
 
-  // useEffect(() => {
-  //   if (!focus && searchTerm) {
-  //     setSearchTerm(" ");
-  //     setSearchResults([]);
-  //   }
-  // }, [searchTerm])
-  
   return (
     <div id='search-component'>
       <input
         type="text"
         placeholder='Search'
         onFocus={useEffect(() => {
-          setSearchTerm(" ");
+          // setDropDown(true);
+          setSearchTerm("");
           dispatch(stockSearch())
         }, [dispatch])}
         onChange={handleChange}
+        // onBlur={() => {
+          // setDropDown(false);
+          // setSearchTerm(searchTerm);
+          // setSearchResults([]);
+        // }}
         onClick={() => {
           setSearchTerm("");
           setSearchResults([]);
         }}
         value={searchTerm} />
+      <div id='search-results'>
         <ul>
-          {searchResults?.map(item => (
-            <div className='stock-search-items' onClick={() => {
-              setSearchTerm(" ");
-              history.push(`/stocks/${item}`);
-            }}>
-              <NavLink to={`/stocks/${item}`}>{item}</NavLink>
+          {/*dropDown && */searchResults?.map(item => (
+            <div className='stock-search-items'
+              onClick={() => {
+                setSearchTerm("-");
+                history.push(`/stocks/${item.split(":")[0]}`);
+              }}
+            >
+              <NavLink to={`/stocks/${item.split(":")[0]}`}>{item}</NavLink>
             </div>
           ))}
         </ul>
+      </div>
+
     </div>
   )
 }
