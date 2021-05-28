@@ -59,6 +59,9 @@ const Portfolio = () => {
   }
 
   const handleClick = (value) => {
+    if (!portfolio_data[0]) { 
+      return 
+    }
     setCurrentPrice(Math.round((value - totalCost) * 100) / 100)
     // condition on state of dateRange
     setCurrentChange(Math.abs(Math.round((value - portfolio_data[0].value)*100)) /100)
@@ -66,8 +69,9 @@ const Portfolio = () => {
     if (portfolio_data[(portfolio_data?.length) -1].value > portfolio_data[0].value) {
       setCurrentPercentChg( Math.abs(Math.round((((portfolio_data[0].value - value) / value)*100) *100)) /100)
     } else {
-      setCurrentPercentChg( Math.abs(Math.round((((value - portfolio_data[0].value) / portfolio_data[0].value)*100) *100)) /100 )
+      setCurrentPercentChg(Math.abs(Math.round((((value - portfolio_data[0].value) / portfolio_data[0].value)*100) *100)) /100)
     }
+
     //set sign
     if (portfolio_data[(portfolio_data?.length) -1].value > portfolio_data[0].value) {
       setSign('+')
@@ -99,6 +103,17 @@ const Portfolio = () => {
                 (${sign ? sign :  portfolio_data[(portfolio_data?.length) -1].value > portfolio_data[0].value  ? '+' : '-'}${currentPercentChg ? currentPercentChg : Math.abs(Math.round(((((portfolio_data[0].value - portfolio_data[(portfolio_data?.length) -1].value )/  portfolio_data[(portfolio_data?.length) -1].value ) * 100) * 100) /100))  }%)`}
                 { past ? past : 'Past Year'}
               </p>
+            </div>
+        </>
+      )
+    } else { 
+      return (
+        <>
+            <div id="ticker">
+              <h1 id="">You have no stocks!</h1>
+            </div>
+            <div id='ticker-change'>
+              <p>Get started by using the search bar to find a company whose stocks you'd like to buy</p>
             </div>
         </>
       )
@@ -164,14 +179,3 @@ const Portfolio = () => {
 export default Portfolio;
 
 
-
-{/* <div id='stock-container'>
-            <LineChart width={730} height={250} data={prices}
-                margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
-                <CartesianGrid horizontal={false} vertical={false} />
-                <XAxis dataKey="close" hide={true} />
-                <YAxis domain={['auto', 'auto']} hide={true} />
-                <Tooltip />
-                <Line type="monotone" dataKey="close" stroke={lineColor} strokeWidth={1.5} dot={false}/>
-            </LineChart>
-        </div> */}
