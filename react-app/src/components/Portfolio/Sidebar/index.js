@@ -64,7 +64,7 @@ const Sidebar = () => {
     
     const watchlist_arr = Object.values(watchlists)
 
-
+    
     return (
         <div id="sidebar-container">
         <div id="stock-title">
@@ -77,7 +77,7 @@ const Sidebar = () => {
         <div className="stock-line"></div>
         <div id="watchlists-container">
             {watchlist_arr.map((watchlist) => (
-                <a href={`/watchlists/${watchlistId}`}>
+                <a href={`/watchlists/${watchlist.watchlist.id}`}>
                     <div className="watchlist-container">
                         <p>{watchlist?.watchlist.watchlist_name}</p>
                     </div>

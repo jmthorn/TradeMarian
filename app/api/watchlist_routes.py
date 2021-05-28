@@ -16,33 +16,46 @@ watchlist_routes = Blueprint("watchlists", __name__)
 def get_user_watchlist():
     user_id = current_user.id
     # create new watchlist
-    if request.get_json():
+    if request.method == 'POST':
+        # {'watchlist_name': {'watchlist_name': '12345356431', 'user': 1}}
         json_data = request.get_json()
-        watchlist_name = json_data.watchlist_name
+        watchlist_name = json_data['watchlist_name']['watchlist_name']
+
+        # print('backeeeeeeeeend', watchlist_name)
 
         new_watchlist = Watchlist(
             watchlist_name=watchlist_name,
             user_id=user_id
         )
+
+        watchlist_dict = {
+            'watchlist_name': new_watchlist.watchlist_name,
+            'user_id': new_watchlist.user_id
+        }
+
+        # print('watchlist dict', watchlist_dict)
+
         db.session.add(new_watchlist)
         db.session.commit()
 
-    watchlists = Watchlist.query.filter(Watchlist.user_id == user_id).all()
+        return watchlist_dict
+    else:
+        watchlists = Watchlist.query.filter(Watchlist.user_id == user_id).all()
 
-    # for each watchlist grab assets
-    # hand back {watchlists :[ {watchlist: { id: 1, user_id: 1, watchlist_name: "list1", assets: [{asset1}, {asset2}]}},
-    #                          {watchlist: { id: 2, user_id: 1, watchlist_name: "list2", assets: [{asset1}]}}]}
-    watchlists_dict = {}
-    for watchlist in watchlists:
-        # watchlist = {'id': 1, 'watchlist_name': 'Watchlist', 'user_id': 1}
-        dict_assets = []
-        for asset in watchlist.assets:
-            dict_assets.append(asset.to_dict())
+        # for each watchlist grab assets
+        # hand back {watchlists :[ {watchlist: { id: 1, user_id: 1, watchlist_name: "list1", assets: [{asset1}, {asset2}]}},
+        #                          {watchlist: { id: 2, user_id: 1, watchlist_name: "list2", assets: [{asset1}]}}]}
+        watchlists_dict = {}
+        for watchlist in watchlists:
+            # watchlist = {'id': 1, 'watchlist_name': 'Watchlist', 'user_id': 1}
+            dict_assets = []
+            for asset in watchlist.assets:
+                dict_assets.append(asset.to_dict())
 
-        watchlists_dict[watchlist.id] = {
-            "watchlist": watchlist.to_dict(), "assets": dict_assets}
-        # {1: {'watchlist': <Watchlist 1>, 'assets': [<Asset 15>, <Asset 16>, <Asset 17>, <Asset 18>, <Asset 19>, <Asset 20>]}}
-    return watchlists_dict
+            watchlists_dict[watchlist.id] = {
+                "watchlist": watchlist.to_dict(), "assets": dict_assets}
+            # {1: {'watchlist': <Watchlist 1>, 'assets': [<Asset 15>, <Asset 16>, <Asset 17>, <Asset 18>, <Asset 19>, <Asset 20>]}}
+        return watchlists_dict
 
 
 """ Delete watchlist - remove an entire watchlist from a user's watchlists
@@ -56,7 +69,7 @@ def delete_user_watchlist(watchlistId):
     watchlist_to_delete = Watchlist.query.get(watchlistId)
     db.session.delete(watchlist_to_delete)
     db.session.commit()
-    return {watchlist_to_delete}
+    return watchlist_to_delete.to_dict()
 
 
 """ Update watchlist - remove single asset from a given watchlist

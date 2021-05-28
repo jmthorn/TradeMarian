@@ -49,7 +49,7 @@ export const getWatchLists = () => async (dispatch) => {
 
 // create a watchlist
 export const addNewWatchlist = (watchlist_name) => async (dispatch) => {
-    const res = await fetch('/api/watchlists', {
+    const res = await fetch('/api/watchlists/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -57,7 +57,7 @@ export const addNewWatchlist = (watchlist_name) => async (dispatch) => {
         body: JSON.stringify({
             watchlist_name
         }),
-    })
+    });
 
     if (res.ok) {
         const newList = await res.json();
@@ -70,6 +70,8 @@ export const deleteWatchlist = (listId) => async (dispatch) => {
     const res = await fetch(`/api/watchlists/${listId}`, {
         method: 'DELETE',
     });
+
+    console.log('reeeeeeeeeeeeeeeesssss', res);
 
     if (res.ok) {
         let list = await res.json();  
@@ -119,11 +121,12 @@ export default function reducer(state=initialState, action) {
         }
             // adding a new watchlist
         case CREATE_WATCHLIST:
-            return {...state, [action.list.id]: action.list}
+            // return {...state, [action.list.watchlist_name]: action.list}
+            return {...state, ...action.list}
             // delete an entire watchlist
         case DELETE_WATCHLIST:
             let newState = {...state};
-            delete newState[action.listId]
+            delete newState[action.payload]
             return newState
         case ADD_ASSET:
             newState = {...state};
