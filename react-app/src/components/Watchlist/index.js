@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom';
 import {getWatchLists, addNewWatchlist, deleteWatchlist} from '../../store/watchlists'
@@ -10,23 +10,28 @@ const Watchlist = () => {
   const user = useSelector(state => state.session.user)
   const watchlists = useSelector(state => state.watchlists)
   const dispatch = useDispatch()
-  const params = useParams()
+  const { watchlistId } = useParams()
 
-  let watchlistId = params.watchlistId
-
+  const [newWatchlist, setNewWatchlist] = useState('');
 
 
   useEffect(async() => { 
       await dispatch(getWatchLists())
   }, [])
 
-  const createWatchlist = async() => { 
-      await dispatch(addNewWatchlist())
+  const createWatchlist = async(e) => { 
+
+      let name = {
+        watchlist_name: newWatchlist,
+        user: user.id
+      }
+
+      await dispatch(addNewWatchlist(name))
   }
  
 
-  const deleteWatchlist = async() => { 
-      await dispatch(deleteWatchlist())
+  const deleted = async() => { 
+      await dispatch(deleteWatchlist(watchlistId))
   }
  
   const watchlist_arr = Object.values(watchlists)
@@ -35,8 +40,11 @@ const Watchlist = () => {
 
   return (
       <>
-        <button onClick={createWatchlist}>Create Watchlist</button>
-        <button onClick={deleteWatchlist}>Delete Watchlist</button>
+        <form>
+          <input onChange={(e) => setNewWatchlist(e.target.value)} value={newWatchlist} placeholder="Watchlist Name"></input>
+        </form>
+        <button onClick={() => createWatchlist(newWatchlist)}>Create Watchlist</button>
+        <button onClick={deleted}>Delete Watchlist</button>
       </>
   )
 };
