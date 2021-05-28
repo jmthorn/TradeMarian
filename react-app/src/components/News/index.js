@@ -7,13 +7,13 @@ import './news.css';
 
 const News = (props) => { //{ticker_symbol:AAPL}
 
-    // const stock_news = useSelector(state => state.news.stock_news)
+    const stock_news = useSelector(state => state.news.stock_news)
     const gen_news = useSelector(state => state?.news?.gen_news)
     const dispatch = useDispatch()
 
     useEffect(async() => { 
         if(props.ticker_symbol) { 
-            // await dispatch(stockNews(props.ticker_symbol))
+            await dispatch(stockNews(props.ticker_symbol))
         } else { 
             await dispatch(genNews())
         }
@@ -22,11 +22,26 @@ const News = (props) => { //{ticker_symbol:AAPL}
     let newsArray = []
     const news = () => { 
         if (props.ticker_symbol) { 
-            return(
-                <div>
-                    
-                </div>
-            )
+                for (const article in stock_news) { 
+                    newsArray.push(
+                        // <a href={stock_news[article].url}>
+                        //     <div key={article} className="article-container">
+                        //         <div className="article-information">
+                        //             <h3>{stock_news[article].source.name}</h3>
+                        //             <h2>{stock_news[article].title}</h2>
+                        //             <div>{stock_news[article].author}</div>
+                        //         </div>
+                        //         <div className="article-photo">
+                        //             <img src={stock_news[article].urlToImage} alt="news_story"></img>
+                        //         </div>
+                        //         <span className="portfolio-line"></span>
+                        //     </div>
+                        // </a>
+                        <div>
+                            
+                        </div>
+                    )  
+                }  
         } else {  
             for (const article in gen_news) { 
                 newsArray.push(
