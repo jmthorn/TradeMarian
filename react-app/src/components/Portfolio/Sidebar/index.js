@@ -62,6 +62,7 @@ const Sidebar = () => {
     }
 
     const createWatchlist = async(e) => { 
+        e.preventDefault()
 
         let name = {
           watchlist_name: newWatchlist,
@@ -95,10 +96,13 @@ const Sidebar = () => {
                     </a>
                 ))}
             </div>
-            <form>
-                <input required onChange={(e) => setNewWatchlist(e.target.value)} value={newWatchlist} placeholder="Watchlist Name"></input>
-            </form>
-            <button onClick={() => createWatchlist(newWatchlist)}>Create Watchlist</button>
+            <div className="stock-line"></div>
+            <div className="new-watchlist">
+                <form className="new-watchlist-form">
+                    <input required onChange={(e) => setNewWatchlist(e.target.value)} value={newWatchlist} placeholder="Watchlist Name"></input>
+                    <button onClick={(e) => createWatchlist(e)}>+</button>
+                </form>
+            </div>
         </div>
     )
 };

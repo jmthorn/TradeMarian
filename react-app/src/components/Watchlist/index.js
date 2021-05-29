@@ -22,6 +22,7 @@ const Watchlist = () => {
 
   const deleted = async() => { 
       await dispatch(deleteWatchlist(watchlistId))
+      history.push('/')
   }
   
   const deleteAsset = async(assetId) => {
@@ -32,19 +33,36 @@ const Watchlist = () => {
 
   return (
       <>
-        <div id="watchlists-container">
-                {pageWatchlist?.assets.map((asset) => (
-                  <div>
-                    <div>{asset.company_name}</div>
-                    <div>{asset.ticker_symbol}</div>
-                    <div>{asset.average_volume}</div>
-                    <div>{asset.dividend_yield}</div>
-                    <div>{asset.founded}</div>
-                    <button value={asset.id} onClick={(e) => deleteAsset(e.target.value)}>Delete Asset</button>
-                  </div>
-                ))}
+        <div className="watchlist-page">
+          <div className="watchlist-title">
+            <h2>{pageWatchlist?.watchlist?.watchlist_name}</h2>
+            <div>
+              <button onClick={deleted}>Delete Watchlist</button>
+            </div>
+          </div>
+          <div className="watchlist-line"></div>
+          <div id="watchlists-container">
+            <table>
+              <th>Company Name</th>
+              <th>Ticker Symbol</th>
+              <th>Average Volume</th>
+              <th>Divident Yield</th>
+              <th>Date Founded</th>
+              <th >Delete Asset</th>
+
+              {pageWatchlist?.assets.map((asset) => (
+                <tr>
+                  <td>{asset.company_name}</td>
+                  <td>{asset.ticker_symbol}</td>
+                  <td>{asset.average_volume}</td>
+                  <td>{asset.dividend_yield}</td>
+                  <td>{asset.founded}</td>
+                  <td className="delete-asset"><button value={asset.id} onClick={(e) => deleteAsset(e.target.value)}>x</button></td>
+                </tr>
+              ))}
+            </table>
+          </div>
         </div>
-        <button onClick={deleted}>Delete Watchlist</button>
       </>
   )
 };
