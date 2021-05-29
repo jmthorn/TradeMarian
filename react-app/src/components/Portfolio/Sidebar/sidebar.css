@@ -67,3 +67,27 @@
   background-color: rgb(238, 236, 236);
   background-size: 100%;
 }
+
+.new-watchlist-form {
+  display: flex;
+  flex-direction: row;
+  padding: 0.5em 0em;
+}
+
+.new-watchlist button {
+  font-size: 40px;
+  margin: 0em 0em 0em 1em;
+  border: 0em solid black;
+  background-color: #ffffff;
+  padding: 0em 0em;
+}
+
+.new-watchlist input {
+  font-size: 16px;
+  padding: 0em 1em 0em;
+  border-radius: 4em;
+}
+
+.new-watchlist input:focus {
+  outline-width: 0;
+}
