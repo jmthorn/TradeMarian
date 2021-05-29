@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {Link} from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom';
 import './sidebar.css';
 import { LineChart, Line, XAxis, YAxis } from "recharts";
-import {getWatchLists} from '../../../store/watchlists'
+import {getWatchLists, addNewWatchlist} from '../../../store/watchlists'
 
 const Sidebar = () => {
 
@@ -13,15 +13,14 @@ const Sidebar = () => {
   const shares = useSelector(state => state.portfolio?.portfolio?.shares)
   const equity = useSelector(state => state.portfolio?.portfolio?.equity)
   const watchlists = useSelector(state => state.watchlists)
+  const [newWatchlist, setNewWatchlist] = useState('');
 
   const params = useParams()
   const dispatch = useDispatch()
 
-  let watchlistId = params.watchlistId
-
   useEffect(async() => { 
       await dispatch(getWatchLists())
-  }, [])
+  }, [dispatch, watchlists])
 
   const charts = []
   const smallCharts = () => {
@@ -61,29 +60,45 @@ const Sidebar = () => {
       }
       return charts
     }
+
+    const createWatchlist = async(e) => { 
+
+        let name = {
+          watchlist_name: newWatchlist,
+          user: user.id
+        }
+  
+        await dispatch(addNewWatchlist(name))
+
+        setNewWatchlist('');
+    }
     
     const watchlist_arr = Object.values(watchlists)
 
-
+    
     return (
         <div id="sidebar-container">
-        <div id="stock-title">
-            <div className="sidebar-titles">Stocks</div>
-        </div>
-        <div className="stock-line"></div>
-        {smallCharts()}
-        <div className="stock-line"></div>
-        <div className="sidebar-titles">Your Watchlists</div>
-        <div className="stock-line"></div>
-        <div id="watchlists-container">
-            {watchlist_arr.map((watchlist) => (
-                <a href={`/watchlists/${watchlistId}`}>
-                    <div className="watchlist-container">
-                        <p>{watchlist?.watchlist.watchlist_name}</p>
-                    </div>
-                </a>
-            ))}
-        </div>
+            <div id="stock-title">
+                <div className="sidebar-titles">Stocks</div>
+            </div>
+            <div className="stock-line"></div>
+            {smallCharts()}
+            <div className="stock-line"></div>
+            <div className="sidebar-titles">Your Watchlists</div>
+            <div className="stock-line"></div>
+            <div id="watchlists-container">
+                {watchlist_arr.map((watchlist) => (
+                    <a href={`/watchlists/${watchlist?.watchlist?.id}`}>
+                        <div className="watchlist-container">
+                            <p>{watchlist?.watchlist?.watchlist_name}</p>
+                        </div>
+                    </a>
+                ))}
+            </div>
+            <form>
+                <input required onChange={(e) => setNewWatchlist(e.target.value)} value={newWatchlist} placeholder="Watchlist Name"></input>
+            </form>
+            <button onClick={() => createWatchlist(newWatchlist)}>Create Watchlist</button>
         </div>
     )
 };

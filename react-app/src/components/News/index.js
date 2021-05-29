@@ -24,22 +24,19 @@ const News = (props) => { //{ticker_symbol:AAPL}
         if (props.ticker_symbol) { 
                 for (const article in stock_news) { 
                     newsArray.push(
-                        // <a href={stock_news[article].url}>
-                        //     <div key={article} className="article-container">
-                        //         <div className="article-information">
-                        //             <h3>{stock_news[article].source.name}</h3>
-                        //             <h2>{stock_news[article].title}</h2>
-                        //             <div>{stock_news[article].author}</div>
-                        //         </div>
-                        //         <div className="article-photo">
-                        //             <img src={stock_news[article].urlToImage} alt="news_story"></img>
-                        //         </div>
-                        //         <span className="portfolio-line"></span>
-                        //     </div>
-                        // </a>
-                        <div>
-                            
-                        </div>
+                        <a href={stock_news[article].url}>
+                            <div key={article} className="article-container">
+                                <div className="article-information">
+                                    <h3>{stock_news[article].source.name}</h3>
+                                    <h2>{stock_news[article].title}</h2>
+                                    <div>{stock_news[article].author}</div>
+                                </div>
+                                <div className="article-photo">
+                                    <img src={stock_news[article].urlToImage} alt="news_story"></img>
+                                </div>
+                                <span className="portfolio-line"></span>
+                            </div>
+                        </a>
                     )  
                 }  
         } else {  
@@ -67,9 +64,11 @@ const News = (props) => { //{ticker_symbol:AAPL}
 
     return (
         <>
-            <h1>News</h1>
-            <span className="portfolio-line"></span>
-            {news()}
+            <div className="news-container">
+                <h1>News</h1>
+                <span className="portfolio-line"></span>
+                {news()}
+            </div>
         </>
     )
 }

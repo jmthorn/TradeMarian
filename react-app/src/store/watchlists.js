@@ -12,7 +12,7 @@ const loadWatchlists = (lists) => ({
 
 const createWatchlist = (list) => ({
     type: CREATE_WATCHLIST,
-    payload: list
+    list
 })
 
 const removeWatchlist = (listId) => ({
@@ -49,7 +49,7 @@ export const getWatchLists = () => async (dispatch) => {
 
 // create a watchlist
 export const addNewWatchlist = (watchlist_name) => async (dispatch) => {
-    const res = await fetch('/api/watchlists', {
+    const res = await fetch('/api/watchlists/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -57,7 +57,7 @@ export const addNewWatchlist = (watchlist_name) => async (dispatch) => {
         body: JSON.stringify({
             watchlist_name
         }),
-    })
+    });
 
     if (res.ok) {
         const newList = await res.json();
@@ -71,6 +71,8 @@ export const deleteWatchlist = (listId) => async (dispatch) => {
         method: 'DELETE',
     });
 
+    console.log('reeeeeeeeeeeeeeeesssss', res);
+
     if (res.ok) {
         let list = await res.json();  
         dispatch(removeWatchlist(listId))
@@ -81,7 +83,7 @@ export const deleteWatchlist = (listId) => async (dispatch) => {
 
 // add asset to a list
 export const addAssetWatchlist = (asset, watchlistId) => async (dispatch) => {
-    const res = await fetch(`/api/watchlists/${watchlistId}/${asset.id}`, {
+    const res = await fetch(`/api/watchlists/${watchlistId}/${asset}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -112,6 +114,7 @@ export const removeAsset = (assetId, watchlistId) => async (dispatch) => {
 
 let initialState = {}
 export default function reducer(state=initialState, action) {
+    let newState = {}
     switch (action.type) {
         // initially load watchlists
         case LOAD_WATCHLISTS: {
@@ -119,18 +122,23 @@ export default function reducer(state=initialState, action) {
         }
             // adding a new watchlist
         case CREATE_WATCHLIST:
-            return {...state, [action.list.id]: action.list}
+            newState = { ...state };
+            console.log('teeeeeeeeeeeeeeest', newState);
+            // newState[action.list] = action.list;
+
+            return newState;
             // delete an entire watchlist
         case DELETE_WATCHLIST:
-            let newState = {...state};
-            delete newState[action.listId]
+            newState = {...state};
+            delete newState[action.payload]
             return newState
         case ADD_ASSET:
             newState = {...state};
-            newState[action.watchlistId].assets.append(action.asset);
+            newState[action.payload.watchlistId].assets.push(action.payload.asset);
         case DELETE_ASSET:
             newState = {...state};
-            // newState[action.watchlistId].assets.remove( assets.find(asset => asset.id == action.assetId) );
+            // newState[action.watchlistId].assets.remove(find(asset => asset.id == action.assetId);
+            newState[action.payload.watchlistId].assets.filter(asset => asset.id !== action.payload.assetId);
             return newState;
         default:
             return state
