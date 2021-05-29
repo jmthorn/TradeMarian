@@ -32,20 +32,12 @@ def get_user_watchlist():
         db.session.commit()
 
         watchlists = Watchlist.query.filter(Watchlist.user_id == user_id).all()
+        last_watchlist = watchlists[-1]
 
-        # for each watchlist grab assets
-        # hand back {watchlists :[ {watchlist: { id: 1, user_id: 1, watchlist_name: "list1", assets: [{asset1}, {asset2}]}},
-        #                          {watchlist: { id: 2, user_id: 1, watchlist_name: "list2", assets: [{asset1}]}}]}
-        watchlists_dict = {}
-        for watchlist in watchlists:
-            # watchlist = {'id': 1, 'watchlist_name': 'Watchlist', 'user_id': 1}
-            dict_assets = []
-            for asset in watchlist.assets:
-                dict_assets.append(asset.to_dict())
+        watchlists_dict ={}
+        watchlists_dict[last_watchlist.id] = { "watchlist": last_watchlist.to_dict(), "assets": []}
 
-            watchlists_dict[watchlist.id] = {
-                "watchlist": watchlist.to_dict(), "assets": dict_assets}
-            # {1: {'watchlist': <Watchlist 1>, 'assets': [<Asset 15>, <Asset 16>, <Asset 17>, <Asset 18>, <Asset 19>, <Asset 20>]}}
+
         return watchlists_dict
 
     else:

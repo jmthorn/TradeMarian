@@ -18,9 +18,9 @@ const Sidebar = () => {
   const params = useParams()
   const dispatch = useDispatch()
 
-  useEffect(async() => { 
+  useEffect(async() => {
       await dispatch(getWatchLists())
-  }, [dispatch, watchlists])
+  }, [dispatch])
 
   const charts = []
   const smallCharts = () => {
@@ -68,15 +68,15 @@ const Sidebar = () => {
           watchlist_name: newWatchlist,
           user: user.id
         }
-  
+
         await dispatch(addNewWatchlist(name))
 
         setNewWatchlist('');
     }
-    
+
     const watchlist_arr = Object.values(watchlists)
 
-    
+
     return (
         <div id="sidebar-container">
             <div id="stock-title">
