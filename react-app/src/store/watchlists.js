@@ -61,6 +61,8 @@ export const addNewWatchlist = (watchlist_name) => async (dispatch) => {
 
     if (res.ok) {
         const newList = await res.json();
+        console.log("newlistttttttttttttttt", newList)
+
         dispatch(createWatchlist(newList))
     }
 }
@@ -71,10 +73,8 @@ export const deleteWatchlist = (listId) => async (dispatch) => {
         method: 'DELETE',
     });
 
-    console.log('reeeeeeeeeeeeeeeesssss', res);
-
     if (res.ok) {
-        let list = await res.json();  
+        let list = await res.json();
         dispatch(removeWatchlist(listId))
     }
 
@@ -123,9 +123,7 @@ export default function reducer(state=initialState, action) {
             // adding a new watchlist
         case CREATE_WATCHLIST:
             newState = { ...state };
-            console.log('teeeeeeeeeeeeeeest', newState);
-            // newState[action.list] = action.list;
-
+            newState[Object.keys(action.list)[0]] = action.list[Object.keys(action.list)[0]];
             return newState;
             // delete an entire watchlist
         case DELETE_WATCHLIST:
