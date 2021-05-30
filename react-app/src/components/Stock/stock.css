@@ -1,19 +1,28 @@
-#stock-graph {
-  margin: 40px 0 0 0;
-  display: flex;
+#stock-page-container {
+  margin: 8em 11em 0 11em;
+  /* display: block; */
+
+}
+
+
+/* GRAPH */
+#left-column-container {
+  display: inline-block;
   flex-direction: row;
   justify-content: center;
 }
 
 #stock-graph-container {
-  margin: 3em 1em 0;
-  display: flex;
+  margin: 0 auto;
+  display: block;
   flex-direction: column;
 }
 
 #stock-graph-btns {
   display: flex;
   flex-direction: row;
+  padding-bottom: .7em;
+  border-bottom: 1px solid lightgray;
 }
 
 #stock-graph-btns button {
@@ -21,35 +30,80 @@
   background-color: #ffffff;
   border: 0px solid #ffffff;
   font-size: 14px;
+  box-sizing: none;
+  outline:none;
 }
 
 #stock-graph-btns button:active {
   box-sizing: none;
-  /* border: none; */
   outline:none;
 }
 
-#stock-graph-btns button{
-  box-sizing: none;
-  /* border: none; */
-  outline:none;
+.stock-ticker-container {
+  line-height: 1em;
 }
 
-/* #stock-details {
-  display: flex;
+h1.company-name {
+  font-weight: 500;
+  font-size: 1.9em;
+  margin-bottom: 1.1em;
+  margin-top: 0em;
+}
+
+/* ABOUT INFO + NEWS */
+
+#stock-specific-info {
+  width: 800px;
+  display: block;
   flex-direction: column;
-} */
+  margin: 0 auto;
+}
+
+#about-stock h4 {
+  font-weight: 500;
+  font-size: 1.5em;
+  padding-bottom: .7em;
+  border-bottom: 1px solid lightgray;
+}
+
+
+.about-stock-table {
+  width: 800px;
+  margin-top: 2em;
+}
+
+.about-stock-table th {
+  text-align: left;
+  width: 200px;
+  font-weight: 500;
+  font-size: .9em;
+}
+
+#key-stats h4 {
+  font-weight: 500;
+  font-size: 1.5em;
+  padding-bottom: .7em;
+  border-bottom: 1px solid lightgray;
+  margin-top: 2.2em;
+}
+
+
 /* Buy Sell Component */
+.buy-sell-container {
+  float: right;
+  position: relative;
+
+}
 
 section {
+  position: fixed;
+  right: 10em;
   margin: 0 40px 10px;
   padding: 20px;
   border: 1px solid transparent;
   border-radius: 8px;
   box-shadow: 0px 0px 15px rgb(209, 209, 209);
 }
-
-
 
 .tab-header {
   margin: 0;

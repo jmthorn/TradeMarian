@@ -68,7 +68,6 @@ const Stock = () => {
     const dispatch = useDispatch();
     const watchlists = useSelector(state => state.watchlists);
 
-    console.log('watchlistssssss', watchlists);
 
     const [showDropdown, setShowDropdown] = useState(false);
     const [checked, setChecked] = useState(0);
@@ -82,13 +81,13 @@ const Stock = () => {
     useEffect(() => {
         dispatch(stockInformation(ticker_symbol.toUpperCase()));
     }, [dispatch, ticker_symbol]);
-   
+
 
     useEffect(async() => {
         await dispatch(getPriceShares(ticker_symbol.toUpperCase()));
     }, []);
 
-    useEffect(async() => { 
+    useEffect(async() => {
         await dispatch(getWatchLists())
     }, [])
 
@@ -107,28 +106,28 @@ const Stock = () => {
 
             if (timeInterval === '1Y') {
 
-                // setDateRange(stockData)
+                setDateRange(stockData)
                 setYearColor(lineColor)
                 setOneMonthColor("#353535")
                 setThreeMonthColor("#353535")
                 setSixMonthColor("#353535")
               } else if (timeInterval === '6M') {
 
-                // setDateRange(stockData.slice((stockData.length) / 2))
+                setDateRange(stockData.slice((stockData.length) / 2))
                 setYearColor("#353535")
                 setOneMonthColor("#353535")
                 setThreeMonthColor("#353535")
                 setSixMonthColor(lineColor)
               } else if (timeInterval === '3M') {
 
-                // setDateRange(stockData.slice(((stockData.length) / 4) * 3))
+                setDateRange(stockData.slice(((stockData.length) / 4) * 3))
                 setYearColor("#353535")
                 setOneMonthColor("#353535")
                 setThreeMonthColor(lineColor)
                 setSixMonthColor("#353535")
               } else if (timeInterval === '1M') {
 
-                // setDateRange(stockData.slice(((stockData.length) / 12) * 11))
+                setDateRange(stockData.slice(((stockData.length) / 12) * 11))
                 setYearColor("#353535")
                 setOneMonthColor(lineColor)
                 setThreeMonthColor("#353535")
@@ -138,27 +137,27 @@ const Stock = () => {
 
     }, [timeInterval, stockData, lineColor, yearColor, oneMonthColor, threeMonthColor, sixMonthColor])
 
-    const dateFunc = (date) => {
-        if(date == '1Y') {
-          setTimeInterval('1Y')
-          setDateRange(stockData)
-        } else if (date == '6m') {
-          setTimeInterval('6m')
-          setDateRange(stockData.slice((stockData.length) / 2))
-        } else if (date == '1m') {
-          setTimeInterval('1m')
-          setDateRange(stockData.slice(((stockData.length) / 12) * 11))
-        } else if (date == '3m') {
-          setTimeInterval('3m')
-          setDateRange(stockData.slice(((stockData.length) / 4) * 3))
-        }
-    }
+    // const dateFunc = (date) => {
+    //     if(date == '1Y') {
+    //       setTimeInterval('1Y')
+    //       setDateRange(stockData)
+    //     } else if (date == '6m') {
+    //       setTimeInterval('6m')
+    //       setDateRange(stockData.slice((stockData.length) / 2))
+    //     } else if (date == '1m') {
+    //       setTimeInterval('1m')
+    //       setDateRange(stockData.slice(((stockData.length) / 12) * 11))
+    //     } else if (date == '3m') {
+    //       setTimeInterval('3m')
+    //       setDateRange(stockData.slice(((stockData.length) / 4) * 3))
+    //     }
+    // }
 
     if(!stockData) return null
 
 
-
-      const handleClick = (price) => {
+    // handle mouse over graph
+    const handleMouseOver = (price) => {
         setCurrentPrice(price?.toFixed(2))
         // condition on state of dateRange
         setCurrentChange( Math.abs( (price - stockData[0].price).toFixed(2) ) )
@@ -184,7 +183,7 @@ const Stock = () => {
         } else if (timeInterval == '1Y') {
           setPast('Past Year')
         }
-      }
+    }
 
     const watchlist_arr = Object.values(watchlists)
 
@@ -202,58 +201,108 @@ const Stock = () => {
         </div>
     )
 
-    const addToWatchlist = async(e) => { 
-
+    const addToWatchlist = async(e) => {
         let watchlistId = checked;
         let asset = stockOverview?.id
-  
         await dispatch(addAssetWatchlist(asset, watchlistId))
     }
 
     return (
-        <div id='stock-container'>
-            {stockOverview?.company_name}
-            <div id='stock-graph'>
-            <div id='stock-graph-container'>
-                <div className='stock-ticker-container'>
-                <div id="ticker">
-                        <h1 id="">${currentPrice ? currentPrice : (stockData[(stockData?.length)-1]['price']).toFixed(2)}</h1>
-                </div>
-                <div id='ticker-change'>
-                    <p>{`${sign ? sign : stockData[(stockData?.length) -1].price > stockData[0].price ? '+' : '-'}$${ currentChange ? currentChange : Math.abs( (stockData[(stockData?.length) -1].price - stockData[0].price).toFixed(2) )}
-                    (${sign ? sign : stockData[(stockData?.length) -1].price > stockData[0].price ? '+' : '-'}${currentPercentChg ? currentPercentChg : Math.abs( (((stockData[0].price - stockData[(stockData?.length) -1].price)/ stockData[(stockData?.length) -1].price) * 100).toFixed(5) )  }%)`}
-                    { past ? past : 'Past Year'}
-                    </p>
-                </div>
-                </div>
-                <LineChart width={730} height={250} data={dateRange ? dateRange : stockData}
-                margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
-                onMouseMove={(e) => handleClick(e.activePayload ? e?.activePayload[0].payload.price : stockData[(stockData.length)-1].price)}
-                >
-                <XAxis dataKey="date" hide={true} />
-                <YAxis dataKey="price" domain={['auto', 'auto']} hide={true} />
-                <Tooltip />
-                <Line type="monotone" dataKey="price" stroke={lineColor} strokeWidth={1.5} dot={false} />
-                </LineChart>
-                <div id='stock-graph-btns'>
-                <div>
-                    <button style={{color: oneMonthColor}} type='button' value='1M' onClick={(e) => [setTimeInterval(e.target.value), dateFunc(e.target.value)]}>1M</button>
-                </div>
-                <div>
-                    <button style={{color: threeMonthColor}} type='button' value='3M' onClick={(e) => setTimeInterval(e.target.value)}>3M</button>
-                </div>
-                <div>
-                    <button style={{color: sixMonthColor}} type='button' value='6M' onClick={(e) => setTimeInterval(e.target.value)}>6M</button>
-                </div>
-                <div>
-                    <button style={{color: yearColor}} type='button' value='1Y' onClick={(e) => setTimeInterval(e.target.value)}>1Y</button>
-                </div>
-                </div>
-            </div>
+        <div id='stock-page-container'>
 
+            <div id='left-column-container'>
+                <div id='stock-graph-container'>
 
+                    <div className='stock-ticker-container'>
+                        <h1 className='company-name'>{stockOverview?.company_name}</h1>
+                        <div id="ticker">
+                                <h1 id="">${currentPrice ? currentPrice : (stockData[(stockData?.length)-1]['price']).toFixed(2)}</h1>
+                        </div>
+                        <div id='ticker-change'>
+                            <p>{`${sign ? sign : stockData[(stockData?.length) -1].price > stockData[0].price ? '+' : '-'}$${ currentChange ? currentChange : Math.abs( (stockData[(stockData?.length) -1].price - stockData[0].price).toFixed(2) )}
+                            (${sign ? sign : stockData[(stockData?.length) -1].price > stockData[0].price ? '+' : '-'}${currentPercentChg ? currentPercentChg : Math.abs( (((stockData[0].price - stockData[(stockData?.length) -1].price)/ stockData[(stockData?.length) -1].price) * 100).toFixed(5) )  }%)`}
+                            { past ? past : 'Past Year'}
+                            </p>
+                        </div>
+                    </div>
+                    <LineChart width={800} height={250} data={dateRange ? dateRange : stockData}
+                    margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+                    onMouseMove={(e) => handleMouseOver(e.activePayload ? e?.activePayload[0].payload.price : stockData[(stockData.length)-1].price)}
+                    >
+                    <XAxis dataKey="date" hide={true} />
+                    <YAxis dataKey="price" domain={['auto', 'auto']} hide={true} />
+                    <Tooltip />
+                    <Line type="monotone" dataKey="price" stroke={lineColor} strokeWidth={1.5} dot={false} />
+                    </LineChart>
+                    <div id='stock-graph-btns'>
+                        <div>
+                            <button style={{color: oneMonthColor}} type='button' value='1M' onClick={(e) => setTimeInterval(e.target.value)}>1M</button>
+                        </div>
+                        <div>
+                            <button style={{color: threeMonthColor}} type='button' value='3M' onClick={(e) => setTimeInterval(e.target.value)}>3M</button>
+                        </div>
+                        <div>
+                            <button style={{color: sixMonthColor}} type='button' value='6M' onClick={(e) => setTimeInterval(e.target.value)}>6M</button>
+                        </div>
+                        <div>
+                            <button style={{color: yearColor}} type='button' value='1Y' onClick={(e) => setTimeInterval(e.target.value)}>1Y</button>
+                        </div>
+                    </div>
 
+                </div> {/* end of stock-graph-container */}
 
+                <div id='stock-specific-info'>
+                    <div id='about-stock'>
+                        <h4>About</h4>
+                        <p>{stockOverview?.description}</p>
+                        <table className='about-stock-table'>
+                            <thead>
+                                <tr>
+                                    <th>CEO</th>
+                                    <th>Employees</th>
+                                    <th>Headquarters</th>
+                                    <th>Founded</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{stockOverview?.ceo}</td>
+                                    <td>{stockOverview?.employees}</td>
+                                    <td>{stockOverview?.headquarters}</td>
+                                    <td>{stockOverview?.founded}</td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id='key-stats'>
+                        <h4>Key Statistics</h4>
+                        <table className='key-stats-table'>
+                            <thead>
+                                <tr>
+                                    <th>Market Cap</th>
+                                    <th>Price-Earnings Ratio</th>
+                                    <th>Dividend Yield</th>
+                                    <th>Average Volume</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{stockOverview?.market_cap}</td>
+                                    <td>{stockOverview?.price_earning_ratio}</td>
+                                    <td>{stockOverview?.dividend_yield}</td>
+                                    <td>{stockOverview?.average_volume}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div> {/* end key-stats /*/}
+                    <News ticker_symbol={ticker_symbol} />
+                </div> {/* end of stock-specific-info */}
+
+            </div> {/* end of left-column-container */}
+
+            <div className='buy-sell-container'>
                 <section>
                     <div className='tabs'>
                         <Headers
@@ -273,45 +322,8 @@ const Stock = () => {
                         <button onClick={addToWatchlist}>Save Changes</button>
                     </div>
                 </section>
-            </div>
-            <div id='stock-specific-info'>
-                <div id='about-stock'>
-                    <h4>About</h4>
-                    {stockOverview?.description}
-                    <div>
-                        CEO
-                        <div>{stockOverview?.ceo}</div>
-                    </div>
-                    <div>
-                        Employees
-                        <div>{stockOverview?.employees}</div>
-                    </div>
-                    <div>
-                        Headquarters
-                        <div>{stockOverview?.headquarters}</div>
-                    </div>
-                    <div>
-                        Founded
-                        <div>{stockOverview?.founded}</div>
-                    </div>
-                </div>
-                <div id='key-stats'>
-                    <h4>Key Statistics</h4>
-                    <div>
-                        Market Cap
-                        <div>{stockOverview?.market_cap}</div>
-                    </div>
-                    <div>
-                        Price-Earnings Ratio
-                        <div>{stockOverview?.price_earning_ratio}</div>
-                    </div>
-                    <div>
-                        Average Volume
-                        <div>{stockOverview?.average_volume}</div>
-                    </div>
-                </div>
-            </div>
-            <News ticker_symbol={ticker_symbol} />
+            </div> {/* end of .buy-sell-sidebar */}
+
         </div>
     )
 }
