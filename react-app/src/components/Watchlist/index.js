@@ -15,21 +15,21 @@ const Watchlist = () => {
   let pageWatchlist = watchlist_arr.find((watchlist) => watchlist.watchlist.id == watchlistId)
 
 
-  useEffect(async() => { 
+  useEffect(async() => {
       await dispatch(getWatchLists())
-  }, [dispatch, pageWatchlist])
+  }, [dispatch])
 
 
-  const deleted = async() => { 
+  const deleted = async() => {
       await dispatch(deleteWatchlist(watchlistId))
       history.push('/')
   }
-  
+
   const deleteAsset = async(assetId) => {
     let id = pageWatchlist?.watchlist?.id;
     await dispatch(removeAsset(assetId, id))
   }
-  
+
 
   return (
       <>

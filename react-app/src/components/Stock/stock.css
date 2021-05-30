@@ -1,19 +1,27 @@
-#stock-graph {
-  margin: 40px 0 0 0;
-  display: flex;
+#stock-page-container {
+  margin: 6em 11em 0 11em;
+
+}
+
+
+/* GRAPH */
+#left-column-container {
+  display: inline-block;
   flex-direction: row;
   justify-content: center;
 }
 
 #stock-graph-container {
-  margin: 3em 1em 0;
-  display: flex;
+  margin: 0 auto;
+  display: block;
   flex-direction: column;
 }
 
 #stock-graph-btns {
   display: flex;
   flex-direction: row;
+  padding-bottom: .7em;
+  border-bottom: 1px solid lightgray;
 }
 
 #stock-graph-btns button {
@@ -21,35 +29,105 @@
   background-color: #ffffff;
   border: 0px solid #ffffff;
   font-size: 14px;
+  box-sizing: none;
+  outline:none;
 }
 
 #stock-graph-btns button:active {
   box-sizing: none;
-  /* border: none; */
   outline:none;
 }
 
-#stock-graph-btns button{
-  box-sizing: none;
-  /* border: none; */
-  outline:none;
+.stock-ticker-container {
+  line-height: 1em;
 }
 
-/* #stock-details {
+h1.company-name {
+  font-weight: 500;
+  font-size: 1.9em;
+  margin-bottom: 1.1em;
+  margin-top: .5em;
+}
+
+/* ABOUT INFO + NEWS */
+
+#stock-specific-info {
+  width: 800px;
+  display: block;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+#about-stock h4 {
+  font-weight: 500;
+  font-size: 1.5em;
+  padding-bottom: .7em;
+  border-bottom: 1px solid lightgray;
+}
+
+.about-stock-table {
+  width: 800px;
+  margin-top: 2em;
+}
+
+.about-stock-table th {
+  text-align: left;
+  width: 200px;
+  font-weight: 500;
+  font-size: .9em;
+}
+
+#key-stats h4 {
+  font-weight: 500;
+  font-size: 1.5em;
+  padding-bottom: .7em;
+  border-bottom: 1px solid lightgray;
+  margin-top: 2.2em;
+}
+
+.key-stats-table {
+  width: 800px;
+  margin-top: 2em;
+  margin-bottom: 3em;
+}
+
+.key-stats-table th {
+  text-align: left;
+  width: 200px;
+  font-weight: 500;
+  font-size: .9em;
+}
+
+
+/* Buy Sell Component */
+div.buy-sell-container {
+  float: right;
+  position: relative;
   display: flex;
   flex-direction: column;
-} */
-/* Buy Sell Component */
 
-section {
-  margin: 0 40px 10px;
+}
+
+.fixed-container {
+  position: fixed;
+  right: 16em;
+  height: 600px;
+  overflow-y: auto;
+  /* top: 0;
+  bottom: 0; */
+
+}
+
+section.buy-sell {
+  display: block;
   padding: 20px;
+  margin: .8em 2em 2em 2em;
   border: 1px solid transparent;
   border-radius: 8px;
   box-shadow: 0px 0px 15px rgb(209, 209, 209);
+  width: 250px;
+  height: 360px;
 }
-
-
 
 .tab-header {
   margin: 0;
@@ -91,9 +169,10 @@ section {
   border-bottom: 2px solid #645b8c;
 }
 
-.tabs {
+/* #tabs {
   width: 232px;
-}
+  margin-right: 0;
+} */
 
 .tab-content {
   /* font-weight: bold; */
@@ -129,6 +208,9 @@ hr {
 .transaction-btn {
   display: flex;
   justify-content: center;
+  padding-bottom: 2em;
+  border-bottom: 1px solid lightgray;
+
 }
 
 .transaction-btn button {
@@ -151,7 +233,7 @@ hr {
 }
 
 #available-shares, #buying-power {
-  margin-top: 30px;
+  margin-top: 20px;
   text-align: center;
   color: #7268a0;
 }
@@ -167,3 +249,130 @@ hr {
 #shares:focus {
   outline-color: #7268a0;
 }
+
+/* WATCHLIST DROP DOWN */
+
+button#add-to-list {
+  color: #645b8c;
+  border: 2px solid #645b8c;
+  background-color: white;
+  width: 80%;
+  height: 50px;
+  margin: 20px auto 0 15px;
+  border-radius: 5px;
+  text-justify: center;
+}
+
+button#add-to-list:hover {
+  background-color: #645b8c20
+}
+
+span#add-plus {
+  font-size: 1.5em;
+}
+
+span#add-txt {
+  font-size: 1em;
+}
+
+section.watchlist-dropdown{
+  display: block;
+  margin: 0em 0em 0em 2em;
+
+}
+
+.watchlists-container {
+  display: block;
+  padding: 20px;
+  margin: .8em 2em 2em 0em;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  box-shadow: 0px 0px 15px rgb(209, 209, 209);
+  width: 250px;
+}
+
+.watchlists-container a{
+  text-decoration: none;
+  color: #353535;
+  display: flex;
+  align-items: center;
+}
+
+.watchlists-list {
+  margin-top: 1em;
+}
+
+.watchlist {
+  margin-left: 2em;
+  margin-top: .5em;
+}
+
+.watchlist:hover {
+  background-color: lightgray;
+}
+
+button#save-button:disabled,
+button#save-button[disabled] {
+  background-color: grey;
+
+}
+
+button#save-button {
+  border: none;
+  background-color: #645b8c;
+  color: white;
+  width: 80%;
+  height: 45px;
+  margin: 20px auto 0 24px;
+  border-radius: 5px;
+
+}
+
+button#cancel-button {
+  border: none;
+  outline: none;
+  color: #353535;
+  display: block;
+  background-color: white;
+  margin: 1em 0 0 7em;
+}
+
+button#cancel-button:hover {
+  color: #35353580;
+}
+
+.choice-container {
+  margin-left: 3em;
+}
+
+label > input[type="radio"] {
+  display: none;
+}
+
+label > input[type="radio"] + *::before {
+  content: "";
+  display: inline-block;
+  vertical-align: bottom;
+  width: 1rem;
+  height: 1rem;
+  margin-right: 0.3rem;
+  border-radius: 50%;
+  border-style: solid;
+  border-width: 0.1rem;
+  border-color: gray;
+}
+
+label > input[type="radio"]:checked + * {
+  color: #645b8c;
+}
+
+label > input[type="radio"]:checked + *::before {
+  background: radial-gradient(#645b8c 0%, #645b8c 40%, transparent 50%, transparent);
+  border-color: #645b8c;
+}
+/* span.radio-label{
+  margin-left: 4em;
+  text-decoration: none;
+  color: #353535;
+
+} */

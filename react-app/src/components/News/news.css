@@ -19,11 +19,17 @@
 
 .article-container h2 {
   margin: 1em 0em;
+  font-size: 20px;
+  font-weight: 500;
 }
 
-.article-container h2 {
-  font-size: 20px;
+.article-container h3 {
+  margin: 1em 0em;
+  font-size: 15px;
+  font-weight: 500;
 }
+
+
 
 .article-information {
   display: flex;

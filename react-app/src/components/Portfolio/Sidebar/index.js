@@ -51,7 +51,7 @@ const Sidebar = () => {
                         </LineChart>
                     </div>
                     <div>
-                        <div>{`$${ Math.round(equity[stock]*100) /100 }`}</div>
+                        <div>{`$${ equity[stock].toFixed(2) }`}</div>
                     </div>
                 </div>
               </Link>
@@ -61,7 +61,7 @@ const Sidebar = () => {
       return charts
     }
 
-    const createWatchlist = async(e) => { 
+    const createWatchlist = async(e) => {
         e.preventDefault()
 
         let name = {
