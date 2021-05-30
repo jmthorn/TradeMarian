@@ -71,6 +71,7 @@ const Stock = () => {
 
     const [showDropdown, setShowDropdown] = useState(false);
     const [checked, setChecked] = useState(0);
+    const [choiceMade, setChoiceMade] = useState(false)
     const onClick = () => setShowDropdown(true)
 
 
@@ -188,20 +189,27 @@ const Stock = () => {
     const watchlist_arr = Object.values(watchlists)
 
     const Dropdown = () => (
-        <div id="watchlists-container">
+        <div className="watchlists-container">
+            <div className='watchlists-list'>
             {watchlist_arr.map((watchlist) => (
                 <a href={`/watchlists/${watchlist.watchlist.id}`}>
-                    <div className="watchlist-container">
-                        <p>{watchlist?.watchlist.watchlist_name}</p>
-                        <input type="radio" checked={checked === watchlist?.watchlist.id} onChange={() => setChecked(watchlist?.watchlist.id)} name="watchlist"></input>
-                        {console.log('after', checked)}
+                    <div className="watchlist">
+                        <label className='choice-container'>
+                            <input type="radio" checked={checked === watchlist?.watchlist.id} onChange={() => [setChoiceMade(true), setChecked(watchlist?.watchlist.id)]} name="watchlist"></input>
+                            <span id='radio-label'>{watchlist?.watchlist.watchlist_name}</span>
+                        </label>
                     </div>
                 </a>
             ))}
+            </div>
+
+            <button id='save-button' disabled={!choiceMade} onClick={addToWatchlist}>Save Changes</button>
+            <button id='cancel-button' onClick={() => setShowDropdown(false)}>Cancel</button>
         </div>
     )
 
     const addToWatchlist = async(e) => {
+        setShowDropdown(false)
         let watchlistId = checked;
         let asset = stockOverview?.id
         await dispatch(addAssetWatchlist(asset, watchlistId))
@@ -303,26 +311,27 @@ const Stock = () => {
             </div> {/* end of left-column-container */}
 
             <div className='buy-sell-container'>
-                <section>
-                    <div className='tabs'>
-                        <Headers
-                            titles={titles}
-                            currentTab={currentTab}
-                            selectTab={setCurrentTab}
-                        />
-                        <div className='tab-content'>
-                            {currentTab === 0 &&
-                                <Buy user={user} ticker_symbol={ticker_symbol.toUpperCase()} price={closePrice} />}
-                            {currentTab === 1 && <Sell user={user} ticker_symbol={ticker_symbol.toUpperCase()} price={closePrice} shares={userShares} />}
+                <div className='fixed-container'>
+                    <section className='buy-sell'>
+                        <div id='tabs'>
+                            <Headers
+                                titles={titles}
+                                currentTab={currentTab}
+                                selectTab={setCurrentTab}
+                            />
+                            <div className='tab-content'>
+                                {currentTab === 0 &&
+                                    <Buy user={user} ticker_symbol={ticker_symbol.toUpperCase()} price={closePrice} />}
+                                {currentTab === 1 && <Sell user={user} ticker_symbol={ticker_symbol.toUpperCase()} price={closePrice} shares={userShares} />}
+                            </div>
                         </div>
-                    </div>
-                    <div>
-                        <button onClick={onClick}>Add To List</button>
-                        { showDropdown ? <Dropdown/> : null}
-                        <button onClick={addToWatchlist}>Save Changes</button>
-                    </div>
-                </section>
-            </div> {/* end of .buy-sell-sidebar */}
+                    </section>
+                    <section className='watchlist-dropdown'>
+                        { showDropdown ? <Dropdown/> : <button id='add-to-list' onClick={onClick}><span id='add-plus'>+  </span ><span id='add-txt'>Add to Lists</span></button>}
+                    </section> {/* end watchlist-dropdown-container */}
+                </div>
+
+            </div> {/* end of .buy-sell-container */}
 
         </div>
     )
