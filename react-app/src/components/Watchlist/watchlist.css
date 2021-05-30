@@ -57,6 +57,11 @@
   padding: 0.5em 0em;
 }
 
+#watchlists-container a {
+  text-decoration: none;
+  color: black;
+}
+
 .delete-asset button {
   margin: auto;
 }

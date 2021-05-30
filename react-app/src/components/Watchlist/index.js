@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory, useParams } from 'react-router-dom';
+import { Link, useHistory, useParams } from 'react-router-dom';
 import {getWatchLists, removeAsset, deleteWatchlist} from '../../store/watchlists'
 import './watchlist.css';
 
@@ -52,11 +52,11 @@ const Watchlist = () => {
 
               {pageWatchlist?.assets.map((asset) => (
                 <tr>
-                  <td>{asset.company_name}</td>
-                  <td>{asset.ticker_symbol}</td>
-                  <td>{asset.average_volume}</td>
-                  <td>{asset.dividend_yield}</td>
-                  <td>{asset.founded}</td>
+                  <td><Link to={`/stocks/${asset.ticker_symbol}`} >{asset.company_name}</Link></td>
+                  <td><Link to={`/stocks/${asset.ticker_symbol}`} >{asset.ticker_symbol}</Link></td>
+                  <td><Link to={`/stocks/${asset.ticker_symbol}`} >{asset.average_volume}</Link></td>
+                  <td><Link to={`/stocks/${asset.ticker_symbol}`} >{asset.dividend_yield}</Link></td>
+                  <td><Link to={`/stocks/${asset.ticker_symbol}`} >{asset.founded}</Link></td>
                   <td className="delete-asset"><button value={asset.id} onClick={(e) => deleteAsset(e.target.value)}>x</button></td>
                 </tr>
               ))}
