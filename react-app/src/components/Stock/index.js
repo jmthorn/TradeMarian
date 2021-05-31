@@ -199,124 +199,127 @@ const Stock = () => {
     }
 
     return (
-        <div id='stock-page-container'>
+        <div id='outer'>
+            <div id='stock-page-container'>
 
-            <div id='left-column-container'>
-                <div id='stock-graph-container'>
+                <div id='left-column-container'>
+                    <div id='stock-graph-container'>
+                       <div className='stock-ticker-container'>
+                            <h1 className='company-name'>{stockOverview?.company_name}</h1>
+                            <div id="ticker">
+                                    <h1 id="">${currentPrice ? currentPrice : (stockData[(stockData?.length)-1]['price']).toFixed(2)}</h1>
+                            </div>
+                            <div id='ticker-change'>
+                                <p>{`${sign ? sign : stockData[(stockData?.length) -1].price > stockData[0].price ? '+' : '-'}$${ currentChange ? currentChange.toFixed(2) : Math.abs( (stockData[(stockData?.length) -1].price - stockData[0].price).toFixed(2) )}
+                                (${sign ? sign : stockData[(stockData?.length) -1].price > stockData[0].price ? '+' : '-'}${currentPercentChg ? currentPercentChg.toFixed(5) : Math.abs( (((stockData[0].price - stockData[(stockData?.length) -1].price)/ stockData[(stockData?.length) -1].price) * 100).toFixed(5) )  }%)`}
+                                { past ? past : 'Past Year'}
+                                </p>
+                            </div>
 
-                    <div className='stock-ticker-container'>
-                        <h1 className='company-name'>{stockOverview?.company_name}</h1>
-                        <div id="ticker">
-                                <h1 id="">${currentPrice ? currentPrice : (stockData[(stockData?.length)-1]['price']).toFixed(2)}</h1>
                         </div>
-                        <div id='ticker-change'>
-                            <p>{`${sign ? sign : stockData[(stockData?.length) -1].price > stockData[0].price ? '+' : '-'}$${ currentChange ? currentChange.toFixed(2) : Math.abs( (stockData[(stockData?.length) -1].price - stockData[0].price).toFixed(2) )}
-                            (${sign ? sign : stockData[(stockData?.length) -1].price > stockData[0].price ? '+' : '-'}${currentPercentChg ? currentPercentChg.toFixed(5) : Math.abs( (((stockData[0].price - stockData[(stockData?.length) -1].price)/ stockData[(stockData?.length) -1].price) * 100).toFixed(5) )  }%)`}
-                            { past ? past : 'Past Year'}
-                            </p>
-                        </div>
-                    </div>
-                    <LineChart width={800} height={250} data={dateRange ? dateRange : stockData}
-                        margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
-                        onMouseMove={(e) => handleMouseOver(e.activePayload ? e?.activePayload[0].payload.price : stockData[(stockData.length)-1].price)}
-                        >
-                        <XAxis dataKey="date" hide={true} />
-                        <YAxis dataKey="price" domain={['auto', 'auto']} hide={true} />
-                        <Tooltip />
-                        <Line type="monotone" dataKey="price" stroke={lineColor} strokeWidth={1.5} dot={false} />
-                    </LineChart>
-                    <div id='stock-graph-btns'>
-                        <div>
-                            <button style={{color: oneMonthColor}} type='button' value='1M' onClick={(e) => dateFunc(e.target.value)}>1M</button>
-                        </div>
-                        <div>
-                            <button style={{color: threeMonthColor}} type='button' value='3M' onClick={(e) => dateFunc(e.target.value)}>3M</button>
-                        </div>
-                        <div>
-                            <button style={{color: sixMonthColor}} type='button' value='6M' onClick={(e) => dateFunc(e.target.value)}>6M</button>
-                        </div>
-                        <div>
-                            <button style={{color: yearColor}} type='button' value='1Y' onClick={(e) => dateFunc(e.target.value)}>1Y</button>
-                        </div>
-                    </div>
-
-                </div> {/* end of stock-graph-container */}
-
-                <div id='stock-specific-info'>
-                    <div id='about-stock'>
-                        <h4>About</h4>
-                        <p>{stockOverview?.description}</p>
-                        <table className='about-stock-table'>
-                            <thead>
-                                <tr>
-                                    <th>CEO</th>
-                                    <th>Employees</th>
-                                    <th>Headquarters</th>
-                                    <th>Founded</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>{stockOverview?.ceo}</td>
-                                    <td>{stockOverview?.employees}</td>
-                                    <td>{stockOverview?.headquarters}</td>
-                                    <td>{stockOverview?.founded}</td>
-                                </tr>
-
-                            </tbody>
-                        </table>
-                    </div>
-                    <div id='key-stats'>
-                        <h4>Key Statistics</h4>
-                        <table className='key-stats-table'>
-                            <thead>
-                                <tr>
-                                    <th>Market Cap</th>
-                                    <th>Price-Earnings Ratio</th>
-                                    <th>Dividend Yield</th>
-                                    <th>Average Volume</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>{stockOverview?.market_cap}</td>
-                                    <td>{stockOverview?.price_earning_ratio}</td>
-                                    <td>{stockOverview?.dividend_yield}</td>
-                                    <td>{stockOverview?.average_volume}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                    </div> {/* end key-stats /*/}
-                    <News ticker_symbol={ticker_symbol} />
-                </div> {/* end of stock-specific-info */}
-
-            </div> {/* end of left-column-container */}
-
-            <div className='buy-sell-container'>
-                <div className='fixed-container'>
-                    <section className='buy-sell'>
-                        <div id='tabs'>
-                            <Headers
-                                titles={titles}
-                                currentTab={currentTab}
-                                selectTab={setCurrentTab}
-                            />
-                            <div className='tab-content'>
-                                {currentTab === 0 &&
-                                    <Buy user={user} ticker_symbol={ticker_symbol.toUpperCase()} price={closePrice} />}
-                                {currentTab === 1 && <Sell user={user} ticker_symbol={ticker_symbol.toUpperCase()} price={closePrice} shares={userShares} />}
+                        <LineChart width={800} height={250} data={dateRange ? dateRange : stockData}
+                          margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+                          onMouseMove={(e) => handleMouseOver(e.activePayload ? e?.activePayload[0].payload.price : stockData[(stockData.length)-1].price)}
+                          >
+                          <XAxis dataKey="date" hide={true} />
+                          <YAxis dataKey="price" domain={['auto', 'auto']} hide={true} />
+                          <Tooltip />
+                          <Line type="monotone" dataKey="price" stroke={lineColor} strokeWidth={1.5} dot={false} />
+                        </LineChart>
+                        <div id='stock-graph-btns'>
+                            <div>
+                                <button style={{color: oneMonthColor}} type='button' value='1M' onClick={(e) => dateFunc(e.target.value)}>1M</button>
+                            </div>
+                            <div>
+                                <button style={{color: threeMonthColor}} type='button' value='3M' onClick={(e) => dateFunc(e.target.value)}>3M</button>
+                            </div>
+                            <div>
+                                <button style={{color: sixMonthColor}} type='button' value='6M' onClick={(e) => dateFunc(e.target.value)}>6M</button>
+                            </div>
+                            <div>
+                                <button style={{color: yearColor}} type='button' value='1Y' onClick={(e) => dateFunc(e.target.value)}>1Y</button>
                             </div>
                         </div>
-                    </section>
-                    <section className='watchlist-dropdown'>
-                        { showDropdown ? <Dropdown/> : <button id='add-to-list' onClick={onClick}><span id='add-plus'>+  </span ><span id='add-txt'>Add to Lists</span></button>}
-                    </section> {/* end watchlist-dropdown-container */}
-                </div>
 
-            </div> {/* end of .buy-sell-container */}
+                    </div> {/* end of stock-graph-container */}
 
+                    <div id='stock-specific-info'>
+                        <div id='about-stock'>
+                            <h4>About</h4>
+                            <p>{stockOverview?.description}</p>
+                            <table className='about-stock-table'>
+                                <thead>
+                                    <tr>
+                                        <th>CEO</th>
+                                        <th>Employees</th>
+                                        <th>Headquarters</th>
+                                        <th>Founded</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>{stockOverview?.ceo}</td>
+                                        <td>{stockOverview?.employees}</td>
+                                        <td>{stockOverview?.headquarters}</td>
+                                        <td>{stockOverview?.founded}</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <div id='key-stats'>
+                            <h4>Key Statistics</h4>
+                            <table className='key-stats-table'>
+                                <thead>
+                                    <tr>
+                                        <th>Market Cap</th>
+                                        <th>Price-Earnings Ratio</th>
+                                        <th>Dividend Yield</th>
+                                        <th>Average Volume</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>{stockOverview?.market_cap}</td>
+                                        <td>{stockOverview?.price_earning_ratio}</td>
+                                        <td>{stockOverview?.dividend_yield}</td>
+                                        <td>{stockOverview?.average_volume}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div> {/* end key-stats /*/}
+                        <News ticker_symbol={ticker_symbol} />
+                    </div> {/* end of stock-specific-info */}
+
+                </div> {/* end of left-column-container */}
+
+                <div className='buy-sell-container'>
+                    <div className='fixed-container'>
+                        <section className='buy-sell'>
+                            <div id='tabs'>
+                                <Headers
+                                    titles={titles}
+                                    currentTab={currentTab}
+                                    selectTab={setCurrentTab}
+                                />
+                                <div className='tab-content'>
+                                    {currentTab === 0 &&
+                                        <Buy user={user} ticker_symbol={ticker_symbol.toUpperCase()} price={closePrice} />}
+                                    {currentTab === 1 && <Sell user={user} ticker_symbol={ticker_symbol.toUpperCase()} price={closePrice} shares={userShares} />}
+                                </div>
+                            </div>
+                        </section>
+                        <section className='watchlist-dropdown'>
+                            { showDropdown ? <Dropdown/> : <button id='add-to-list' onClick={onClick}><span id='add-plus'>+  </span ><span id='add-txt'>Add to Lists</span></button>}
+                        </section> {/* end watchlist-dropdown-container */}
+                    </div>
+
+                </div> {/* end of .buy-sell-container */}
+
+            </div>
         </div>
+
     )
 }
 
