@@ -207,11 +207,11 @@ const Stock = () => {
                     <div className='stock-ticker-container'>
                         <h1 className='company-name'>{stockOverview?.company_name}</h1>
                         <div id="ticker">
-                                <h1 id="">${currentPrice ? currentPrice : (stockData[(stockData?.length)-1]['price']).toFixed(2)}</h1>
+                                <h1 id="">${currentPrice ? currentPrice.toFixed(2) : (stockData[(stockData?.length)-1]['price']).toFixed(2)}</h1>
                         </div>
                         <div id='ticker-change'>
-                            <p>{`${sign ? sign : stockData[(stockData?.length) -1].price > stockData[0].price ? '+' : '-'}$${ currentChange ? currentChange : Math.abs( (stockData[(stockData?.length) -1].price - stockData[0].price).toFixed(2) )}
-                            (${sign ? sign : stockData[(stockData?.length) -1].price > stockData[0].price ? '+' : '-'}${currentPercentChg ? currentPercentChg : Math.abs( (((stockData[0].price - stockData[(stockData?.length) -1].price)/ stockData[(stockData?.length) -1].price) * 100).toFixed(5) )  }%)`}
+                            <p>{`${sign ? sign : stockData[(stockData?.length) -1].price > stockData[0].price ? '+' : '-'}$${ currentChange ? currentChange.toFixed(2) : Math.abs( (stockData[(stockData?.length) -1].price - stockData[0].price).toFixed(2) )}
+                            (${sign ? sign : stockData[(stockData?.length) -1].price > stockData[0].price ? '+' : '-'}${currentPercentChg ? currentPercentChg.toFixed(5) : Math.abs( (((stockData[0].price - stockData[(stockData?.length) -1].price)/ stockData[(stockData?.length) -1].price) * 100).toFixed(5) )  }%)`}
                             { past ? past : 'Past Year'}
                             </p>
                         </div>

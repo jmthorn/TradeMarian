@@ -19,6 +19,19 @@ export const userPortfolio = () => async (dispatch) => {
     if(data.errors) {
         return;
     }
+
+    for(const part of data["portfolio_data"]) {
+        // console.log('partttttttttt', part)
+            for(const part2 in Object.values(part)) {
+                    // console.log(part2 )
+                }
+            }
+
+
+
+
+
+
     dispatch(setPortfolio(data))
 }
 
