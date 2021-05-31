@@ -404,14 +404,14 @@ label > input[type="radio"]:checked + *::before {
 
 @media screen and (max-height: 1155px) {
   #stock-page-container {
-    margin: 4em 0 25em;
+    margin: 4em 0 25em 3em;
     display: flex;
     justify-content: center;
 
   }
 
   .fixed-container {
-    margin-left: 150px;
+    margin-left: 60px;
     left: 65vw;
     position: sticky;
   }
