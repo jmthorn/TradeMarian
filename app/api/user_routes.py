@@ -81,7 +81,8 @@ def user():
             for key, stock in history.items():
                 key_value = stock[i]
                 date = key_value['date']
-                value = key_value['value'] * shares[key]
+                num = key_value['value'] * shares[key]
+                value = float("{:.2f}".format(num))
                 if date in obj:
                     obj[str(date)] += value
                 else:
