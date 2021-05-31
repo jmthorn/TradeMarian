@@ -73,7 +73,7 @@ def user():
         equity[symbol] = (history[symbol][len(history[symbol]) - 1]['value']
                           * shares[symbol]) - (trans.price_per_share * shares[symbol])
 
-    print('equity-------', equity)
+    # print('equity-------', equity)
 
     obj = {}
     if list(history.values()):

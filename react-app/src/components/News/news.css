@@ -60,3 +60,10 @@ h1 {
   font-weight: 500;
   font-size: 1.5em;
 }
+
+@media screen and (max-width: 1440px) {
+  .article-container {
+    width: 47em;
+  }
+}
+

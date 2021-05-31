@@ -1,8 +1,8 @@
 #stock-page-container {
-  margin: 6em 11em 0 11em;
-
+  display: flex;
+  justify-content: center;
+  margin: 4em 23em 0 0;
 }
-
 
 /* GRAPH */
 #left-column-container {
@@ -45,7 +45,7 @@
 h1.company-name {
   font-weight: 500;
   font-size: 1.9em;
-  margin-bottom: 1.1em;
+  margin-bottom: 0.8em;
   margin-top: .5em;
 }
 
@@ -105,23 +105,19 @@ div.buy-sell-container {
   position: relative;
   display: flex;
   flex-direction: column;
-
 }
 
 .fixed-container {
   position: fixed;
-  right: 16em;
-  height: 600px;
+  left: 68vw;
+  height: 77vh;
   overflow-y: auto;
-  /* top: 0;
-  bottom: 0; */
-
 }
 
 section.buy-sell {
   display: block;
   padding: 20px;
-  margin: .8em 2em 2em 2em;
+  margin: .8em 2em;
   border: 1px solid transparent;
   border-radius: 8px;
   box-shadow: 0px 0px 15px rgb(209, 209, 209);
@@ -223,7 +219,7 @@ hr {
   border: 1px solid transparent;
 }
 
-.transaction-btn button:hover {
+.transaction-btn button:hover, button#save-button:hover {
   background-color: #7268a0;
 }
 
@@ -299,16 +295,16 @@ section.watchlist-dropdown{
 }
 
 .watchlists-list {
-  margin-top: 1em;
+  margin-top: 0.5em;
 }
 
 .watchlist {
-  margin-left: 2em;
   margin-top: .5em;
+  width: 100%;
 }
 
 .watchlist:hover {
-  background-color: lightgray;
+  background-color: rgb(243, 243, 243);
 }
 
 button#save-button:disabled,
@@ -325,7 +321,6 @@ button#save-button {
   height: 45px;
   margin: 20px auto 0 24px;
   border-radius: 5px;
-
 }
 
 button#cancel-button {
@@ -376,3 +371,30 @@ label > input[type="radio"]:checked + *::before {
   color: #353535;
 
 } */
+
+
+@media screen and (min-width: 1466px) {
+  #stock-page-container {
+    margin: 4em 30em 0 0;
+  }
+
+  .fixed-container {
+    left: 65vw;
+  }
+}
+
+@media screen and (max-width: 1120px) {
+  #stock-page-container {
+    margin: 4em 0 25em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .fixed-container {
+    position: relative;
+    left: 0;
+    height: 600px;
+  }
+}

@@ -6,7 +6,7 @@ nav {
 
 #nav-list {
   margin: 0;
-  padding: 10px 0;
+  padding: 10px 58px;
   text-decoration: none;
   display: flex;
 }
@@ -35,7 +35,7 @@ nav {
 
 .nav-options {
   position: absolute;
-  right: 8em;
+  right: 5em;
   margin-top: 0.47em;
 }
 
@@ -44,7 +44,7 @@ nav {
   border: 0px solid transparent;
   font-size: 17px;
   font-weight: 300;
-  margin: 0 0 0 30px;
+  margin: 0 0 0 20px;
   font-family: objektiv-mk1, sans-serif;
 }
 
