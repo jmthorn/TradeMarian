@@ -8,10 +8,16 @@ const getAsset = (data) => ({
 
 export const stockInformation = (ticker_symbol) => async (dispatch) => {
     const res = await fetch(`/api/stocks/${ticker_symbol}`);
-    // console.log('==========', res)
+
     if (res.ok) {
         let data = await res.json();
-        // console.log('==========data', data)
+
+        // for(const part of data["stock_data"]) {
+        //     console.log("partttttt.price.fixed", (part.price).toFixed(2))
+        //     part.price = (part.price).toFixed(2)
+        //     // console.log('==========partpirce fixed', (part["price"]).toFixed(2))
+        // }
+
         dispatch(getAsset(data))
     }
 }

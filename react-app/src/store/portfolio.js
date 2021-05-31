@@ -19,18 +19,10 @@ export const userPortfolio = () => async (dispatch) => {
     if(data.errors) {
         return;
     }
-
+    // limit prices to 2 decimals
     for(const part of data["portfolio_data"]) {
-        // console.log('partttttttttt', part)
-            for(const part2 in Object.values(part)) {
-                    // console.log(part2 )
-                }
-            }
-
-
-
-
-
+        part["value"] = (part["value"]).toFixed(2)
+    }
 
     dispatch(setPortfolio(data))
 }
