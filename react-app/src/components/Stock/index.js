@@ -98,7 +98,7 @@ const Stock = () => {
             setLineColor("#97ef0c"); //green
           }
         }
-    }, [stockData, lineColor, dateRange])
+    }, [stockData, lineColor, dateRange, ticker_symbol])
 
     useEffect(() => {
 
@@ -124,7 +124,7 @@ const Stock = () => {
             setSixMonthColor("#353535")
         }
 
-    }, [timeInterval, stockData, lineColor, yearColor, oneMonthColor, threeMonthColor, sixMonthColor])
+    }, [timeInterval, stockData, lineColor, yearColor, oneMonthColor, threeMonthColor, sixMonthColor, ticker_symbol])
 
     const dateFunc = (date) => {
         if(date == '1Y') {

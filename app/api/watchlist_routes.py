@@ -21,7 +21,6 @@ def get_user_watchlist():
         json_data = request.get_json()
         watchlist_name = json_data['watchlist_name']['watchlist_name']
 
-        # print('backeeeeeeeeend', watchlist_name)
 
         new_watchlist = Watchlist(
             watchlist_name=watchlist_name,
@@ -75,32 +74,28 @@ def delete_user_watchlist(watchlistId):
 
 """ Update watchlist - remove single asset from a given watchlist
 """
-
-
 @watchlist_routes.route('/<watchlistId>/<assetId>', methods=["DELETE"])
 @login_required
 def delete_asset_in_watchlist(watchlistId, assetId):
     """ remove the watchlist from the Asset's watchlists """
-    # print('watchlistId', watchlistId)
-    # print('assetId', assetId)
     asset_to_be_removed = Asset.query.get(assetId)
-    # print('AAAAAAAAAA', asset_to_be_removed)
     watchlist = Watchlist.query.get(watchlistId)
     asset_to_be_removed.watchlists.remove(watchlist)
 
-    #  update?
     db.session.add(asset_to_be_removed)
     db.session.commit()
 
-    res = asset_to_be_removed.to_dict()
-    return res
+    updated_watchlist = Watchlist.query.get(watchlistId)
+
+    dict_assets = []
+    for asset in updated_watchlist.assets:
+        dict_assets.append(asset.to_dict())
+
+    return {"assets": dict_assets}
 
 
 """ Update watchlist - add asset to given watchlist
 """
-
-
-# @login_required
 @watchlist_routes.route('/<watchlistId>/<assetId>', methods=["POST"])
 def add_asset(watchlistId, assetId):
     asset_to_add = Asset.query.get(assetId)

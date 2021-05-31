@@ -28,11 +28,11 @@ const addAsset = (asset, watchlistId) => ({
     }
 })
 
-const deleteAsset = (watchlistId, assetId) => ({
+const deleteAsset = (watchlistId, updatedAssets) => ({
     type: DELETE_ASSET,
     payload: {
         watchlistId,
-        assetId
+        updatedAssets
     }
 })
 
@@ -95,7 +95,6 @@ export const addAssetWatchlist = (asset, watchlistId) => async (dispatch) => {
     });
 
     if (res.ok) {
-        // console.log(res.json())
         dispatch(addAsset(asset, watchlistId));
     }
 }
@@ -107,7 +106,9 @@ export const removeAsset = (assetId, watchlistId) => async (dispatch) => {
     });
 
     if (res.ok) {
-        dispatch(deleteAsset(watchlistId, assetId))
+        const data = await res.json()
+
+        dispatch(deleteAsset(watchlistId, data.assets))
     }
 }
 
@@ -135,8 +136,7 @@ export default function reducer(state=initialState, action) {
             newState[action.payload.watchlistId].assets.push(action.payload.asset);
         case DELETE_ASSET:
             newState = {...state};
-            // newState[action.watchlistId].assets.remove(find(asset => asset.id == action.assetId);
-            newState[action.payload.watchlistId].assets.filter(asset => asset.id !== action.payload.assetId);
+            newState[action.payload.watchlistId].assets = action.payload.updatedAssets;
             return newState;
         default:
             return state
