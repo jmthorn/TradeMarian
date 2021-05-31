@@ -22,7 +22,6 @@ export const userPortfolio = () => async (dispatch) => {
     // limit prices to 2 decimals
     for(const part of data["portfolio_data"]) {
         part["value"] = (part["value"]).toFixed(2)
-
     }
 
     dispatch(setPortfolio(data))

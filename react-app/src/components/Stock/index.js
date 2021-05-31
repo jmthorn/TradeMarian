@@ -217,13 +217,13 @@ const Stock = () => {
                         </div>
                     </div>
                     <LineChart width={800} height={250} data={dateRange ? dateRange : stockData}
-                    margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
-                    onMouseMove={(e) => handleMouseOver(e.activePayload ? e?.activePayload[0].payload.price : stockData[(stockData.length)-1].price)}
-                    >
-                    <XAxis dataKey="date" hide={true} />
-                    <YAxis dataKey="price" domain={['auto', 'auto']} hide={true} />
-                    <Tooltip />
-                    <Line type="monotone" dataKey="price" stroke={lineColor} strokeWidth={1.5} dot={false} />
+                        margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+                        onMouseMove={(e) => handleMouseOver(e.activePayload ? e?.activePayload[0].payload.price : stockData[(stockData.length)-1].price)}
+                        >
+                        <XAxis dataKey="date" hide={true} />
+                        <YAxis dataKey="price" domain={['auto', 'auto']} hide={true} />
+                        <Tooltip />
+                        <Line type="monotone" dataKey="price" stroke={lineColor} strokeWidth={1.5} dot={false} />
                     </LineChart>
                     <div id='stock-graph-btns'>
                         <div>
