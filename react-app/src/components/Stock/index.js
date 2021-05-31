@@ -18,10 +18,8 @@ const Headers = ({ titles, currentTab, selectTab }) => {
         const idx = parseInt(e.target.id, 10);
         selectTab(idx);
     }
-
     const tabs = titles.map((title, idx) => {
         const headerClass = (idx === currentTab) ? 'active' : '';
-
         return (
             <li
                 key={idx}
@@ -33,7 +31,6 @@ const Headers = ({ titles, currentTab, selectTab }) => {
             </li>
         );
     });
-
     return (
         <ul className='tab-header'>
             {tabs}
@@ -105,55 +102,50 @@ const Stock = () => {
 
     useEffect(() => {
 
-            if (timeInterval === '1Y') {
-
-                setDateRange(stockData)
-                setYearColor(lineColor)
-                setOneMonthColor("#353535")
-                setThreeMonthColor("#353535")
-                setSixMonthColor("#353535")
-              } else if (timeInterval === '6M') {
-
-                setDateRange(stockData.slice((stockData.length) / 2))
-                setYearColor("#353535")
-                setOneMonthColor("#353535")
-                setThreeMonthColor("#353535")
-                setSixMonthColor(lineColor)
-              } else if (timeInterval === '3M') {
-
-                setDateRange(stockData.slice(((stockData.length) / 4) * 3))
-                setYearColor("#353535")
-                setOneMonthColor("#353535")
-                setThreeMonthColor(lineColor)
-                setSixMonthColor("#353535")
-              } else if (timeInterval === '1M') {
-
-                setDateRange(stockData.slice(((stockData.length) / 12) * 11))
-                setYearColor("#353535")
-                setOneMonthColor(lineColor)
-                setThreeMonthColor("#353535")
-                setSixMonthColor("#353535")
-              }
-
+        if (timeInterval === '1Y') {
+            setYearColor(lineColor)
+            setOneMonthColor("#353535")
+            setThreeMonthColor("#353535")
+            setSixMonthColor("#353535")
+        } else if (timeInterval === '6M') {
+            setYearColor("#353535")
+            setOneMonthColor("#353535")
+            setThreeMonthColor("#353535")
+            setSixMonthColor(lineColor)
+        } else if (timeInterval === '3M') {
+            setYearColor("#353535")
+            setOneMonthColor("#353535")
+            setThreeMonthColor(lineColor)
+            setSixMonthColor("#353535")
+        } else if (timeInterval === '1M') {
+            setYearColor("#353535")
+            setOneMonthColor(lineColor)
+            setThreeMonthColor("#353535")
+            setSixMonthColor("#353535")
+        }
 
     }, [timeInterval, stockData, lineColor, yearColor, oneMonthColor, threeMonthColor, sixMonthColor])
 
-    // const dateFunc = (date) => {
-    //     if(date == '1Y') {
-    //       setTimeInterval('1Y')
-    //       setDateRange(stockData)
-    //     } else if (date == '6m') {
-    //       setTimeInterval('6m')
-    //       setDateRange(stockData.slice((stockData.length) / 2))
-    //     } else if (date == '1m') {
-    //       setTimeInterval('1m')
-    //       setDateRange(stockData.slice(((stockData.length) / 12) * 11))
-    //     } else if (date == '3m') {
-    //       setTimeInterval('3m')
-    //       setDateRange(stockData.slice(((stockData.length) / 4) * 3))
-    //     }
-    // }
+    const dateFunc = (date) => {
+        if(date == '1Y') {
+            setPast('Past Year')
+            setTimeInterval('1Y')
+            setDateRange(stockData)
+        } else if (date == '6M') {
+            setPast('Past 6 Months')
+            setTimeInterval('6M')
+            setDateRange(stockData.slice((stockData.length) / 2))
+        } else if (date == '1M') {
+            setPast('Past Month')
+            setTimeInterval('1M')
+            setDateRange(stockData.slice(((stockData.length) / 12) * 11))
+        } else if (date == '3M') {
+            setPast('Past 3 Months')
+            setTimeInterval('3M')
+            setDateRange(stockData.slice(((stockData.length) / 4) * 3))
+        }
 
+    }
     if(!stockData) return null
 
 
@@ -166,7 +158,7 @@ const Stock = () => {
         if (stockData[(stockData?.length) -1].price > stockData[0].price) {
           setCurrentPercentChg( Math.abs((((stockData[0].price - price) / price)*100).toFixed(5)))
         } else {
-          setCurrentPercentChg( Math.abs((((price - stockData[0].price) / stockData[0].price)*100).toFixed(2)))
+          setCurrentPercentChg( Math.abs( (((price - stockData[0].price) / stockData[0].price)*100).toFixed(2) ) )
         }
         //set sign
         if (dateRange ? dateRange[0]['price'] < dateRange[dateRange.length -1]['price'] : stockData[(stockData?.length) -1].price > stockData[0].price) {
@@ -174,16 +166,7 @@ const Stock = () => {
         } else {
           setSign('-')
         }
-        //set "Past"
-        if (timeInterval == '1M') {
-          setPast('Past Month')
-        } else if (timeInterval == '3M') {
-          setPast('Past 3 Months')
-        } else if (timeInterval == '6M') {
-          setPast('Past 6 Months')
-        } else if (timeInterval == '1Y') {
-          setPast('Past Year')
-        }
+
     }
 
     const watchlist_arr = Object.values(watchlists)
@@ -244,16 +227,16 @@ const Stock = () => {
                     </LineChart>
                     <div id='stock-graph-btns'>
                         <div>
-                            <button style={{color: oneMonthColor}} type='button' value='1M' onClick={(e) => setTimeInterval(e.target.value)}>1M</button>
+                            <button style={{color: oneMonthColor}} type='button' value='1M' onClick={(e) => dateFunc(e.target.value)}>1M</button>
                         </div>
                         <div>
-                            <button style={{color: threeMonthColor}} type='button' value='3M' onClick={(e) => setTimeInterval(e.target.value)}>3M</button>
+                            <button style={{color: threeMonthColor}} type='button' value='3M' onClick={(e) => dateFunc(e.target.value)}>3M</button>
                         </div>
                         <div>
-                            <button style={{color: sixMonthColor}} type='button' value='6M' onClick={(e) => setTimeInterval(e.target.value)}>6M</button>
+                            <button style={{color: sixMonthColor}} type='button' value='6M' onClick={(e) => dateFunc(e.target.value)}>6M</button>
                         </div>
                         <div>
-                            <button style={{color: yearColor}} type='button' value='1Y' onClick={(e) => setTimeInterval(e.target.value)}>1Y</button>
+                            <button style={{color: yearColor}} type='button' value='1Y' onClick={(e) => dateFunc(e.target.value)}>1Y</button>
                         </div>
                     </div>
 
