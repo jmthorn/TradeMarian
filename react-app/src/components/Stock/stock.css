@@ -1,7 +1,9 @@
+
 #stock-page-container {
   display: flex;
   justify-content: center;
   margin: 4em 23em 0 0;
+
 }
 
 /* GRAPH */
@@ -112,6 +114,7 @@ div.buy-sell-container {
   left: 68vw;
   height: 77vh;
   overflow-y: auto;
+  /* display: block; */
 }
 
 section.buy-sell {
@@ -396,5 +399,20 @@ label > input[type="radio"]:checked + *::before {
     position: relative;
     left: 0;
     height: 600px;
+  }
+}
+
+@media screen and (max-height: 1155px) {
+  #stock-page-container {
+    margin: 4em 0 25em;
+    display: flex;
+    justify-content: center;
+
+  }
+
+  .fixed-container {
+    margin-left: 150px;
+    left: 65vw;
+    position: sticky;
   }
 }
