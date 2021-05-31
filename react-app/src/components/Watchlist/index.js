@@ -46,7 +46,7 @@ const Watchlist = () => {
               <th>Company Name</th>
               <th>Ticker Symbol</th>
               <th>Average Volume</th>
-              <th>Divident Yield</th>
+              <th>Dividend Yield</th>
               <th>Date Founded</th>
               <th >Delete Asset</th>
 

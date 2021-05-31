@@ -43,7 +43,7 @@ const News = (props) => { //{ticker_symbol:AAPL}
             for (const article in gen_news) { 
                 newsArray.push(
                     <a href={gen_news[article].url}>
-                        <div key={article} className="article-container">
+                        <div className="article-container">
                             <div className="article-information">
                                 <h3>{gen_news[article].source.name}</h3>
                                 <h2>{gen_news[article].title}</h2>
