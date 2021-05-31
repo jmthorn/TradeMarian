@@ -61,7 +61,7 @@ export const addNewWatchlist = (watchlist_name) => async (dispatch) => {
 
     if (res.ok) {
         const newList = await res.json();
-        console.log("newlistttttttttttttttt", newList)
+        // console.log("newlistttttttttttttttt", newList)
 
         dispatch(createWatchlist(newList))
     }
@@ -95,7 +95,7 @@ export const addAssetWatchlist = (asset, watchlistId) => async (dispatch) => {
     });
 
     if (res.ok) {
-        console.log(res.json())
+        // console.log(res.json())
         dispatch(addAsset(asset, watchlistId));
     }
 }

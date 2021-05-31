@@ -81,8 +81,8 @@ def delete_user_watchlist(watchlistId):
 @login_required
 def delete_asset_in_watchlist(watchlistId, assetId):
     """ remove the watchlist from the Asset's watchlists """
-    print('watchlistId', watchlistId)
-    print('assetId', assetId)
+    # print('watchlistId', watchlistId)
+    # print('assetId', assetId)
     asset_to_be_removed = Asset.query.get(assetId)
     # print('AAAAAAAAAA', asset_to_be_removed)
     watchlist = Watchlist.query.get(watchlistId)

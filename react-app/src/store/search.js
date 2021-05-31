@@ -10,7 +10,7 @@ export const stockSearch = () => async (dispatch) => {
 
     if (res.ok) {
         const data = await res.json();
-        console.log('===========data=======', data)
+        // console.log('===========data=======', data)
         dispatch(getSearchStocks(data));
     }
 }
