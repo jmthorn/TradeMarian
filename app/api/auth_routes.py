@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, session, request
-from app.models import User, db
+from app.models import User, Watchlist, Asset, db
 from app.forms import LoginForm
 from app.forms import SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
@@ -71,8 +71,28 @@ def sign_up():
             password=form.data['password'],
             buying_power=form.data['buyingPower']
         )
+        
         db.session.add(user)
         db.session.commit()
+        
+        w1 = Watchlist(
+            watchlist_name="Watchlist",
+            user_id=user.id
+        )
+
+        db.session.add(w1)
+        db.session.commit()
+
+        watchlist_1 = Watchlist.query.filter(Watchlist.user_id == user.id).first()
+        asset_15 = Asset.query.get(15)
+        watchlist_1.assets.append(asset_15)
+
+        asset_16 = Asset.query.get(16)
+        watchlist_1.assets.append(asset_16)
+
+        db.session.add(watchlist_1)
+        db.session.commit()
+       
         login_user(user)
         return user.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
