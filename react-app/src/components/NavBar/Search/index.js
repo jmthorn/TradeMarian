@@ -18,20 +18,15 @@ const Search = () => {
 
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-  // const [dropDown, setDropDown] = useState(false)
-
-  const handleChange = e => {
-    setSearchTerm(e.target.value);
-  };
-
-  // useEffect(() => {
-  //   setDropDown(true);
-  // }, [dropDown])
 
   useEffect(() => {
     const results = names?.filter(symbol => symbol.toLowerCase().includes(searchTerm.split(" ").join("")));
 
     setSearchResults(results);
+
+    if (!results || searchTerm === '') {
+      setSearchResults('')
+    }
   }, [searchTerm]);
 
   return (
@@ -40,27 +35,17 @@ const Search = () => {
         type="text"
         placeholder='Search'
         onFocus={useEffect(() => {
-          // setDropDown(true);
-          setSearchTerm("");
           dispatch(stockSearch())
         }, [dispatch])}
-        onChange={handleChange}
-        // onBlur={() => {
-          // setDropDown(false);
-          // setSearchTerm(searchTerm);
-          // setSearchResults([]);
-        // }}
-        onClick={() => {
-          setSearchTerm("");
-          setSearchResults([]);
-        }}
+        onChange={e => setSearchTerm(e.target.value)}
+        onBlur={() => setSearchResults('')}
         value={searchTerm} />
       <div id='search-results'>
         <ul>
-          {/*dropDown && */searchResults?.map(item => (
+          {searchResults.length > 0 && searchResults.map(item => (
             <div className='stock-search-items'
-              onClick={() => {
-                setSearchTerm("-");
+              onMouseDown={() => {
+                setSearchTerm('')
                 history.push(`/stocks/${item.split(":")[0]}`);
               }}
             >
