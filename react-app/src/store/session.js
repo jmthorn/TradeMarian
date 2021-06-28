@@ -1,4 +1,6 @@
 import { BUY_STOCK } from './transactions';
+import { clearPortfolio } from './portfolio';
+import { clearWatchlists } from './watchlists';
 
 //constants
 const SET_USER = "session/SET_USER"
@@ -55,6 +57,9 @@ export const logout = () => async (dispatch) => {
   });
   await response.json()
   dispatch(removeUser())
+  dispatch(clearPortfolio())
+  dispatch(clearWatchlists())
+
 };
 
 
@@ -89,6 +94,7 @@ export default function reducer(state = initialState, action) {
     case SET_USER:
       return { user: action.payload }
     case REMOVE_USER:
+      // return initialState;
       return { user: null }
     case BUY_STOCK:
       return {
