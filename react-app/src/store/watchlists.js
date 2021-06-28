@@ -3,7 +3,11 @@ const CREATE_WATCHLIST = 'watchlists/CREATE_WATCHLIST'
 const DELETE_WATCHLIST = 'watchlists/DELETE_WATCHLIST'
 const ADD_ASSET = 'watchlists/ADD_ASSET'
 const DELETE_ASSET = 'watchlists/DELETE_ASSET'
+const REMOVE_WATCHLISTS = 'watchlists/REMOVE_WATCHLISTS';
 
+export const clearWatchlists = () => ({
+    type: REMOVE_WATCHLISTS
+})
 
 const loadWatchlists = (lists) => ({
     type: LOAD_WATCHLISTS,
@@ -138,6 +142,8 @@ export default function reducer(state=initialState, action) {
             newState = {...state};
             newState[action.payload.watchlistId].assets = action.payload.updatedAssets;
             return newState;
+        case REMOVE_WATCHLISTS:
+            return { watchlists: null }
         default:
             return state
     }
