@@ -48,7 +48,7 @@ const Footer = () => {
                         </div>
                     </div>
                     <div className="name-container">
-                        <div>Laura Zaliac</div>
+                        <div>Laura Zailac</div>
                         <div className="socials-container">
                             <a href="https://github.com/lkzailac" className="github_logo">
                                 <img src={Github_logo} alt="logo" />
