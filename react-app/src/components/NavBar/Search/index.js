@@ -20,7 +20,7 @@ const Search = () => {
   const [searchResults, setSearchResults] = useState([]);
 
   useEffect(() => {
-    const results = names?.filter(symbol => symbol.toLowerCase().includes(searchTerm.split(" ").join("")));
+    const results = names?.filter(name => name.toLowerCase().includes(searchTerm));
 
     setSearchResults(results);
 
@@ -54,7 +54,6 @@ const Search = () => {
           ))}
         </ul>
       </div>
-
     </div>
   )
 }
