@@ -7,7 +7,7 @@ const Buy = ({ user, ticker_symbol, price }) => {
   const data = useSelector(state => state.transactions.transactionData);
   const [transactionPrice, setTransactionPrice] = useState((0).toFixed(2));
   const [sharesBought, setSharesBought] = useState(0);
-  const [order, setOrder] = useState('Review Order')
+  const [order, setOrder] = useState('Buy')
   const [buyingPower, setBuyingPower] = useState(user?.buying_power);
 
   const transactionTotal = e => {
@@ -35,7 +35,7 @@ const Buy = ({ user, ticker_symbol, price }) => {
 
   if (buyAsset) {
     setTimeout(() => {
-        setOrder('Review Order');
+        setOrder('Buy');
       }, 3500);
   }
 

@@ -6,7 +6,7 @@ const Sell = ({ user, ticker_symbol, price, shares }) => {
     const dispatch = useDispatch();
     const [sellPrice, setSellPrice] = useState((0).toFixed(2));
     const [userShares, setUserShares] = useState(shares);
-    const [order, setOrder] = useState('Review Order')
+    const [order, setOrder] = useState('Sell')
     const [sharesSold, setSharesSold] = useState(0);
     const [buyingPower, setBuyingPower] = useState(user?.buying_power);
     // useEffect(() => {
@@ -20,7 +20,7 @@ const Sell = ({ user, ticker_symbol, price, shares }) => {
 
     const sellAsset = async (e) => {
         e.preventDefault();
-        setOrder('Ordered');
+        setOrder('Sold');
         setUserShares(userShares - sharesSold)
         setBuyingPower((Number(buyingPower) + Number(sellPrice)).toString());
         
@@ -39,7 +39,7 @@ const Sell = ({ user, ticker_symbol, price, shares }) => {
 
     if (sellAsset) {
         setTimeout(() => {
-            setOrder('Review Order');
+            setOrder('Sell');
         }, 3500);
     }
 
