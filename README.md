@@ -30,7 +30,7 @@ Check out the [wiki](https://github.com/jmthorn/TradeMarian/wiki)!
 * Stocks can be added and removed from custom watchlists users create.
 * Using the search bar, stocks can be found by ticker symbol or by company name.
 
-***
+<!-- ***
 
 ### Stretch Goals
-* 
+*  -->
