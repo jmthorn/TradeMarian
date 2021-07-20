@@ -17,17 +17,19 @@ def specific_news(ticker_symbol):  # GE
         f'https://newsapi.org/v2/everything?q={ticker_symbol}&pageSize=5&apiKey={stock_news}')
 
     res = reqs.json()
+
+    # Grab the last item in res, "Articles"
     for article in res:
         news_list = res[article]
-
     news_ = {}
 
+    # Normalize data - format under ID
     id = 1
     while id < len(news_list):
         for d in news_list:
             news_[id] = d
             id += 1
-
+    print("NEWS_", news_)
     return news_
 
 
@@ -37,11 +39,14 @@ def all_news():
         f'https://newsapi.org/v2/everything?q=stocks&pageSize=5&apiKey={stock_news}')
 
     res = reqs.json()
+
+    # Grab the last item in res, "Articles"
     for article in res:
         news_list = res[article]
 
     news_ = {}
 
+    # Normalize data - format under ID
     id = 1
     while id < len(news_list):
         for d in news_list:
