@@ -20,7 +20,7 @@ const Search = () => {
   const [searchResults, setSearchResults] = useState([]);
 
   useEffect(() => {
-    const results = names?.filter(name => name.toLowerCase().includes(searchTerm));
+    const results = names?.filter(name => name.toLowerCase().includes(searchTerm.toLowerCase()));
 
     setSearchResults(results);
 
