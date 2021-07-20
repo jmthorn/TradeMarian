@@ -29,7 +29,6 @@ def specific_news(ticker_symbol):  # GE
         for d in news_list:
             news_[id] = d
             id += 1
-    print("NEWS_", news_)
     return news_
 
 
